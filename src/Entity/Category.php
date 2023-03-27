@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -22,9 +24,17 @@ class Category
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descreption = null;
 
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     */
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     */
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $modifiedAt = null;
 
@@ -34,6 +44,10 @@ class Category
     public function __construct()
     {
         $this->terrains = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -70,25 +84,25 @@ class Category
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /*  public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
-    }
+    } */
 
     public function getModifiedAt(): ?\DateTimeInterface
     {
         return $this->modifiedAt;
     }
 
-    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
+    /*  public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
 
         return $this;
     }
-
+ */
     /**
      * @return Collection<int, Terrain>
      */

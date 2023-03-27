@@ -1,21 +1,40 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Register{% endblock %}
+{% block stylesheets %}
+    <link href="{{asset ('css/register.css')}}" rel="stylesheet">
+{% endblock %}
 
-{% block body %}
+{% block main %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    <div class="container">
+        <div class="register">
+            <div class="container">
+                <h1>Register</h1>
+                {{ form_row(registrationForm.firstName) }}
+                {{ form_row(registrationForm.lastName) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+            <button type="submit" class="btn">Register</button>
+            </div>
+        </div>
+        <div class="login">
+            <div class="container">
+                <i class="fas fa-user-plus fa-5x"></i>
+                <h2>Hello!</h2>
+                <p>Already have an account ? </br> login and start journey with us</p>
+                <a href='{{ path('app_login') }}'> Login <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>  
+    </div>
+    
+{{ form_end(registrationForm) }}
+
 {% endblock %}

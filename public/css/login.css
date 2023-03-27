@@ -1,373 +1,187 @@
-:root{
-  --form-height:550px;
-  --form-width: 900px;
-  /*  Sea Green */
-  --left-color: #9fdeaf;
-  /*  Light Blue  */
-  --right-color: #96dbe2;
-}
-
-body, html{
-  width: 100%;
-  height: 100%;
+/*Start Global Style*/
+ *{
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Helvetica Neue', sans-serif;
-  letter-spacing: 0.5px;
+  padding: 0;
 }
-
+body{
+  background:#000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+} 
 .container{
-  width: var(--form-width);
-  height: var(--form-height);
-  position: relative;
-  margin: auto;
-  box-shadow: 2px 10px 40px rgba(22,20,19,0.4);
-  border-radius: 10px;
-  margin-top: 50px;
-}
-/* 
-----------------------
-      Overlay
-----------------------
-*/
-.overlay{
-  width: 100%; 
-  height: 100%;
-  position: absolute;
-  z-index: 100;
-  background-image: linear-gradient(to right, var(--left-color), var(--right-color));
-  border-radius: 10px;
-  color: white;
-  clip: rect(0, 385px, var(--form-height), 0);
-}
-
-.open-sign-up{
-    animation: slideleft 1s linear forwards;
-}
-
-.open-sign-in{
-    animation: slideright 1s linear forwards;
-}
-
-.overlay .sign-in, .overlay .sign-up{
-  /*  Width is 385px - padding  */
-  --padding: 50px;
-  width: calc(385px - var(--padding) * 2);
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px var(--padding);
-  text-align: center;
-}
-
-.overlay .sign-in{
-  float: left;
-}
-
-.overlay-text-left-animation{
-    animation: text-slide-in-left 1s linear;
-}
-.overlay-text-left-animation-out{
-    animation: text-slide-out-left 1s linear;
-}
-
-.overlay .sign-up{
-  float:right;
-}
-
-.overlay-text-right-animation{
-    animation: text-slide-in-right 1s linear;
-}
-
-.overlay-text-right-animation-out{
-    animation: text-slide-out-right 1s linear;
-}
-
-
-.overlay h1{
-  margin: 0px 5px;
-  font-size: 2.1rem;
-}
-
-.overlay p{
-  margin: 20px 0px 30px;
-  font-weight: 200;
-}
-/* 
-------------------------
-      Buttons
-------------------------
-*/
-.switch-button, .control-button{
-  cursor: pointer;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 140px;
-  height: 40px;
-  font-size: 14px;
-  text-transform: uppercase;
-  background: none;
-  border-radius: 20px;
-  color: white;
-}
-
-.switch-button{
-  border: 2px solid;
-}
-
-.control-button{
-  border: none;
-  margin-top: 15px;
-}
-
-.switch-button:focus, .control-button:focus{
-  outline:none;
-}
-
-.control-button.up{
-  background-color: var(--left-color);
-}
-
-.control-button.in{
-  background-color: var(--right-color);
-}
-
-/* 
---------------------------
-      Forms
---------------------------
-*/
-.form{
-  width: 100%; 
-  height: 100%;
-  position: absolute;
-  border-radius: 10px;
-}
-
-.form .sign-in, .form .sign-up{
-  --padding: 50px;
-  position:absolute;
-    /*  Width is 100% - 385px - padding  */
-  width: calc(var(--form-width) - 385px - var(--padding) * 2);
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px var(--padding);
-  text-align: center;
-}
-
-/* Sign in is initially not displayed */
-.form .sign-in{
-  display: none;
-}
-
-.form .sign-in{
-  left:0;
-}
-
-.form .sign-up{
-  right: 0;
-}
-
-.form-right-slide-in{
-  animation: form-slide-in-right 1s;
-}
-
-.form-right-slide-out{
-  animation: form-slide-out-right 1s;
-}
-
-.form-left-slide-in{
-  animation: form-slide-in-left 1s;
-}
-
-.form-left-slide-out{
-  animation: form-slide-out-left 1s;
-}
-
-.form .sign-in h1{
-  color: var(--right-color);
-  margin: 0;
-}
-
-.form .sign-up h1{
-  color: var(--left-color);
-  margin: 0;
-}
-
-.social-media-buttons{
-  display: flex;
-  justify-content: center;
   width: 100%;
-  margin: 15px;
+  margin: auto;
+  padding: 20px;
+  height:100%
 }
 
-.social-media-buttons .icon{
-  width: 40px;
-  height: 40px;
-  border: 1px solid #dadada;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 7px;
+
+.login ,.register{width: 50%}
+
+/*Start Login Style*/
+.login{
+  float:left;
+  background-color: #fafafa;
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  text-align: center;
+}
+.login h1{
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  margin-top: 72px;
+  color: #000;
 }
 
-.small{
-  font-size: 13px;
-  color: grey;
-  font-weight: 200;
-  margin: 5px;
-}
-
-.social-media-buttons .icon svg{
-  width: 25px;
-  height: 25px;
-}
-
-#sign-in-form input, #sign-up-form input{
-  margin: 12px;
-  font-size: 14px;
-  padding: 15px;
-  width: 260px;
-  font-weight: 300;
+  input[type="email"] , input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 30px;
   border: none;
-  background-color: #e4e4e494;
-  font-family: 'Helvetica Neue', sans-serif;
-  letter-spacing: 1.5px;
-  padding-left: 20px;
+  background-color: #eeeeef;
 }
 
-#sign-in-form input::placeholder{
-  letter-spacing: 1px;
+input[type="checkbox"] {
+  float: left;
+  margin-right: 5px;
 }
 
-.forgot-password{
-  font-size: 12px;
+.login span{
+  float: left
+}
+.login a{
+  float: right;
+  text-decoration: none;
+  color: #000;
+  transition: 0.3s all ease-in-out;
+}
+.login a:hover{color: #089940;font-weight: bold}
+/* .login button{
+  width: 100%;
+  margin: 30px 0;
+  padding: 10px;
+  border: none;
+  background-color: #089940;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+} */
+.login button:hover{
+  width:97%;
+  font-size: 22px;
+  border-radius: 5px;
+  
+}/* 
+.login hr{
+  width: 30%;
+  display: inline-block
+} */
+
+.login p{
   display: inline-block;
-  border-bottom: 2px solid #efebeb;
-  padding-bottom: 3px;
+  margin: 0px 10px 30px;
 }
+/* .login ul{
+  list-style: none;
+  margin-bottom:40px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: none;
+  background-color: #eeeeef;
+} */
+input[type="checkbox"]{
+  float: left;
+  margin-right: 5px;
+}
+.login span{
+  float: left
+}
+.login a{
+  float: right;
+  text-decoration: none;
+  color: #000;
+  transition: 0.3s all ease-in-out;
+}
+.login a:hover{color: #089940;font-weight: bold}
+.login button{
+  width: 100%;
+  margin: 43px 0;
+  padding: 10px;
+  border: none;
+  background-color: #089940;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+.login button:hover{
+  width:97%;
+  font-size: 22px;
+  border-radius: 5px;
+  
+}/* 
+.login hr{
+  width: 30%;
+  display: inline-block
+} */
 
-.forgot-password:hover{
+.login p{
+  display: inline-block;
+  margin: 0px 10px 30px;
+}
+/* .login ul{
+  list-style: none;
+  margin-bottom:40px;  
+}
+.login ul li{
+  display: inline-block;
+  margin-right: 30px;
   cursor: pointer;
 }
-
-/* 
----------------------------
-    Animation
----------------------------
-*/
-@keyframes slideright{
-  0%{
-    clip: rect(0, 385px, var(--form-height), 0);
-  }
-  30%{
-        clip: rect(0, 480px, var(--form-height), 0);
-  }
-  /*  we want the width to be slightly larger here  */
-  50%{
-     clip: rect(0px, calc(var(--form-width) / 2 + 480px / 2), var(--form-height), calc(var(--form-width) / 2 - 480px / 2));
-  }
-  80%{
-         clip: rect(0px, var(--form-width), var(--form-height), calc(var(--form-width) - 480px));
-  }
-  100%{
-     clip: rect(0px, var(--form-width), var(--form-height), calc(var(--form-width) - 385px));
-  }
+.login ul li:hover{opacity: 0.6}
+.login ul li:last-child{margin-right: 0}
+.login .copyright{
+  display: inline-block;
+  float: none;
+} */
+/*Start Register Style*/
+.register{
+  float: right;
+  background-image: linear-gradient(135deg, #23212f 5%, #089940 95%);
+  height: 100%;
+  color:#fff;
+  border-radius:  0 10px 10px  0;
+  text-align: center;
+  padding: 60px 0;
+  text-decoration-line: none;
 }
-
-@keyframes slideleft{
-  100%{
-    clip: rect(0, 385px, var(--form-height), 0);
-  }
-  70%{
-        clip: rect(0, 480px, var(--form-height), 0);
-  }
-  /*  we want the width to be slightly larger here  */
-  50%{
-     clip: rect(0px, calc(var(--form-width) / 2 + 480px / 2), var(--form-height), calc(var(--form-width) / 2 - 480px / 2));
-  }
-  30%{
-         clip: rect(0px, var(--form-width), var(--form-height), calc(var(--form-width) - 480px));
-  }
-  0%{
-     clip: rect(0px, var(--form-width), var(--form-height), calc(var(--form-width) - 385px));
-  }
+.register h2{
+  margin: 30px 0;
+  font-size: 50px;
+  letter-spacing: 3px
 }
-
-@keyframes text-slide-in-left{
-  0% {
-    padding-left: 20px;
-  }
-  100% {
-    padding-left: 50px;
-  }
+.register p{
+  font-size: 18px;
+  margin-bottom: 30px;
 }
-
-@keyframes text-slide-in-right{
-  0% {
-    padding-right: 20px;
-  }
-  100% {
-    padding-right: 50px;
-  }
+.register a{
+  background-color: transparent;
+  border: 1px solid #FFF;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  transition:0.2s all  ease-in-out;
+  text-decoration-line: none;
 }
-
-@keyframes text-slide-out-left{
-  0% {
-    padding-left: 50px;
-  }
-  100% {
-    padding-left: 20px;
-  }
-}
-
-@keyframes text-slide-out-right{
-  0% {
-    padding-right: 50px;
-  }
-  100% {
-    padding-right: 20px;
-  }
-}
-
-@keyframes form-slide-in-right{
-  0%{
-    padding-right: 100px;
-  }
-  100%{
-    padding-right: 50px;
-  }
-}
-
-@keyframes form-slide-in-left{
-  0%{
-    padding-left: 100px;
-  }
-  100%{
-    padding-left: 50px;
-  }
-}
-
-@keyframes form-slide-out-right{
-  0%{
-    padding-right: 50px;
-  }
-  100%{
-    padding-right: 80px;
-  }
-}
-
-@keyframes form-slide-out-left{
-  0%{
-    padding-left: 50px;
-  }
-  100%{
-    padding-left: 80px;
-  }
+.register a:hover{
+  color: #089940;
+  background-color: #fff;
+  cursor: pointer;
 }

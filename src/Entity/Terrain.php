@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 #[ORM\Entity(repositoryClass: TerrainRepository::class)]
 class Terrain
@@ -40,9 +42,17 @@ class Terrain
     #[ORM\Column(nullable: true)]
     private ?float $discount = null;
 
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     */
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     */
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $modifiedAt = null;
 
@@ -55,6 +65,10 @@ class Terrain
 
     #[ORM\OneToMany(mappedBy: 'terrain', targetEntity: Reservation::class)]
     private Collection $reservations;
+
+    #[ORM\ManyToOne(inversedBy: 'terrains')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -167,24 +181,24 @@ class Terrain
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /*  public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
-    }
+    } */
 
     public function getModifiedAt(): ?\DateTimeInterface
     {
         return $this->modifiedAt;
     }
-
+    /* 
     public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
 
         return $this;
-    }
+    } */
 
     public function getImage(): ?string
     {
@@ -236,6 +250,18 @@ class Terrain
                 $reservation->setTerrain(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

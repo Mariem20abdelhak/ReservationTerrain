@@ -1,7 +1,143 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
+body, html {
+    margin: 0;
+    font-family: Roboto, Arial, helvetica, sans-serif;
+  }
+  
+  a {
+    outline: none;
+  }
+  
+  .navbar-container {
+    text-align: center;
+    background-color: #009688;
+    box-shadow: 0px -20px 5px 20px #333333;
+    padding: 10px;
+    font-size: 0;
+  }
+  
+  .navbar-container ul {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .navbar-container ul li {
+    display: inline-block;
+    font-size: 16px;
+  }
+  
+  .navbar-container ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;  
+    padding: 10px;
+    transition: color 0.5s;
+  }
+  
+  .navbar-container ul li .underline {
+    height: 3px;
+    background-color: transparent;
+    width: 0%;
+    transition: width 0.2s, background-color 0.5s;
+    margin: 0 auto;
+  }
+  
+  .navbar-container ul li.active-link .underline {
+    width: 100%;
+    background-color: white;
+  }
+  
+  .navbar-container ul li:hover .underline {
+    background-color: white;
+    width: 100%;
+  }
+  
+  
+  .navbar-container ul li:active a {
+    transition: none;
+    color: rgba(255,255,255,0.76);
+  }
+  
+  .navbar-container ul li:active .underline {
+    transition: none;
+    background-color: rgba(255,255,255,0.76);
+  }   
 
+
+
+
+
+
+  body, html {
+    margin: 0;
+    font-family: Roboto, Arial, helvetica, sans-serif;
+  }
+  
+  a {
+    outline: none;
+  }
+  
+  .navbar-container {
+    text-align: center;
+    background-color: #12aa4c;
+    box-shadow: 0px -20px 5px 20px #333333;
+    padding: 10px;
+    font-size: 0;
+  }
+  
+  .navbar-container ul {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .navbar-container ul li {
+    display: inline-block;
+    font-size: 16px;
+  }
+  
+  .navbar-container ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;  
+    padding: 10px;
+    transition: color 0.5s;
+  }
+  
+  .navbar-container ul li .underline {
+    height: 3px;
+    background-color: transparent;
+    width: 0%;
+    transition: width 0.2s, background-color 0.5s;
+    margin: 0 auto;
+  }
+  
+  .navbar-container ul li.active-link .underline {
+    width: 100%;
+    background-color: white;
+  }
+  
+  .navbar-container ul li:hover .underline {
+    background-color: white;
+    width: 100%;
+  }
+  
+  .navbar-container ul li:active a {
+    transition: none;
+    color: rgba(255,255,255,0.76);
+  }
+  
+  .navbar-container ul li:active .underline {
+    transition: none;
+    background-color: rgba(255,255,255,0.76);
+  }
 body {
     padding-bottom: 40px;
     color: #5a5a5a;
@@ -11,36 +147,14 @@ body {
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
-/* Special class on .container surrounding .navbar, used for positioning it into place. */
-.navbar-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 20;
-}
-
-/* Flip around the padding for proper display in narrow viewports */
-.navbar-wrapper > .container {
-    padding-right: 0;
-    padding-left: 0;
-}
-.navbar-wrapper .navbar {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-.navbar-wrapper .navbar .container {
-    width: auto;
-}
-
-
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
 /* Carousel base class */
 .carousel {
-    height: 500px;
+    height: 700px;
     margin-bottom: 60px;
+    width: 100% ;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -49,15 +163,15 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel .item {
-    height: 500px;
-    background-color: #777;
+    height: 700px;
+    background-color: white;
 }
 .carousel-inner > .item > img {
     position: absolute;
     top: 0;
     left: 0;
     min-width: 100%;
-    height: 500px;
+    height: 700px;
 }
 
 
