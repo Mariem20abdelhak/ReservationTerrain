@@ -33,6 +33,8 @@ class OwnerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->doctrine;
+            $terrain->setUser($this->getUser());
+
             $entityManager->persist($terrain);
             $entityManager->flush();
 

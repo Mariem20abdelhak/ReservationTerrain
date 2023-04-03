@@ -5,9 +5,9 @@
     <link href="{{asset ('css/login.css')}}" rel="stylesheet">
 {% endblock %}
 {% block main %}
-<form method="post">
+<form method="Post">
     {% if error %}
-        <div class="alert alert-danger" style= "color: white;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}

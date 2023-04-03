@@ -30,7 +30,7 @@ h1, h3 {
     margin: 0 0 15px;
 }
 p {
-    color: #ffffff;
+    color: #515151;
     line-height: 27px;
 }
 .a-CTA {
@@ -40,8 +40,6 @@ p {
     font-size: 18px;
 }
 /*End Global*/
-
-
 
 /*Start Mutual*/
 p, .a-CTA, input, header .navigation-bar a, .copyright li, .contact .form form label, .contact .form form button {
@@ -75,7 +73,6 @@ header nav .toggle, header .navigation-bar .underline, header .text .arrow .left
 }
 header nav, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, .menu .box-model, .menu .box-image-container, .menu .box-image-container .box-image {
     width: 100%;
-    color: #000;
 }
 button, .dots > div, header nav .toggle, header .arrow-down, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .menu-image-container .image img, footer .newsletter i, .copyright .arrow-up {
     cursor: pointer;
@@ -84,7 +81,7 @@ button, .dots > div, header nav .toggle, header .arrow-down, .menu .box-model .c
     background-color: #fff;
 }
 h1, h3, header .navigation-bar a, header .text span, .menu .box-model .close:hover, footer .text h2, footer .text p, footer .social-media .links a, .contact .text i, .contact .form form button {
-    color: #000000;
+    color: #000;
 }
 header nav, header .navigation-bar.show, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, header .text .arrow .left:after, .menu .box-model, .copyright .arrow-up {
     left: 0;
@@ -95,12 +92,15 @@ header .text .arrow .left:after, header .text .arrow .right:after, header .text 
 /*End Mutual*/
 
 /*Start Header*/
+
+/*Start Header*/
+
 header nav {
     position: fixed;
     top: 0;
     padding: 36px 36px 20px;
     z-index: 20;
-    background-color:black;
+    background-color: #fff;
 }
 header nav .toggle {
     display: none;
@@ -237,27 +237,13 @@ header .arrow-down {
     background: url("https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988515/arrow-down.png") no-repeat center;
 }
 /*End Header*/
+
+
+
 /*Start Home Page Responsive*/
-
-@media (max-width: 1200px) {
-    .menu, .about-us, .reservation {
-        padding: 60px 40px;
-    }
-    .about-us .text, .reservation .text {
-        padding: 0 32px 0 0;
-    }
-    .about-us .image-container, .reservation .image-container {
-        align-items: center;
-    }
-    .menu .text {
-        padding: 0 0 0 32px;
-    }
-}
-
 @media (max-width: 992px) {
     body {
         padding: 0;
-        background-color: #000;
     }
     .dots {
         display: none;

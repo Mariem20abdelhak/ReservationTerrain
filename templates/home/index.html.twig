@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-{% endblock %}
-
+    {% block stylesheets %}
+        <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+    {% endblock %}
+    {% block title %}ResTer {% endblock %}
+    {% block javascripts %}
+        <link href="{{asset ('js/main.js')}}" rel="stylesheet">
+    {% endblock %}
 {% block body %}
 {% for message in app.flashes('success') %}
         <div class="alert alert-success" role="alert">{{ message }}</div>
@@ -58,6 +62,7 @@
     </div> 
 {% endblock %}
 <!--End Header-->
+
 {% block main %}
 <!--start About Us-->
 <div class="about-us">

@@ -27,7 +27,7 @@ class Terrain
     #[ORM\Column(length: 255)]
     private ?string $local = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $is_reserved = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -61,7 +61,7 @@ class Terrain
 
     #[ORM\ManyToOne(inversedBy: 'terrains')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?category $category = null;
+    private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'terrain', targetEntity: Reservation::class)]
     private Collection $reservations;

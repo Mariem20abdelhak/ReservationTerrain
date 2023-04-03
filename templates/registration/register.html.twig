@@ -11,8 +11,8 @@
 
 
 
+<form method="POST">
     {{ form_start(registrationForm) }}
-
     <div class="container">
         <div class="register">
             <div class="container">
@@ -22,7 +22,7 @@
                 {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.plainPassword) }}
                 {{ form_row(registrationForm.agreeTerms) }}
-            <button type="submit" class="btn">Register</button>
+                {{ form_row(registrationForm.submitButton)}}
             </div>
         </div>
         <div class="login">
@@ -36,5 +36,5 @@
     </div>
     
 {{ form_end(registrationForm) }}
-
+</form>
 {% endblock %}

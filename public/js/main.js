@@ -1,6 +1,5 @@
 // constants
 const body = document.querySelector("body"),
-  loader = document.querySelector(".loader-wrap"),
   links = document.querySelectorAll('a[href="#"]'),
   nav = document.querySelector("header nav"),
   navToggle = document.querySelector("header nav .toggle"),
