@@ -5,10 +5,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="../../favicon.ico">
 
         <title>
         {% block title %}{% endblock %}
@@ -18,8 +14,9 @@
         <link rel="shortcut icon" href="https://wixmp-fe53c9ff592a4da924211f23.wixmp.com/users/ebee2d68-dbd2-43f8-b0b0-021fa4e4b1b3/design-previews/8b3dc7cf-51f7-4281-9caf-762892c20e3b/1680517478206-thumbnail.jpeg"> 
 
         <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Cabin|Herr+Von+Muellerhoff|Source+Sans+Pro" rel="stylesheet">
-        <!--Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Cabin|sans-serif" rel="stylesheet">
+        <!--Fonts--> 
+
 
         <!--FontAwesome-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -37,7 +34,7 @@
         <header>
             <nav >
                 <div class="logo">
-                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" width="150px" height="70px" alt="Rosa Logo"></a>
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" width="150px" height="70px" alt="Site Logo"></a>
                 </div>
                 <div class="toggle ">
                     <span class="first"></span>
@@ -47,8 +44,9 @@
                 <div class="navigation-bar">
                     <ul>
                         <li><a href="{{ path('app_home') }}">Home<span class="underline"></span></a></li>
-                        <li><a href="#">About<span class="underline"></span></a></li>
+                        <li><a href="#about-us">About<span class="underline"></span></a></li>
                         <li><a href="#">Contact<span class="underline"></span></a></li>
+                        <li><a href="#">Services<span class="underline"></span></a></li>
                         <li><a href="{{ path('app_login') }}">Login<span class="underline"></span></a></li>
                         <li><a href="{{ path('app_register') }}">Register<span class="underline"></span></a></li>
                     </ul>

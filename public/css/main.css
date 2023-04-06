@@ -20,11 +20,13 @@ ul {
 img {
     max-width: 100%;
 }
+
 h2 {
-    font-family: 'Herr Von Muellerhoff', cursive;
+    font-family: 'sans-serif';
     font-size: 100px;
     font-weight: normal;
     margin: 0 0 -55px;
+    padding: 50px;
 }
 h1, h3 {
     font-family: "Source Code Pro", sans-serif;
@@ -35,7 +37,7 @@ h1, h3 {
 }
 p {
     color: #000;
-    line-height: 27px;
+    line-height: 35px;
 }
 .a-CTA {
     border-bottom: 2px solid #089940;
@@ -63,6 +65,7 @@ header nav, header .navigation-bar ul, .about-us, .reservation, .about-us .image
 }
 header nav .toggle, header nav .toggle span, header .navigation-bar, header .navigation-bar ul, .menu .box-model .close, footer .social-media .links a, .copyright .CTA li a {
     transition: .3s;
+    margin-top:7px ;
 }
 header, header nav .toggle span, header .navigation-bar a, header .text, header .text .arrow .left, header .text .arrow .right, .recipes, .menu .box-image-container, .fixed-image .text, .copyright, .copyright .arrow-up {
     position: relative;
@@ -125,9 +128,11 @@ header .text .arrow .left:after, header .text .arrow .right:after, header .text 
 header {
     height: calc(100vh - 22px);
     background-size: cover;
-    background: url("https://i.pinimg.com/236x/39/a2/0f/39a20f2ac1c09adced7e663526193f34.jpg") fixed bottom no-repeat;
+    background: url("https://media.istockphoto.com/id/472347896/photo/striped-soccer-field.jpg") fixed bottom no-repeat;
     padding: 20px 70px;
 }
+
+
 /* 
 header nav {
     position: fixed;
@@ -210,9 +215,60 @@ header .navigation-bar .underline {
 header .text {
     top: 24%
 }
-header .text h1 {
-    margin-bottom: 0;
-}
+.search-block {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  .search-block form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-block .form-group {
+    margin-right: 20px;
+  }
+  
+  .search-block label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .search-block input[type="text"],
+  .search-block select,
+  .search-block input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .search-block select {
+    width: 150px;
+  }
+  
+  .search-block button {
+    background-color: #089940;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .search-block button:hover {
+    background-color: #089940;
+  }
+  
 header .text .arrow .left, header .text .arrow .right {
     height: 3px;
     width: 100px;
@@ -246,8 +302,9 @@ header .text .button button, .contact form button {
     padding: 9px 18px;
     letter-spacing: 2.4px;
     font-size: 12px;
-    font-family: source_sans_problack, sans-serif;
+    font-family: 'source_sans_problack', sans-serif;
     border-radius: 3px;
+    margin-top: 80px;
 }
 header .text .button button, .contact form button:focus {
     outline: none;
@@ -378,9 +435,9 @@ header .arrow-down {
 /*End fixed-image*/
 /*Start Footer*/
 footer {
-    background-color: #121212;
+    background-color: #eee;
     padding: 60px 20px;
-    color: #fff;
+    color: #000;
 }
 footer .text {
     max-width: 500px;

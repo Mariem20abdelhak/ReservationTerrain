@@ -4,7 +4,7 @@
     {% endblock %}
     {% block title %}ResTer {% endblock %}
     {% block javascripts %}
-        <link href="{{asset ('js/main.js')}}" rel="stylesheet">
+        <script src="{{ asset('js/main.js') }}"></script>
     {% endblock %}
 {% block body %}
 {% for message in app.flashes('success') %}
@@ -26,36 +26,32 @@
 
 <!--Start Header-->
 {% block header %}
-    {# <nav>
-        <div class="logo">
-            <a href="{{ path('app_home') }}"><img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988515/logo-rosa-white.png" alt="Rosa Logo"></a>
-        </div>
-        <div class="toggle">
-            <span class="first"></span>
-            <span class="middle"></span>
-            <span class="last"></span>
-        </div>
-        <div class="navigation-bar">
-            <ul>
-                <li class="active"><a href="{{ path('app_home') }}">Home<span class="underline"></span></a></li>
-                <li><a href="#">Reservations<span class="underline"></span></a></li>
-                <li><a href="#">Login<span class="underline"></span></a></li>
-                <li><a href="#">Registre<span class="underline"></span></a></li>
-                <li><a href="#">About As<span class="underline"></span></a></li>
-                <li><a href="#">Contact<span class="underline"></span></a></li>
-            </ul>
-        </div>
-    </nav> #}
     <div class="text">
         <h2>Welcome</h2>
-        <h1>THE ROSA</h1>
-        <div class="arrow">
-            <span class="left"></span>
-            <i class="fas fa-asterisk"></i>
-            <span class="right"></span>
-        </div>
-        <span>Ready To Be Opened</span>
         <div class="button"><button>Explore</button></div>
+        <div class="search-block">
+            <form>
+                <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="Enter location...">
+                </div>
+                <div class="form-group">
+                <label for="activity">Activity:</label>
+                <select id="activity">
+                    <option value="">Select activity...</option>
+                    <option value="soccer">Soccer</option>
+                    <option value="basketball">Basketball</option>
+                    <option value="tennis">Tennis</option>
+                </select>
+                </div>
+                <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
     </div>
     <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve"><path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path></svg>
     <div class="arrow-down">
@@ -65,20 +61,18 @@
 
 {% block main %}
 <!--start About Us-->
-<div class="about-us">
+<div class="about-us" id ="about-us">
     <div class="text">
         <h2>Discover</h2>
-        <h3>Our Story</h3>
-        <div><i class="fas fa-asterisk"></i></div>
-        <p>Rosa is a restaurant, bar and coffee roastery located on a busy corner site in Farringdon’s Exmouth Market. With glazed frontage on two sides of the building, overlooking the market and a bustling London intersection.</p>
+        <p>We are a team of sports enthusiasts who are passionate about bringing people together to enjoy their favorite games and events. Our website is dedicated to providing a convenient and reliable way for you to reserve your spot in the stadium for any upcoming events.</p>
         <div><a class="a-CTA" href="#">About Us</a></div>
     </div>
     <div class="image-container">
         <div class="image image1">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988527/vertical-photo-1.jpg" alt="Food Photo">
+            <img src="https://images.pexels.com/photos/279004/pexels-photo-279004.jpeg" alt="staduim Photo" height="400px" >
         </div>
         <div class="image image2">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988532/vertical-photo-2.jpg" alt="Food Photo">
+            <img src="https://images.pexels.com/photos/159819/american-football-football-football-player-quarterback-159819.jpeg" alt="staduim Photo" height="400px" >
         </div>
     </div>
 </div>

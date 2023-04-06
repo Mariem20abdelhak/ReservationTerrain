@@ -30,7 +30,7 @@ h1, h3 {
     margin: 0 0 15px;
 }
 p {
-    color: #515151;
+    color: #fff;
     line-height: 27px;
 }
 .a-CTA {
@@ -97,16 +97,16 @@ header .text .arrow .left:after, header .text .arrow .right:after, header .text 
 
 header nav {
     position: fixed;
-    top: 0;
-    padding: 36px 36px 20px;
+    top: 0px;
+    padding: 13px 13px 13px;
     z-index: 20;
     background-color: #fff;
 }
 header nav .toggle {
     display: none;
     top: 26px;
-    left: 20px;
-    background-color: transparent;
+    left: 24px;
+    background-color: #089940;
     border: none;
     padding: 0;
     z-index: 21;
@@ -142,8 +142,8 @@ header nav .toggle span:not(:last-of-type) {
     margin-bottom: 6px;
 }
 header nav .logo {
-    flex-basis: 56%;
-    padding-left: 50px;
+    flex-basis: 46%;
+    padding-left: 20px;
 }
 header .navigation-bar.show {
     width: 40%;
