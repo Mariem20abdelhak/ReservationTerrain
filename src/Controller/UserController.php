@@ -2,53 +2,30 @@
 
 namespace App\Controller;
 
-use App\Form\EditProfileType;
 use App\Entity\User;
-use App\Entity\Category;
-use App\Form\CategoriesType;
+use App\Form\EditProfileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
-
-#[Route('/admin', name: 'admin_')]
-class AdminController extends AbstractController
+#[Route('/user', name: 'user_')]
+class UserController extends AbstractController
 {
     public function __construct(private ManagerRegistry $doctrine)
     {
     }
 
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(Security $security): Response
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
-    }
-
-    #[Route('/add/category', name: 'category_add')]
-    public function AddCategory(Request $request, EntityManagerInterface $entityManager)
-    {
-
-        $category = new Category;
-        $form = $this->createForm(CategoriesType::class, $category);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->doctrine;
-            $entityManager->persist($category);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin_home');
-        }
-
-
-        return $this->render('admin/category/add.html.twig', [
-            'form' => $form->createView()
-        ]);
+        $user = $security->getUser();
+        return $this->render('user/index.html.twig', [$user]);
     }
 
 
@@ -67,10 +44,20 @@ class AdminController extends AbstractController
 
 
             $this->addFlash('message', 'Your profile was edited successfully.');
-            return $this->redirectToRoute('admin_home');
+            return $this->redirectToRoute('user_home');
         }
 
         return $this->render('user/editProfile.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    #[Route('/edit/password', name: 'password_edit')]
+    public function edit_password(Request $request, UserPasswordEncoderInterface $userPasswordEncoderInterface)
+    {
+        $form = $this->createForm(Editpassword::class, $user);
+        $form->handleRequest($request);
+
+        return $this->render('user/editPass.html.twig', [
             'form' => $form->createView()
         ]);
     }

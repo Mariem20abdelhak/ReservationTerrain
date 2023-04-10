@@ -128,7 +128,7 @@ header .text .arrow .left:after, header .text .arrow .right:after, header .text 
 header {
     height: calc(100vh - 22px);
     background-size: cover;
-    background: url("https://media.istockphoto.com/id/472347896/photo/striped-soccer-field.jpg") fixed bottom no-repeat;
+    background-image: url("../images/bghome.jpg") fixed bottom no-repeat;
     padding: 20px 70px;
 }
 
@@ -265,8 +265,8 @@ header .text {
     transition: background-color 0.2s ease;
   }
   
-  .search-block button:hover {
-    background-color: #089940;
+  .search-block button:hover { background-color: #fff;
+    color: #089940;
   }
   
 header .text .arrow .left, header .text .arrow .right {
@@ -615,7 +615,7 @@ footer .newsletter i {
         height: calc(100vh - 10px);
     }
     header nav .logo {
-        padding-left: 0;
+        padding-left: 50px;
     }
     .about-us {
         display: block;

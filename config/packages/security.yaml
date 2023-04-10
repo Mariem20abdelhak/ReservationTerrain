@@ -34,7 +34,9 @@ security:
   access_control:
     #- { path: ^/admin, roles: ROLE_ADMIN }
     #- { path: ^/owner, roles: ROLE_OWNER }
-    #- { path: ^/user, roles: ROLE_USER }
+    - { path: ^/user, roles: ROLE_USER }
+  #role_hierarchy:
+  #ROLE_ADMIN: ROLE_USER
 
 when@test:
   security:

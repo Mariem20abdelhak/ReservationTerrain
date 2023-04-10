@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 <html  lang="en">
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>
-        {% block title %}{% endblock %}
-        </title>
+        <title> {% block title %}{% endblock %} </title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         <!-- Place favicon.ico in the root directory -->
-        <link rel="shortcut icon" href="https://wixmp-fe53c9ff592a4da924211f23.wixmp.com/users/ebee2d68-dbd2-43f8-b0b0-021fa4e4b1b3/design-previews/8b3dc7cf-51f7-4281-9caf-762892c20e3b/1680517478206-thumbnail.jpeg"> 
-
+        <link rel="shortcut icon" href="https://manage.wix.com/_serverless/brand-maker/api/v1/design/5c1a8f0c-1646-42c7-ad6f-a926e73f0480/preview-redirect"> 
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css?family=Cabin|sans-serif" rel="stylesheet">
         <!--Fonts--> 
-
-
         <!--FontAwesome-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         <!--FontAwesome-->
         <link href="{{asset ('css/nav.css')}}" rel="stylesheet">
-            {% block stylesheets %}
-                {{ encore_entry_link_tags('app') }}
-            {% endblock %}
-            {% block javascripts %}
-                {{ encore_entry_script_tags('app') }}
-            {% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </head>
     <body class="stop-scroll">
     {% block dots %}{% endblock %}
         <header>
             <nav >
                 <div class="logo">
-                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" width="150px" height="70px" alt="Site Logo"></a>
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" height="50px" width="300px" alt="Site Logo"></a>
                 </div>
                 <div class="toggle ">
                     <span class="first"></span>
@@ -47,6 +40,7 @@
                         <li><a href="#about-us">About<span class="underline"></span></a></li>
                         <li><a href="#">Contact<span class="underline"></span></a></li>
                         <li><a href="#">Services<span class="underline"></span></a></li>
+                        <li><a href="{{ path('user_home') }}">Profile<span class="underline"></span></a></li>
                         <li><a href="{{ path('app_login') }}">Login<span class="underline"></span></a></li>
                         <li><a href="{{ path('app_register') }}">Register<span class="underline"></span></a></li>
                     </ul>

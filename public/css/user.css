@@ -1,0 +1,86 @@
+/* Style for the menu */
+.menu ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
+}
+
+.menu li {
+margin-right: 20px;
+}
+
+.menu a {
+color: white;
+text-decoration: none;
+font-size: 18px;
+}
+
+.menu a:hover {
+border-bottom: 2px solid white;
+}
+
+/* Style for the sidenav */
+.sidenav {height: 100%;width: 170px;position: fixed;z-index: 1;top: 90px; /* Leave space for the navigation bar */left: 0;background-color: #fff;overflow-x: hidden;padding-top: 20px;}
+
+.sidenav a {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 20px;
+color: #818181;
+display: block;
+}
+
+.sidenav a:hover {
+color: #089940;
+}
+
+/* Style for the main content */
+.main {
+margin-left: 200px; /* Same as the width of the sidenav */
+padding-top: 150px;
+}
+
+/* Style for the container */
+.container {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100%;
+}
+
+/* Style for the profile box */
+.profile {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: #f2f2f2;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0px
+}
+p{
+color: #818181;
+}
+
+.button {
+    background-color: #089940;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 5px;
+    width: 140px;
+}
+.button:hover {
+    background-color: #fff;
+    color: #089940;
+}  
+@media (max-width: 992px) {
+.main {margin-left: 200px; /* Same as the width of the sidenav */padding-top: 50px;}
+header{padding-top: 80px;}
+}
