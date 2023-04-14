@@ -18,12 +18,12 @@
         <header>
             <nav >
                 <div class="logo">
-                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" width="150px" height="70px" alt="Site Logo"></a>
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" width="300px" height="50px" alt="Site Logo"></a>
                 </div>
                 <div class="sidenav">
 		<a href="{{ path('user_home') }}">Dashboard</a>
-		<a href="{{ path('owner_terrain_add') }}">Add Staduim</a>
-        <a href="{{ path('owner_view_terrain')}}">View Staduim</a>
+		<a href="{{ path('app_owner_terrain_new') }}">Add Staduim</a>
+        <a href="{{ path('app_owner_terrain_index')}}">View Staduim</a>
         <a href="#">Settings</a>
 		<a href="{{ path('app_logout') }}">Logout</a>
 	</div>

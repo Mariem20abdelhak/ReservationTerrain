@@ -25,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column(type: "json")]
+    #[ORM\Column]
     private array $roles = [];
 
     /**
@@ -57,6 +57,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Terrain::class, orphanRemoval: true)]
     private Collection $terrains;
+
+    #[ORM\Column(length: 255)]
+    private ?string $role_user = null;
+
+    public function __toString()
+    {
+        return $this->getUserIdentifier();
+    }
+
+
 
     public function __construct()
     {
@@ -105,7 +115,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        //$roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -237,6 +247,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($terrain->getUser() === $this) {
                 $terrain->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getRoleUser(): ?string
+    {
+        return $this->role_user;
+    }
+
+    public function setRoleUser(string $role_user): self
+    {
+        $this->role_user = $role_user;
+        if ($role_user == 'owner') {
+            $this->setRoles(['ROLE_OWNER']);
+        } else {
+            $this->setRoles(['ROLE_USER']);
         }
 
         return $this;

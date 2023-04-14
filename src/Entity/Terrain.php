@@ -22,10 +22,10 @@ class Terrain
     private ?string $name = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $interface = null;
+    private ?float $surface = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $local = null;
+    private ?string $adresse = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $is_reserved = null;
@@ -47,14 +47,14 @@ class Terrain
      * @Gedmo\Timestampable(on="create")
      */
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?\DateTimeinterface $createdAt = null;
 
 
     /**
      * @Gedmo\Timestampable(on="update")
      */
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $modifiedAt = null;
+    private ?\DateTimeinterface $modifiedAt = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
@@ -75,6 +75,13 @@ class Terrain
         $this->reservations = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,26 +99,26 @@ class Terrain
         return $this;
     }
 
-    public function getInterface(): ?float
+    public function getsurface(): ?float
     {
-        return $this->interface;
+        return $this->surface;
     }
 
-    public function setInterface(?float $interface): self
+    public function setsurface(?float $surface): self
     {
-        $this->interface = $interface;
+        $this->surface = $surface;
 
         return $this;
     }
 
-    public function getLocal(): ?string
+    public function getadresse(): ?string
     {
-        return $this->local;
+        return $this->adresse;
     }
 
-    public function setLocal(string $local): self
+    public function setadresse(string $adresse): self
     {
-        $this->local = $local;
+        $this->adresse = $adresse;
 
         return $this;
     }

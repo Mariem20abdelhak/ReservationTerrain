@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 #[Route('/user', name: 'user_')]
@@ -24,8 +23,20 @@ class UserController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Security $security): Response
     {
+
+        $user = $this->getUser();
+
+        if (in_array('ROLE_ADMIN', $user->getRoles())) {
+            return $this->redirectToRoute('admin_home');
+        } elseif (in_array('ROLE_OWNER', $user->getRoles())) {
+            return $this->redirectToRoute('owner_home');
+        } elseif (in_array('ROLE_USER', $user->getRoles())) {
+            return $this->redirectToRoute('user_home');
+            // Handle other roles or cases here
+        }
+
         $user = $security->getUser();
-        return $this->render('user/index.html.twig', [$user]);
+        /* return $this->render('user/index.html.twig', [$user]); */
     }
 
 
@@ -48,16 +59,6 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/editProfile.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-    #[Route('/edit/password', name: 'password_edit')]
-    public function edit_password(Request $request, UserPasswordEncoderInterface $userPasswordEncoderInterface)
-    {
-        $form = $this->createForm(Editpassword::class, $user);
-        $form->handleRequest($request);
-
-        return $this->render('user/editPass.html.twig', [
             'form' => $form->createView()
         ]);
     }

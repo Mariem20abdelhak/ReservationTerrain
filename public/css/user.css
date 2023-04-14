@@ -21,7 +21,7 @@ border-bottom: 2px solid white;
 }
 
 /* Style for the sidenav */
-.sidenav {height: 100%;width: 170px;position: fixed;z-index: 1;top: 90px; /* Leave space for the navigation bar */left: 0;background-color: #fff;overflow-x: hidden;padding-top: 20px;}
+.sidenav {height: 100%;width: 170px;position: fixed;z-index: 1;top: 80px; /* Leave space for the navigation bar */left: 0;background-color: #fff;overflow-x: hidden;padding-top: 20px;}
 
 .sidenav a {
 padding: 6px 8px 6px 16px;

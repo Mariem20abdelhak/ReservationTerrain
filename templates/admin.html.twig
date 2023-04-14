@@ -18,12 +18,14 @@
         <header>
             <nav >
                 <div class="logo">
-                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" width="150px" height="70px" alt="Site Logo"></a>
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('images/logo.jpeg')}}" width="300px" height="50px" alt="Site Logo"></a>
                 </div>
                 <div class="sidenav">
                     <a href="{{ path('user_home') }}">Dashboard</a>
-                    <a href="{{ path('admin_category_add') }}">Add category</a>
-                    <a href="#">Settings</a>
+                    <a href="{{ path('app_admin_users_index') }}">Users</a>
+                    <a href="{{ path('app_admin_category_index') }}">Category</a>
+                    <a href="{{ path('app_admin_terrain_index') }}">Staduim</a>
+                    <a href="{{ path('app_admin_reservation_index') }}">Reservation</a>
                     <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             </nav>

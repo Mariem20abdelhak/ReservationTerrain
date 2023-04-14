@@ -1,0 +1,68 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Terrain{% endblock %}
+
+{% block main %}
+<div class="main">
+    <h1>Terrain</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ terrain.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ terrain.name }}</td>
+            </tr>
+            <tr>
+                <th>surface</th>
+                <td>{{ terrain.surface }}</td>
+            </tr>
+            <tr>
+                <th>adresse</th>
+                <td>{{ terrain.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Is_reserved</th>
+                <td>{{ terrain.isReserved ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Materiel</th>
+                <td>{{ terrain.materiel }}</td>
+            </tr>
+            <tr>
+                <th>Descreption</th>
+                <td>{{ terrain.descreption }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ terrain.price }}</td>
+            </tr>
+            <tr>
+                <th>Discount</th>
+                <td>{{ terrain.discount }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ terrain.createdAt ? terrain.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ModifiedAt</th>
+                <td>{{ terrain.modifiedAt ? terrain.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ terrain.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_terrain_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_terrain_edit', {'id': terrain.id}) }}">edit</a>
+
+    {{ include('admin/admin_terrain/_delete_form.html.twig') }}
+</div>
+{% endblock %}

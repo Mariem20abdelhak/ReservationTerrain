@@ -13,31 +13,18 @@ class Payment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?reservation $reservation = null;
-
     #[ORM\Column]
     private ?float $totalPrice = null;
 
     #[ORM\Column]
     private ?bool $is_paid = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getReservation(): ?reservation
-    {
-        return $this->reservation;
-    }
-
-    public function setReservation(?reservation $reservation): self
-    {
-        $this->reservation = $reservation;
-
-        return $this;
-    }
 
     public function getTotalPrice(): ?float
     {

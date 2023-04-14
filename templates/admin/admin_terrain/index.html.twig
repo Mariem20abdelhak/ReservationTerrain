@@ -1,0 +1,57 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Terrain index{% endblock %}
+
+{% block main %}
+<div class="main">
+    <h1>Terrain index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>surface</th>
+                <th>adresse</th>
+                <th>Is_reserved</th>
+                <th>Materiel</th>
+                <th>Descreption</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>CreatedAt</th>
+                <th>ModifiedAt</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for terrain in terrains %}
+            <tr>
+                <td>{{ terrain.id }}</td>
+                <td>{{ terrain.name }}</td>
+                <td>{{ terrain.surface }}</td>
+                <td>{{ terrain.adresse }}</td>
+                <td>{{ terrain.isReserved ? 'Yes' : 'No' }}</td>
+                <td>{{ terrain.materiel }}</td>
+                <td>{{ terrain.descreption }}</td>
+                <td>{{ terrain.price }}</td>
+                <td>{{ terrain.discount }}</td>
+                <td>{{ terrain.createdAt ? terrain.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ terrain.modifiedAt ? terrain.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ terrain.image }}</td>
+                <td>
+                    <a href="{{ path('app_admin_terrain_show', {'id': terrain.id}) }}">show</a>
+                    <a href="{{ path('app_admin_terrain_edit', {'id': terrain.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_terrain_new') }}">Create new</a>
+</div>
+{% endblock %}

@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -18,7 +20,7 @@ class Reservation
     private ?terrain $terrain = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $local = null;
+    private ?string $adresse = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_debut = null;
@@ -32,9 +34,15 @@ class Reservation
     #[ORM\Column(nullable: true)]
     private ?float $price = null;
 
+    /**
+     * @Gedmo\Timestampable(on="create")
+     */
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    /**
+     * @Gedmo\Timestampable(on="update")
+     */
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $modifiedAt = null;
 
@@ -55,14 +63,14 @@ class Reservation
         return $this;
     }
 
-    public function getLocal(): ?string
+    public function getadresse(): ?string
     {
-        return $this->local;
+        return $this->adresse;
     }
 
-    public function setLocal(string $local): self
+    public function setadresse(string $adresse): self
     {
-        $this->local = $local;
+        $this->adresse = $adresse;
 
         return $this;
     }
@@ -119,23 +127,23 @@ class Reservation
     {
         return $this->createdAt;
     }
-
+    /* 
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
-
+ */
     public function getModifiedAt(): ?\DateTimeInterface
     {
         return $this->modifiedAt;
     }
 
-    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
+    /*   public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
 
         return $this;
-    }
+    } */
 }

@@ -1,0 +1,13 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New Terrain{% endblock %}
+
+{% block main %}
+<div class="main">
+    <h1>Create new Terrain</h1>
+
+    {{ include('admin/admin_terrain/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_terrain_index') }}">back to list</a>
+</div>
+{% endblock %}
