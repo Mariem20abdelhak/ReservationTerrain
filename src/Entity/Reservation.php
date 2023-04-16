@@ -17,7 +17,7 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    private ?terrain $terrain = null;
+    private ?Terrain $terrain = null;
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
@@ -51,12 +51,12 @@ class Reservation
         return $this->id;
     }
 
-    public function getTerrain(): ?terrain
+    public function getTerrain(): ?Terrain
     {
         return $this->terrain;
     }
 
-    public function setTerrain(?terrain $terrain): self
+    public function setTerrain(?Terrain $terrain): self
     {
         $this->terrain = $terrain;
 

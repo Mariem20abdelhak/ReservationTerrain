@@ -17,7 +17,7 @@
 <!--Start Dots-->
     <div class="dots">
         <div class="active one" data-x="header"></div>
-        <div class="two" data-x=".recipes"></div>
+        <div class="two" data-x=".terrains"></div>
         <div class="three" data-x=".fixed-image"></div>
     </div>
 <!--End Dots-->
@@ -79,15 +79,30 @@
 </div>
 <!--End About Us-->
 
-<!--start Recipes-->
-<div class="recipes">
-    <div class="image"></div>
-    <div class="text">
-        <h2>Tasteful</h2>
-        <h3>Recipes</h3>
-    </div>
+<!--start terrains-->
+<div class="terrains">
+    
+     <h1>Staduim</h1>
+    {% if terrains is empty %}
+        <p>No Staduim found.</p>
+    {% else %}
+        <div class="row">
+            {% for terrain in terrains %}
+                <div class="col-sm-4">
+                    <div class="card mb-3">
+                        <img src="{{ asset(terrain.image) }}" class="card-img-top" alt="{{ terrain.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ terrain.name }}</h5>
+                            <p class="card-text">{{ terrain.description }}</p>
+                            <a href="#" class="btn btn-primary">View details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
-<!--End Recipes-->
+<!--End terrains-->
 
 <!--start Menu-->
 <div class="menu">

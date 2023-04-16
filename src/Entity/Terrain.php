@@ -34,7 +34,7 @@ class Terrain
     private ?string $materiel = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descreption = null;
+    private ?string $description = null;
 
     #[ORM\Column]
     private ?float $price = null;
@@ -147,14 +147,14 @@ class Terrain
         return $this;
     }
 
-    public function getDescreption(): ?string
+    public function getdescription(): ?string
     {
-        return $this->descreption;
+        return $this->description;
     }
 
-    public function setDescreption(?string $descreption): self
+    public function setdescription(?string $description): self
     {
-        $this->descreption = $descreption;
+        $this->description = $description;
 
         return $this;
     }
@@ -219,12 +219,12 @@ class Terrain
         return $this;
     }
 
-    public function getCategory(): ?category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(?category $category): self
+    public function setCategory(?Category $category): self
     {
         $this->category = $category;
 

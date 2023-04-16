@@ -67,13 +67,13 @@ header nav .toggle, header nav .toggle span, header .navigation-bar, header .nav
     transition: .3s;
     margin-top:7px ;
 }
-header, header nav .toggle span, header .navigation-bar a, header .text, header .text .arrow .left, header .text .arrow .right, .recipes, .menu .box-image-container, .fixed-image .text, .copyright, .copyright .arrow-up {
+header, header nav .toggle span, header .navigation-bar a, header .text, header .text .arrow .left, header .text .arrow .right, .terrains, .menu .box-image-container, .fixed-image .text, .copyright, .copyright .arrow-up {
     position: relative;
 }
-header nav .toggle, header .navigation-bar .underline, header .text .arrow .left:after, header .text .arrow .right:after, header .svg-down, header .arrow-down, .recipes .text, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .box-image-container .box-image, .copyright .svg-up {
+header nav .toggle, header .navigation-bar .underline, header .text .arrow .left:after, header .text .arrow .right:after, header .svg-down, header .arrow-down, .terrains .text, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .box-image-container .box-image, .copyright .svg-up {
     position: absolute;
 }
-.recipes .text, .fixed-image .text, .menu .box-image-container, .menu .box-image-container .box-image {
+.terrains .text, .fixed-image .text, .menu .box-image-container, .menu .box-image-container .box-image {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -350,13 +350,7 @@ header .arrow-down {
 }
 /*End About-Us*/
 
-/*Start Recipes*/
-.recipes .image {
-    height: 350px;
-    background: url("https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988529/three-col-1.jpg") fixed center;
-    background-size: cover;
-}
-/*End Recipes*/
+
 
 /*Start Menu*/
 .menu {

@@ -22,7 +22,7 @@ class Category
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descreption = null;
+    private ?string $description = null;
 
 
     /**
@@ -67,14 +67,14 @@ class Category
         return $this;
     }
 
-    public function getDescreption(): ?string
+    public function getdescription(): ?string
     {
-        return $this->descreption;
+        return $this->description;
     }
 
-    public function setDescreption(?string $descreption): self
+    public function setdescription(?string $description): self
     {
-        $this->descreption = $descreption;
+        $this->description = $description;
 
         return $this;
     }

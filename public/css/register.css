@@ -18,7 +18,7 @@ body{
   height:100%
 }
   
-  .login , .register{width: 100%;}
+  .login , .register{width: 50%;}
   
   /*Start register Style*/
   .register{

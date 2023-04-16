@@ -23,7 +23,7 @@ class TerrainType extends AbstractType
             ->add('surface', NumberType::class)
             ->add('adresse', TextType::class)
             ->add('materiel', TextareaType::class)
-            ->add('descreption', TextareaType::class)
+            ->add('description', TextareaType::class)
             ->add('price', MoneyType::class)
             ->add('discount', MoneyType::class)
             ->add('image', FileType::class, [
