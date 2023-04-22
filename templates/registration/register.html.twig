@@ -1,40 +1,69 @@
-{% extends 'base.html.twig' %}
-{% block title %}Register{% endblock %}
-{% block stylesheets %}
-    <link href="{{asset ('css/register.css')}}" rel="stylesheet">
-{% endblock %}
-
-{% block main %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
-
-
-<form method="POST">
-    {{ form_start(registrationForm) }}
-    <div class="container">
-        <div class="register">
-            <div class="container">
-                <h1>Register</h1>
-                {{ form_row(registrationForm.firstName) }}
-                {{ form_row(registrationForm.lastName) }}
-                {{ form_row(registrationForm.email) }}
-                {{ form_row(registrationForm.plainPassword) }}
-                {{ form_row(registrationForm.role_user) }}
-                {{ form_row(registrationForm.submitButton)}}
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Register !</title>
+        <link href="{{asset ('css/login1.css')}}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.bootstrapdash.com/demo/login-template-free-2/assets/css/login.css">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-sm-6 login-section-wrapper">
+            <div class="brand-wrapper">
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.jpeg')}}" height="50px" width="300px" alt="Site Logo"></a>
+                </div>
+                <div class="login-wrapper my-auto">
+                <h1 class="login-title">Register !</h1>
+                <form method="Post">
+                    {{ form_start(registrationForm) }}
+                        <div class="form-group">
+                            <div class="form-group mb-4">
+                            <label for="firstname">First Name</label>
+                            {{ form_widget(registrationForm.firstName, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group mb-4">
+                            <label for="lastname">Last Name</label>
+                            {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group mb-4">
+                            <label for="email">Email</label>
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group mb-4">
+                            <label for="pass">Password</label>
+                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                
+                            <div class="form-group mb-4">
+                            <label for="pass">Register as </label>
+                            {{ form_widget(registrationForm.role_user, {'attr': {'class': 'custom-select'}}) }}
+                            </div>
+                        </div>
+                    {{ form_widget(registrationForm.submitButton, {'attr': {'class': 'btn btn-block login-btn'}}) }}
+                {{ form_end(registrationForm) }}
+                </form>
+                <p class="login-wrapper-footer-text">Already have an account? <a href="{{ path('app_login') }}" class="text-reset">Login here</a></p>
+                </div>
+            </div>
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <img src="https://t4.ftcdn.net/jpg/00/04/43/79/240_F_4437974_DbE4NRiaoRtUeivMyfPoXZFNdCnYmjPq.jpg" class="login-img">
+            </div>
             </div>
         </div>
-        <div class="login">
-            <div class="container">
-                <i class="fas fa-user-plus fa-5x"></i>
-                <h2>Hello!</h2>
-                <p>Already have an account ? </br> login and start journey with us</p>
-                <a href='{{ path('app_login') }}'> Login <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>  
-    </div>
-    
-{{ form_end(registrationForm) }}
-</form>
-{% endblock %}
+    </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</html>

@@ -1,4 +1,12 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+
+ {# Vérifier si la route est "terrain_edit" on affiche les images #}
+    {% if app.request.attributes.get('_route') == 'app_owner_terrain_edit' %}
+            <div>
+                <img src="{{ asset('/uploads/images/' ~ terrain.image) }}" alt="Image" width="150">
+            </div>
+    {% endif %}
+
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

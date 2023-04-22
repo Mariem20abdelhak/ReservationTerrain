@@ -2,10 +2,7 @@
     {% block stylesheets %}
         <link href="{{asset ('css/main.css')}}" rel="stylesheet">
     {% endblock %}
-    {% block title %}SportsArena {% endblock %}
-    {% block javascripts %}
-        <script src="{{ asset('js/main.js') }}"></script>
-    {% endblock %}
+    {% block title %}SportsArena{% endblock %}
 {% block body %}
 {% for message in app.flashes('success') %}
         <div class="alert alert-success" role="alert">{{ message }}</div>
@@ -53,9 +50,11 @@
         </div>
 
     </div>
-    <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve"><path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path></svg>
-    <div class="arrow-down">
-    </div> 
+        {# <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve">
+            <path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path>
+        </svg>
+        <div class="arrow-down">
+        </div> #}
 {% endblock %}
 <!--End Header-->
 
@@ -79,10 +78,43 @@
 </div>
 <!--End About Us-->
 
+
+
+
+<!--start category-->
+<div class="category">
+        <div class="text">
+            <h2>Discover</h2>
+            <h3>Category</h3>
+        </div>
+    {% if categories is empty %}
+            <p>No categories found.</p>
+    {% else %}
+        <div class="image">
+            <div class="row">
+                {% for category in categories %}
+                    <div class="col-sm-4">
+                        <div class="card mb-3">
+                            <img src="#" class="card-img-top" alt="{{ category.name }}" height="50px" width="150px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ category.name }}</h5>
+                                <p class="card-text">{{ category.description }}</p>
+                                <a href="#" class="btn btn-primary">View details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+  <!--End category-->
 <!--start terrains-->
-<div class="terrains">
-    
-     <h1>Staduim</h1>
+<div class="terrains" id ="terrains">
+    <div class="text">
+        <h2>Discover</h2>
+        <h3>Terrain</h3>
+    </div>
     {% if terrains is empty %}
         <p>No Staduim found.</p>
     {% else %}
@@ -90,7 +122,7 @@
             {% for terrain in terrains %}
                 <div class="col-sm-4">
                     <div class="card mb-3">
-                        <img src="{{ asset(terrain.image) }}" class="card-img-top" alt="{{ terrain.name }}">
+                        <img src="{{ asset('/uploads/images/' ~ terrain.image) }}" class="card-img-top" alt="{{ terrain.name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ terrain.name }}</h5>
                             <p class="card-text">{{ terrain.description }}</p>
@@ -114,7 +146,7 @@
         </div>
         <div class="box-image-container">
             <div class="box-image">
-                <img src=""  alt="Food Photo">
+                <img src="#"  alt="Food Photo">
             </div>
         </div>
     </div>
@@ -176,7 +208,7 @@
     <div class="text">
         <h2>ABOUT SportsArena</h2>
         <div><i class="fas fa-asterisk"></i></div>
-        <p>ROSA is an enchanting and easy-to-use parallax Restaurant WordPress theme that allows you to tell your story in a dynamic, narrative and enjoyable way, making it perfect for restaurants, bakeries, bars or coffee shops.</p>
+        <p>Our website is a platform dedicated to sports enthusiasts who are looking to book and reserve sports facilities around their area. We provide a simple and easy-to-use interface for users to search for and book facilities based on location, activity, and date. Our goal is to make the process of booking sports facilities as hassle-free as possible, allowing users to focus on what really matters - enjoying their favorite sports. We are committed to providing high-quality services and ensuring the satisfaction of all our users.</p>
     </div>
     <div class="contact-container">
         <div class="social-media">

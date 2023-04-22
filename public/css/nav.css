@@ -108,7 +108,7 @@ header nav {
 header nav .toggle {
     display: none;
     top: 26px;
-    left: 24px;
+    left: 20px;
     background-color: #089940;
     border: none;
     padding: 0;
@@ -121,14 +121,14 @@ header nav.active .toggle span {
     background-color: #000;
 }
 header nav .toggle.active {
-    left: 32%;
+    left: 20%;
 }
 header nav .toggle.active .first {
-    top: 16px;
+    top: 5px;
     transform: rotate(-45deg);
 }
 header nav .toggle.active .last {
-    top: 0;
+    top: -13px;
     transform: rotate(45deg);
 }
 header nav .toggle .hide {
@@ -149,7 +149,7 @@ header nav .logo {
     padding-left: 20px;
 }
 header .navigation-bar.show {
-    width: 40%;
+    width: 25%;
 }
 header .navigation-bar.show a {
     color: #ccc !important;

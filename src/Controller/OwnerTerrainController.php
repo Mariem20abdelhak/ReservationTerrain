@@ -6,6 +6,7 @@ use App\Entity\Terrain;
 use App\Form\TerrainType;
 use App\Repository\TerrainRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DomCrawler\Image;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,21 @@ class OwnerTerrainController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //recuperation d'image transmise
+            $images = $form->get('image')->getData();
+            // on boucle sur les images
+            foreach ($images as $image) {
+                //on genere un nouveau nom au fichier 
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //on copie les fichier dans le fichier images
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //on stocke les image dans la bd
+                $terrain->setImage($fichier);
+            }
+            $terrain->setUser($this->getUser());
             $terrainRepository->save($terrain, true);
 
             return $this->redirectToRoute('app_owner_terrain_index', [], Response::HTTP_SEE_OTHER);
@@ -56,6 +72,20 @@ class OwnerTerrainController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //recuperation d'image transmise
+            $images = $form->get('image')->getData();
+            // on boucle sur les images
+            foreach ($images as $image) {
+                //on genere un nouveau nom au fichier 
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //on copie les fichier dans le fichier images
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //on stocke les image dans la bd
+                $terrain->setImage($fichier);
+            }
             $terrainRepository->save($terrain, true);
 
             return $this->redirectToRoute('app_owner_terrain_index', [], Response::HTTP_SEE_OTHER);
@@ -71,6 +101,9 @@ class OwnerTerrainController extends AbstractController
     public function delete(Request $request, Terrain $terrain, TerrainRepository $terrainRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $terrain->getId(), $request->request->get('_token'))) {
+            $image = $terrain->getImage();
+            unlink($this->getParameter('images_directory') . '/' . $image);
+
             $terrainRepository->remove($terrain, true);
         }
 

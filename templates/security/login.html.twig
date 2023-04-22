@@ -1,64 +1,63 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Log in !</title>
+        <link href="{{asset ('css/login1.css')}}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.bootstrapdash.com/demo/login-template-free-2/assets/css/login.css">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body >
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-sm-6 login-section-wrapper">
+                <div class="brand-wrapper">
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.jpeg')}}" height="50px" width="300px" alt="Site Logo"></a>
+                </div>
+                <div class="login-wrapper my-auto">
+                <h1 class="login-title">Log in</h1>
+                <form method="Post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-{% block title %}Log in!{% endblock %}
-{% block stylesheets %}
-    <link href="{{asset ('css/login.css')}}" rel="stylesheet">
-{% endblock %}
-{% block main %}
-<form method="Post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-    {#    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-    #}
-    
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-    #}
-    {#     <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-
-    {# <button class="btn btn-lg btn-primary" type="submit">
-        Log in
-    </button> #}
-    <div class="container">
-        <div class="login">
-            <div class="container">
-                <h1>Log in</h1>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail"placeholder="Email"  autocomplete="email" required autofocus>
-                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Password"><br>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                <input type="checkbox" name="_remember_me"><span>Remember me</span>
-                <a href="{{ path('app_forgot_password_request') }}">Forgot password?</a>
-                <button  type="submit">log in</button>
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                    <label for="name">User Email</label>
+                    <input type="email" name="email" id="name" class="form-control" placeholder="user email"  value="{{last_username}}" required autofocus>
+                    </div>
+                    <div class="form-group mb-4">
+                    <label for="pass">Password</label>
+                    <input type="password" name="password" id="pass" class="form-control" autocomplete="current-password" required placeholder="enter your passsword"><br>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    </div>
+                    <button type="submit" id="login" class="btn btn-block login-btn">Login</button>
+                </form>
+                <a href="{{ path('app_forgot_password_request') }}" class="forgot-password-link">Forgot password?</a>
+                <p class="login-wrapper-footer-text">Don't have an account? <a href="{{ path('app_register') }}" class="text-reset">Register here</a></p>
+                </div>
+            </div>
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <img src="https://t4.ftcdn.net/jpg/00/04/43/79/240_F_4437974_DbE4NRiaoRtUeivMyfPoXZFNdCnYmjPq.jpg" class="login-img">
+            </div>
             </div>
         </div>
-        <div class="register">
-            <div class="container">
-                <i class="fas fa-user-plus fa-5x"></i>
-                <h2>Hello!</h2>
-                <p>Enter your personal details and start journey with us</p>
-                <a href='{{ path('app_register') }}'> Register <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>  
-    </div>
-</form>
-{% endblock %}
+    </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</html>

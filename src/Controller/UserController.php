@@ -32,7 +32,6 @@ class UserController extends AbstractController
             return $this->redirectToRoute('owner_home');
         } elseif (in_array('ROLE_USER', $user->getRoles())) {
             return $this->redirectToRoute('user_home');
-            // Handle other roles or cases here
         }
 
         $user = $security->getUser();

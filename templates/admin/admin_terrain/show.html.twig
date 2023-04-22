@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ terrain.image }}</td>
+                <td><img src="{{ asset('/uploads/images/' ~ terrain.image) }}" class="card-img-top" alt="{{ terrain.name }}" height="100px" width="100px"></td>
             </tr>
         </tbody>
     </table>

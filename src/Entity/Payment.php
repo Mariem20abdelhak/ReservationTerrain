@@ -19,6 +19,9 @@ class Payment
     #[ORM\Column]
     private ?bool $is_paid = null;
 
+    #[ORM\OneToOne(inversedBy: 'payment', cascade: ['persist', 'remove'])]
+    private ?Reservation $reservation = null;
+
 
     public function getId(): ?int
     {
@@ -46,6 +49,18 @@ class Payment
     public function setIsPaid(bool $is_paid): self
     {
         $this->is_paid = $is_paid;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Reservation $reservation): self
+    {
+        $this->reservation = $reservation;
 
         return $this;
     }

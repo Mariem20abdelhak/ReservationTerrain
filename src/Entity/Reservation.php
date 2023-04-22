@@ -46,6 +46,9 @@ class Reservation
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $modifiedAt = null;
 
+    #[ORM\OneToOne(mappedBy: 'reservation', cascade: ['persist', 'remove'])]
+    private ?Payment $payment = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -146,4 +149,26 @@ class Reservation
 
         return $this;
     } */
+
+    public function getPayment(): ?Payment
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(?Payment $payment): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($payment === null && $this->payment !== null) {
+            $this->payment->setReservation(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($payment !== null && $payment->getReservation() !== $this) {
+            $payment->setReservation($this);
+        }
+
+        $this->payment = $payment;
+
+        return $this;
+    }
 }

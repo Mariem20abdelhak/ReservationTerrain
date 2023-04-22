@@ -28,6 +28,8 @@ class TerrainType extends AbstractType
             ->add('discount', MoneyType::class)
             ->add('image', FileType::class, [
                 'data_class' => null,
+                'multiple' => true,
+                'mapped' => false,
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

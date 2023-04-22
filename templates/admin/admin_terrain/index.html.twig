@@ -38,7 +38,7 @@
                 <td>{{ terrain.discount }}</td>
                 <td>{{ terrain.createdAt ? terrain.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ terrain.modifiedAt ? terrain.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ terrain.image }}</td>
+                <td><img src="{{ asset('/uploads/images/' ~ terrain.image) }}" class="card-img-top" alt="{{ terrain.name }}" width="100px" height="100px" ></td>
                 <td>
                     <a href="{{ path('app_admin_terrain_show', {'id': terrain.id}) }}">show</a>
                     <a href="{{ path('app_admin_terrain_edit', {'id': terrain.id}) }}">edit</a>
