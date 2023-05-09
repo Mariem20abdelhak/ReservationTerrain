@@ -30,7 +30,7 @@ class AdminCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category, true);
-
+            $this->addFlash('message', 'New Category Added !');
             return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -1,0 +1,60 @@
+
+{% block header %}
+    <nav >
+        <div class="logo">
+            <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.png')}}" height="50px" width="300px" alt="Site Logo"></a>
+        </div>
+        <div class="toggle ">
+            <span class="first"></span>
+            <span class="middle"></span>
+            <span class="last"></span>
+        </div>
+        <div class="navigation-bar">
+            <ul>
+                <li class="active"><a  href="{{ path('app_home') }}">Home<span class="underline"></span></a></li>
+                <li><a href="#about-us">About<span class="underline"></span></a></li>
+                <li><a href="#newsletter">Contact<span class="underline"></span></a></li>
+                <li><a href="#">Services<span class="underline"></span></a></li>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li><a href="{{ path('user_home') }}">Profile<span class="underline"></span></a></li>
+                    <li><a href="{{ path('app_logout') }}">Logout<span class="underline"></span></a></li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Login<span class="underline"></span></a></li>
+                    <li><a href="{{ path('app_register') }}">Register<span class="underline"></span></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="text">
+        <h2 style="color: white;">Welcome!</h2>
+        <div class="main">
+            <div class="search-block">
+                <form>
+                    <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" placeholder="Enter location...">
+                    </div>
+                    <div class="form-group">
+                    <label for="activity">Activity:</label>
+                    <select id="activity">
+                        <option value="">Select activity...</option>
+                        <option value="soccer">Soccer</option>
+                        <option value="basketball">Basketball</option>
+                        <option value="tennis">Tennis</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date">
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve">
+        <path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path>
+    </svg>
+    <div class="arrow-down"></div>
+
+{% endblock %}

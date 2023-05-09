@@ -61,6 +61,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $role_user = null;
 
+    #[ORM\ManyToMany(targetEntity: Terrain::class, mappedBy: 'Favorite')]
+    private Collection $UserFavorit;
+
+    #[ORM\Column]
+    private ?int $phone = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $addresse = null;
+
+    #[ORM\OneToMany(mappedBy: 'Client', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
     public function __toString()
     {
         return $this->getUserIdentifier();
@@ -71,6 +83,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->terrains = new ArrayCollection();
+        $this->UserFavorit = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -264,6 +278,87 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->setRoles(['ROLE_OWNER']);
         } else {
             $this->setRoles(['ROLE_USER']);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Terrain>
+     */
+    public function getUserFavorit(): Collection
+    {
+        return $this->UserFavorit;
+    }
+
+    public function addUserFavorit(Terrain $userFavorit): self
+    {
+        if (!$this->UserFavorit->contains($userFavorit)) {
+            $this->UserFavorit->add($userFavorit);
+            $userFavorit->addFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserFavorit(Terrain $userFavorit): self
+    {
+        if ($this->UserFavorit->removeElement($userFavorit)) {
+            $userFavorit->removeFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(int $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getAddresse(): ?string
+    {
+        return $this->addresse;
+    }
+
+    public function setAddresse(string $addresse): self
+    {
+        $this->addresse = $addresse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getClient() === $this) {
+                $reservation->setClient(null);
+            }
         }
 
         return $this;

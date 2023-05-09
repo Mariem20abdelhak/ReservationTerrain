@@ -30,6 +30,8 @@ class TerrainType extends AbstractType
                 'data_class' => null,
                 'multiple' => true,
                 'mapped' => false,
+                'label' => false,
+                'required' => false,
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

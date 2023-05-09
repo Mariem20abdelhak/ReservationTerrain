@@ -4,13 +4,17 @@
 }
 body {
     margin: 0;
-    padding: 12px;
+    padding: 0;
 }
 body.hide-scroll::-webkit-scrollbar {
     display: none;
 }
 a {
     text-decoration: none;
+}
+a :hover {
+    text-decoration: none;
+    color: #fff;
 }
 ul {
     margin: 0;
@@ -26,7 +30,8 @@ h2 {
     font-size: 100px;
     font-weight: normal;
     margin: 0 0 -55px;
-    padding: 50px;
+    padding-top: 0px;
+    padding-left: 10px;
 }
 h1, h3 {
     font-family: "Source Code Pro", sans-serif;
@@ -52,10 +57,10 @@ p, .a-CTA, input, header .navigation-bar a, .copyright li, .contact .form form l
     font-family: Cabin, sans-serif;
 }
 .fa-asterisk, .a-CTA, h2, header .navigation-bar a:hover, header nav.active .navigation-bar a:hover, footer .social-media .links a:hover, .copyright .info li a, .copyright .CTA li a:hover {
-    color: #089940;
+    color: #198754;
 }
 header nav .navigation-bar .underline, header .text .button button:hover, .contact .form form button:hover, .contact .text i:hover {
-    background-color: #089940;
+    background-color: green;
 }
 header .navigation-bar ul li, header .text, .about-us .text, .reservation .text, .menu .box-model, .menu .text, .fixed-image .text, footer, .copyright, .contact .text i {
     text-align: center;
@@ -65,15 +70,14 @@ header nav, header .navigation-bar ul, .about-us, .reservation, .about-us .image
 }
 header nav .toggle, header nav .toggle span, header .navigation-bar, header .navigation-bar ul, .menu .box-model .close, footer .social-media .links a, .copyright .CTA li a {
     transition: .3s;
-    margin-top:7px ;
 }
-header, header nav .toggle span, header .navigation-bar a, header .text, header .text .arrow .left, header .text .arrow .right, .terrains, .menu .box-image-container, .fixed-image .text, .copyright, .copyright .arrow-up {
+header, header nav .toggle span, header .navigation-bar a, header .text, header .text .arrow .left, header .text .arrow .right, .recipes, .menu .box-image-container, .fixed-image .text, .copyright, .copyright .arrow-up {
     position: relative;
 }
-header nav .toggle, header .navigation-bar .underline, header .text .arrow .left:after, header .text .arrow .right:after, header .svg-down, header .arrow-down, .terrains .text, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .box-image-container .box-image, .copyright .svg-up {
+header nav .toggle, header .navigation-bar .underline, header .text .arrow .left:after, header .text .arrow .right:after, header .svg-down, header .arrow-down, .recipes .text, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .box-image-container .box-image, .copyright .svg-up {
     position: absolute;
 }
-.terrains .text, .fixed-image .text, .menu .box-image-container, .menu .box-image-container .box-image {
+.recipes .text, .fixed-image .text, .menu .box-image-container, .menu .box-image-container .box-image {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -84,7 +88,14 @@ header nav, header .navigation-bar a:hover .underline, header .navigation-bar li
 button, .dots > div, header nav .toggle, header .arrow-down, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .menu-image-container .image img, footer .newsletter i, .copyright .arrow-up {
     cursor: pointer;
 }
-.dots .active, header nav.active, header nav.active .toggle.active span, header nav .toggle span, header .navigation-bar .underline, header .text .arrow .left, header .text .arrow .right, header .text .button button, .contact form button {
+header nav.active .toggle.active span{
+    background-color: #fff;
+}
+
+header nav .toggle span{
+    background-color: #000;
+}
+header .text .button button , .dots .active, header nav.active ,header .navigation-bar .underline, header .text .arrow .left, header .text .arrow .right,  .contact form button {
     background-color: #fff;
 }
 h1, h3, header .navigation-bar a, header .text span, .menu .box-model .close:hover, footer .text h2, footer .text p, footer .social-media .links a, .contact .text i, .contact .form form button {
@@ -125,293 +136,25 @@ header .text .arrow .left:after, header .text .arrow .right:after, header .text 
 
 /*Start Home Page*/
 
-/*Start Header*/
-header {
-    height: calc(100vh - 22px);
-    background-size: cover;
-    background-image: image("../uploads/bghome.jpg");
-    padding: 20px 70px;
-}
-
-
-/* 
-header nav {
-    position: fixed;
-    top: 0;
-    padding: 36px 36px 20px;
-    z-index: 20;
-}
-header nav .toggle {
-    display: none;
-    top: 26px;
-    left: 20px;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    z-index: 21;
-}
-header nav .toggle:focus {
-    outline: none;
-}
-header nav.active .toggle span {
-    background-color: #000;
-}
-header nav .toggle.active {
-    left: 32%;
-}
-header nav .toggle.active .first {
-    top: 16px;
-    transform: rotate(-45deg);
-}
-header nav .toggle.active .last {
-    top: 0;
-    transform: rotate(45deg);
-}
-header nav .toggle .hide {
-    transition: 0s;
-    visibility: hidden;
-}
-header nav .toggle span {
-    display: block;
-    width: 30px;
-    height: 2px;
-    border-radius: 40px;
-}
-header nav .toggle span:not(:last-of-type) {
-    margin-bottom: 6px;
-}
-header nav .logo {
-    flex-basis: 56%;
-    padding-left: 50px;
-}
-header .navigation-bar.show {
-    width: 40%;
-}
-header .navigation-bar.show a {
-    color: #ccc !important;
-}
-header .navigation-bar.show a:hover {
-    color: #fff !important;
-}
-header .navigation-bar ul li {
-    flex: 1;
-    padding: 0 10px;
-}
-header .navigation-bar a {
-    text-decoration: none;
-    transition: all .5s;
-    font-size: 16px;
-}
-header nav.active .navigation-bar a {
-    color: #000;
-}
-header .navigation-bar .underline {
-    height: 2px;
-    width: 0;
-    left: 50%;
-    bottom: -4px;
-    transition: all .3s;
-    display: block;
-} */
-header .text {
-    top: 24%
-}
-.search-block {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-.search-block form {
-display: flex;
-align-items: center;
-}
-
-.search-block .form-group {
-margin-right: 20px;
-}
-
-.search-block label {
-display: block;
-margin-bottom: 5px;
-font-weight: bold;
-}
-
-.search-block input[type="text"],
-.search-block select,
-.search-block input[type="date"] {
-padding: 10px;
-font-size: 16px;
-border: none;
-border-radius: 5px;
-box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-.search-block select {
-width: 150px;
-}
-
-.search-block button {
-background-color: #089940;
-color: #fff;
-border: none;
-border-radius: 5px;
-padding: 10px 20px;
-font-size: 16px;
-cursor: pointer;
-transition: background-color 0.2s ease;
-}
-
-.search-block button:hover { background-color: #fff;
-color: #089940;
-}
-.search-block {
-display: flex;
-justify-content: center;
-align-items: center;
-margin-bottom: 20px;
-}
-
-form {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
-max-width: 1000px;
-width: 100%;
-}
-
-.form-group {
-margin: 10px;
-}
-
-label {
-margin-right: 10px;
-}
-
-input[type="text"],
-select,
-input[type="date"] {
-padding: 10px;
-border-radius: 5px;
-border: none;
-width: 100%;
-max-width: 300px;
-}
-
-button[type="submit"] {
-padding: 10px;
-border-radius: 5px;
-border: none;
-background-color: #089940;
-color: #fff;
-cursor: pointer;
-transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-background-color: #089940;
-}
-
-@media screen and (max-width: 768px) {
-form {
-    flex-direction: column;
-    align-items: center;
-}
-
-input[type="text"],
-select,
-input[type="date"] {
-    max-width: none;
-}
-
-.form-group {
-    margin: 10px 0;
-}
-}
-  
-header .text .arrow .left, header .text .arrow .right {
-    height: 3px;
-    width: 100px;
-}
-header .text .arrow .left {
-    left: -4%;
-}
-header .text .arrow .right {
-    right: -4%;
-}
-header .text .arrow .left:after, header .text .arrow .right:after {
-    content: '';
-    border: 10px solid transparent;
-    border-left-color: #fff;
-    top: -8px;
-}
-header .text .arrow .right:after {
-    right: 0;
-    border-color: transparent #fff transparent transparent;
-}
-header .text .arrow .fa-asterisk {
-    vertical-align: super;
-}
-header .text span {
-    font-family: "Source Code Pro", sans-serif;
-    font-size: 15px;
-    margin-bottom: 12px;
-}
-header .text .button button, .contact form button {
-    border: none;
-    padding: 9px 18px;
-    letter-spacing: 2.4px;
-    font-size: 12px;
-    font-family: 'source_sans_problack', sans-serif;
-    border-radius: 3px;
-    margin-top: 80px;
-}
-header .text .button button, .contact form button:focus {
-    outline: none;
-}
-
-header .svg-down {
-    bottom: 0;
-    left: 50%;
-    z-index: 5;
-    margin-left: -96px;
-    margin-bottom: -12px;
-    color: #fff;
-}
-header .arrow-down {
-    width: 70px;
-    height: 50px;
-    bottom: -10px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 10;
-    background: url("https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988515/arrow-down.png") no-repeat center;
-}
-/*End Header*/
-
 /*Start About-Us*/
-.about-us, .reservation {
+.about-us, .terrains {
     padding: 60px;
 }
-.about-us .text, .reservation .text {
+
+.about-us .text, .terrains .text {
     flex: 50%;
     padding: 40px 52px 0 0;
 }
-.about-us .text h3, .reservation .text h3 {
+.about-us .text h3, .terrains .text h3 {
     color: #000;
 }
-.about-us .text .fa-asterisk, .reservation .text .fa-asterisk {
+.about-us .text .fa-asterisk, .terrains .text .fa-asterisk {
     color: #9a9998;
 }
-.about-us .image-container, .reservation .image-container {
+.about-us .image-container, .terrains .image-container {
     flex: 50%;
 }
-.about-us .image, .reservation .image {
+.about-us .image, .terrains .image {
     margin-left: 20px;
 }
 /*End About-Us*/
@@ -488,8 +231,8 @@ header .arrow-down {
 
 /*Start fixed-image*/
 .fixed-image {
-    background: url("https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988533/frontpage-menu.jpg") fixed center;
     background-size: cover;
+    background-color: green;
     height: 400px;
 }
 /*End fixed-image*/
@@ -603,7 +346,7 @@ footer .newsletter i {
 .contact .text i {
     width: 50px;
     height: 50px;
-    background-color: #000;
+    background-color: #089940;
     border-radius: 50%;
     line-height: 48px;
     font-size: 24px;
@@ -640,7 +383,7 @@ footer .newsletter i {
     resize: none;
 }
 .contact .form form button {
-    background-color: #262526;
+    background-color: #089940;
     padding: 12px 30px;
     font-size: 12px;
 }
@@ -649,13 +392,13 @@ footer .newsletter i {
 /*Start Home Page Responsive*/
 
 @media (max-width: 1200px) {
-    .menu, .about-us, .reservation {
-        padding: 60px 40px;
+    .menu, .about-us, .terrains {
+        padding: 20px 10px;
     }
-    .about-us .text, .reservation .text {
+    .about-us .text, .terrains .text {
         padding: 0 32px 0 0;
     }
-    .about-us .image-container, .reservation .image-container {
+    .about-us .image-container, .terrains .image-container {
         align-items: center;
     }
     .menu .text {
@@ -673,6 +416,7 @@ footer .newsletter i {
     }
     header {
         height: calc(100vh - 10px);
+        background-size: cover;
     }
     header nav .logo {
         padding-left: 50px;
@@ -681,10 +425,10 @@ footer .newsletter i {
         display: block;
         padding-top: 50px;
     }
-    .about-us .text , .reservation .text {
+    .about-us .text , .terrains .text {
         padding: 0 0 40px;
     }
-    .about-us .image-container .image1, .reservation .image-container .image1 {
+    .about-us .image-container .image1, .terrains .image-container .image1 {
         margin-left: 0;
     }
     .menu {
@@ -694,7 +438,7 @@ footer .newsletter i {
     .menu .text {
         padding: 20px 20px 0 0;
     }
-    .reservation {
+    .terrains {
         display: block;
         padding: 30px 20px 60px;
     }
@@ -725,7 +469,7 @@ footer .newsletter i {
         top: 0;
         left: -174px;
         height: 100%;
-        background-color: #262526;
+        background-color: #f8f9fa;
         overflow: hidden;
         z-index: 20;
         padding: 40px;
@@ -777,7 +521,7 @@ footer .newsletter i {
         padding: 20px;
         width: 48%;
     }
-    .about-us, .reservation {
+    .about-us, .terrains {
         padding: 60px 20px;
     }
     .menu {

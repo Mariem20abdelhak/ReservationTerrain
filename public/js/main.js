@@ -11,7 +11,7 @@ const body = document.querySelector("body"),
   headerText = document.querySelector("header .text"),
   headerSection = document.querySelector("header"),
   aboutSection = document.querySelector(".about-us"),
-  recipeSection = document.querySelector(".recipes"),
+  recipeSection = document.querySelector(".terrains"),
   menuSection = document.querySelector(".menu"),
   fixedImageSection = document.querySelector(".fixed-image"),
   footerSection = document.querySelector("footer"),
@@ -77,6 +77,12 @@ window.onscroll = function () {
       if (nav) {
         nav.classList.remove("active");
       }
+    }
+  }
+  // header welcome fade out and in
+  if (headerText) {
+    if (window.pageYOffset > 0) {
+      headerText.style.opacity = -window.pageYOffset / 300 + 1;
     }
   }
 

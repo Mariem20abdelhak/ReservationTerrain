@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +27,43 @@ class RegistrationFormType extends AbstractType
             ->add('lastName', TextType::class, [
                 'label' => false,
                 'attr' => ['placeholder' => 'Last name'],
+            ])
+            ->add('phone', NumberType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Phone number',
+                    'maxlength' => '8',
+                    'minlength' => '8',
+                ],
+            ])
+            ->add('addresse', ChoiceType::class, [
+                "choices" => [
+                    'Bizert' => "Bizert",
+                    'Tunis' => 'Tunis',
+                    'Ariana' => 'Ariana',
+                    'Ben Arous' => 'Ben Arous',
+                    'Manouba' => 'Manouba',
+                    'Nabeul' => 'Nabeul',
+                    'Zaghouan' => 'Zaghouan',
+                    'Béja' => 'Béja',
+                    'Jendouba' => 'Jendouba',
+                    'Kef' => 'Kef',
+                    'Siliana' => 'Siliana',
+                    'Sousse' => 'Sousse',
+                    'Monastir' => 'Monastir',
+                    'Mahdia' => 'Mahdia',
+                    'Sfax' => 'Sfax',
+                    'Kairouan' => 'Kairouan',
+                    'Kasserine' => 'Kasserine',
+                    'Sidi Bouzid' => 'Sidi Bouzid',
+                    'Gabès' => 'Gabès',
+                    'Mednine' => 'Mednine',
+                    'Tataouine' => 'Tataouine',
+                    'Gafsa' => 'Gafsa',
+                    'Tozeur' => 'Tozeur',
+                    'Kebili' => 'Kebili',
+
+                ]
             ])
             ->add('email', EmailType::class, [
                 'label' => false,

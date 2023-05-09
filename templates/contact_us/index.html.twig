@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ِContact Us{% block title %}{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="shortcut icon" href="https://manage.wix.com/_serverless/brand-maker/api/v1/design/5c1a8f0c-1646-42c7-ad6f-a926e73f0480/preview-redirect"> 
+        <!--Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Cabin|sans-serif" rel="stylesheet">
+        <!--Fonts--> 
+        <!--FontAwesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <!--FontAwesome-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+        <link href="{{asset ('css/nav.css')}}" rel="stylesheet">
+        <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+        
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body class="stop-scroll">
+      <!--Start Header-->
+        <header >
+          <nav >
+            <div class="logo">
+              <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.png')}}" height="50px" width="300px" alt="Site Logo"></a>
+            </div>
+            <div class="toggle ">
+              <span class="first"></span>
+              <span class="middle"></span>
+              <span class="last"></span>
+            </div>
+            <div class="navigation-bar">
+              <ul>
+                <li class="active"><a  href="{{ path('app_home') }}">Home<span class="underline"></span></a></li>
+                <li><a href="#about-us">About<span class="underline"></span></a></li>
+                <li><a href="#newsletter">Contact<span class="underline"></span></a></li>
+                <li><a href="#">Services<span class="underline"></span></a></li>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li><a href="{{ path('user_home') }}">Profile<span class="underline"></span></a></li>
+                    <li><a href="{{ path('app_logout') }}">Logout<span class="underline"></span></a></li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Login<span class="underline"></span></a></li>
+                    <li><a href="{{ path('app_register') }}">Register<span class="underline"></span></a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+          <div class="text">
+            <h2>Find us</h2>
+            <h3>Contact</h3>
+          </div>
+      </header>
+    <!--End Header-->
+
+    <!--Start Contact-->
+    <div class="contact">
+        <div class="text">
+            <h2>Get In Touch</h2>
+
+            <p>The Rosa’s restaurant and bar are located on the ground and first floor within the Winchester Grade VI listed building of the Royal Institution of Chartered Surveyors. The restaurant and bar both have their own entrances.</p>
+
+            <p>If you have questions or comments, please get a hold of us in whichever way is most convenient. Ask away. There is no reasonable question that our team can not answer</p>
+
+            <h2>Follow Us</h2>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+        </div>
+        <div class="form">
+            <form method="post" onsubmit="return false">
+                <label for="name">Your Name (required)</label>
+                <input id="name" name="name" autocomplete="off">
+
+                <label for="email">Your Email (required)</label>
+                <input id="email" name="email" autocomplete="off">
+
+                <label for="subject">Subject</label>
+                <input id="subject" name="subject">
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message"></textarea>
+
+                <button>Send</button>
+            </form>
+        </div>
+    </div>
+    <!--End Contact-->
+
+<!--Start Copy-Right-->
+<div class="copyright">
+    <svg class="svg-up" width="192" height="61" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve"><path fill="#262526" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z" style=""></path></svg>
+    <span class="arrow-up"></span>
+    <ul class="info">
+        <li>© ROSA 2017</li>
+        <li>13 Hanway Square, London</li>
+        <li>Tel: 71494563</li>
+        <li>Handcrafted with love by <a href="#">Pixelgrade</a> Team</li>
+    </ul>
+    <ul class="CTA">
+        <li><a href="#">PERMISSIONS AND COPYRIGHT</a></li>
+        <li><a href="#">CONTACT THE TEAM</a></li>
+    </ul>
+</div>
+<!--End Copy-Right-->
+
+
+            <script src="{{ asset('js/main.js') }}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>

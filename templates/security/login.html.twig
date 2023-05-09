@@ -22,7 +22,7 @@
             <div class="row">
             <div class="col-sm-6 login-section-wrapper">
                 <div class="brand-wrapper">
-                    <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.jpeg')}}" height="50px" width="300px" alt="Site Logo"></a>
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.png')}}" height="50px" width="300px" alt="Site Logo"></a>
                 </div>
                 <div class="login-wrapper my-auto">
                 <h1 class="login-title">Log in</h1>
@@ -33,26 +33,33 @@
 
                     {% if app.user %}
                         <div class="mb-3">
-                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            <div class="alert alert-danger">
+                                You are logged in as {{ app.user.userIdentifier }}  <a style="color:green; text-decoration:none;" href="{{ path('app_logout') }}">Logout</a>
+                            </div>
                         </div>
                     {% endif %}
+
+
+
                     <div class="form-group">
-                    <label for="name">User Email</label>
-                    <input type="email" name="email" id="name" class="form-control" placeholder="user email"  value="{{last_username}}" required autofocus>
+                        <div class="form-group mb-4">
+                            <label for="name">User Email</label>
+                            <input type="email" name="email" id="name" class="form-control" placeholder="user email"  value="{{last_username}}" required autofocus>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="pass">Password</label>
+                            <input type="password" name="password" id="pass" class="form-control" autocomplete="current-password" required placeholder="enter your passsword"><br>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <button type="submit" id="login" class="btn btn-block login-btn">Login</button>
                     </div>
-                    <div class="form-group mb-4">
-                    <label for="pass">Password</label>
-                    <input type="password" name="password" id="pass" class="form-control" autocomplete="current-password" required placeholder="enter your passsword"><br>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    </div>
-                    <button type="submit" id="login" class="btn btn-block login-btn">Login</button>
                 </form>
                 <a href="{{ path('app_forgot_password_request') }}" class="forgot-password-link">Forgot password?</a>
                 <p class="login-wrapper-footer-text">Don't have an account? <a href="{{ path('app_register') }}" class="text-reset">Register here</a></p>
                 </div>
             </div>
             <div class="col-sm-6 px-0 d-none d-sm-block">
-                <img src="https://t4.ftcdn.net/jpg/00/04/43/79/240_F_4437974_DbE4NRiaoRtUeivMyfPoXZFNdCnYmjPq.jpg" class="login-img">
+                <img src="https://images.pexels.com/photos/7078721/pexels-photo-7078721.jpeg?auto=compress&cs=tinysrgb&w=600" class="login-img">
             </div>
             </div>
         </div>

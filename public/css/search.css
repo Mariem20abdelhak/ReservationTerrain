@@ -1,0 +1,121 @@
+.main {
+    margin-top: 60px;
+}
+.search-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+    }
+        
+        .form-group {
+            margin: 10px;
+        }
+        
+        label {
+        margin-right: 10px;
+    }
+    
+    input[type="text"],
+    select,
+    input[type="date"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        width: 100%;
+        max-width: 300px;
+        }
+        
+        button[type="submit"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #089940;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 22px;
+        }
+        
+        button[type="submit"]:hover {
+        background-color: #089940;
+        color: #fff;
+        }
+        
+        @media screen and (max-width: 768px) {
+        form {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        input[type="text"],
+        select,
+        input[type="date"] {
+            max-width: none;
+        }
+        
+        .form-group {
+            margin: 10px 0;
+        }
+.search-block {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.search-block form {
+display: flex;
+align-items: center;
+}
+
+.search-block .form-group {
+margin-right: 20px;
+}
+
+.search-block label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+}
+
+.search-block input[type="text"],
+.search-block select,
+.search-block input[type="date"] {
+padding: 10px;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.search-block select {
+width: 150px;
+}
+
+.search-block button {
+background-color: #089940;
+color: #fff;
+border: none;
+border-radius: 5px;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.2s ease;
+}
+
+.search-block button:hover { 
+    background-color: #fff;
+    color: #089940;
+}
+        }

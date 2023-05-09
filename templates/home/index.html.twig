@@ -1,71 +1,94 @@
 {% extends 'base.html.twig' %}
     {% block stylesheets %}
         <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+        <link href="{{asset ('css/search.css')}}" rel="stylesheet">
+        <link href="{{asset ('css/header.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
     {% endblock %}
     {% block title %}SportsArena{% endblock %}
 {% block body %}
-{% for message in app.flashes('success') %}
+    {% for message in app.flashes('success') %}
         <div class="alert alert-success" role="alert">{{ message }}</div>
     {% endfor %}
 <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
-{% block dots %}
+
+
+
 <!--Start Dots-->
+{% block dots %}
     <div class="dots">
         <div class="active one" data-x="header"></div>
         <div class="two" data-x=".terrains"></div>
         <div class="three" data-x=".fixed-image"></div>
     </div>
-<!--End Dots-->
 {% endblock %}
+<!--End Dots-->
 
 
 <!--Start Header-->
 {% block header %}
-    <div class="text">
-        <h2>Welcome</h2>
-        <div class="button"><button>Explore</button></div>
-        <div class="search-block">
-            <form>
-                <div class="form-group">
-                <label for="location">Location:</label>
-                <input type="text" id="location" placeholder="Enter location...">
-                </div>
-                <div class="form-group">
-                <label for="activity">Activity:</label>
-                <select id="activity">
-                    <option value="">Select activity...</option>
-                    <option value="soccer">Soccer</option>
-                    <option value="basketball">Basketball</option>
-                    <option value="tennis">Tennis</option>
-                </select>
-                </div>
-                <div class="form-group">
-                <label for="date">Date:</label>
-                <input type="date" id="date">
-                </div>
-                <button type="submit">Search</button>
-            </form>
-        </div>
-
-    </div>
-        {# <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve">
-            <path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path>
-        </svg>
-        <div class="arrow-down">
-        </div> #}
+{% include 'header.html.twig' %}
 {% endblock %}
 <!--End Header-->
 
 {% block main %}
+
+<!--start terrains-->
+<div class="terrains " id ="terrains" style="background-color:#dee2e6;padding-top:20px ; color:white;">
+    <div class="text">
+        <h2 style="text-transform:uppercase; font-size:50px ; margin-left:40px">Recommanded</h2>
+    </div>
+    {% if terrains is empty %}
+        <p>No Staduim found.</p>
+    {% else %}
+        <div class="row">
+            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% set active = true %}
+                    {% for terrain in terrains %}
+                    <div class="carousel-item  {% if active %}active{% endif %}">
+                        <div class="card" style="width: 18rem; margin-left:120px; margin-top:60px">
+                            <img src="{{ asset('/uploads/images/' ~ terrain.images[0]) }}" class="card-img-top" alt="{{ terrain.name }}" height="300px" width="200px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ terrain.name }}</h5>
+                                <p class="card-text">{{ terrain.description }}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ terrain.price }} DT</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="{{ path('app_terrain_show', {'id': terrain.id}) }}" class="btn btn-warning">View Details</a>
+                            </div>
+                        </div>
+                        </div>
+                    
+                    {% set active = false %}
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            
+    {% endif %}
+    </div>
+</div>
+<!--End terrains-->
+
 <!--start About Us-->
 <div class="about-us" id ="about-us">
     <div class="text">
         <h2>Discover</h2>
         <h3>About Us</h3>
         <p>We are a team of sports enthusiasts who are passionate about bringing people together to enjoy their favorite games and events. Our website is dedicated to providing a convenient and reliable way for you to reserve your spot in the stadium for any upcoming events.</p>
-        <div><a class="a-CTA" href="#">About Us</a></div>
+        <div><a class="a-CTA" href="#about-us2">About Us</a></div>
     </div>
     <div class="image-container">
         <div class="image image1">
@@ -79,100 +102,6 @@
 <!--End About Us-->
 
 
-
-
-<!--start category-->
-<div class="category">
-        <div class="text">
-            <h2>Discover</h2>
-            <h3>Category</h3>
-        </div>
-    {% if categories is empty %}
-            <p>No categories found.</p>
-    {% else %}
-        <div class="image">
-            <div class="row">
-                {% for category in categories %}
-                    <div class="col-sm-4">
-                        <div class="card mb-3">
-                            <img src="#" class="card-img-top" alt="{{ category.name }}" height="50px" width="150px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ category.name }}</h5>
-                                <p class="card-text">{{ category.description }}</p>
-                                <a href="#" class="btn btn-primary">View details</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
-</div>
-  <!--End category-->
-<!--start terrains-->
-<div class="terrains" id ="terrains">
-    <div class="text">
-        <h2>Discover</h2>
-        <h3>Terrain</h3>
-    </div>
-    {% if terrains is empty %}
-        <p>No Staduim found.</p>
-    {% else %}
-        <div class="row">
-            {% for terrain in terrains %}
-                <div class="col-sm-4">
-                    <div class="card mb-3">
-                        <img src="{{ asset('/uploads/images/' ~ terrain.image) }}" class="card-img-top" alt="{{ terrain.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ terrain.name }}</h5>
-                            <p class="card-text">{{ terrain.description }}</p>
-                            <a href="#" class="btn btn-primary">View details</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-</div>
-<!--End terrains-->
-
-<!--start Menu-->
-<div class="menu">
-    <div class="box-model">
-        <i class="fas fa-times fa-2x close"></i>
-        <div class="arrow">
-            <div class="arrow arrow-right"></div>
-            <div class="arrow arrow-left"></div>
-        </div>
-        <div class="box-image-container">
-            <div class="box-image">
-                <img src="#"  alt="Food Photo">
-            </div>
-        </div>
-    </div>
-    <div class="menu-image-container">
-        <div class="image active">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988517/big-menu-thumb-1.jpg" alt="Food Photo">
-        </div>
-        <div class="image">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988526/big-menu-thumb-2.jpg" alt="Food Photo">
-        </div>
-        <div class="image">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988525/big-menu-thumb-4.jpg" alt="Food Photo">
-        </div>
-        <div class="image">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988524/big-menu-thumb-6.jpg" alt="Food Photo">
-        </div>
-    </div>
-    <div class="text">
-        <h2>Discover</h2>
-        <h3>Menu</h3>
-        <div><i class="fas fa-asterisk"></i></div>
-        <p>For those with pure food indulgence in mind, come next door and sate your desires with our ever changing internationally and seasonally inspired small plates.  We love food, lots of different food, just like you.</p>
-        <div><a class="a-CTA" href="#">View The Full Menu</a></div>
-    </div>
-</div>
-<!--End Menu-->
 
 <!--Start fixed-image-->
 <div class="fixed-image">
@@ -205,7 +134,7 @@
 
 <!--Start Footer-->
 <footer>
-    <div class="text">
+    <div class="text" id ="about-us2">
         <h2>ABOUT SportsArena</h2>
         <div><i class="fas fa-asterisk"></i></div>
         <p>Our website is a platform dedicated to sports enthusiasts who are looking to book and reserve sports facilities around their area. We provide a simple and easy-to-use interface for users to search for and book facilities based on location, activity, and date. Our goal is to make the process of booking sports facilities as hassle-free as possible, allowing users to focus on what really matters - enjoying their favorite sports. We are committed to providing high-quality services and ensuring the satisfaction of all our users.</p>
@@ -220,7 +149,7 @@
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
-        <div class="newsletter">
+        <div class="newsletter" id ="newsletter">
             <h3>NewsLetter</h3>
             <form method="post">
                 <input type="email" name="email" placeholder="Type Your Email">
@@ -237,15 +166,23 @@
     <i class="fas fa-angle-double-up arrow-up"></i>
     <ul class="info">
         <li>&copy; SportsArena 2017</li>
-        <li>13 Hanway Square, London</li>
-        <li>Tel: 71494563</li>
-        <li>Handcrafted with love by <a href="#">Pixelgrade</a> Team</li>
+        <li>Tunisia , Sousse , Sahloul</li>
+        <li>Tel: xx xxx xxx</li>
     </ul>
     <ul class="CTA">
         <li><a href="#">PERMISSIONS AND COPYRIGHT</a></li>
-        <li><a href="#">CONTACT THE TEAM</a></li>
+        <li><a href="{{path('app_contact_us')}}">CONTACT THE TEAM</a></li>
     </ul>
 </div>
 <!--End Copy-Right-->
 {% endblock %}
+{% endblock %}
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+    $('#carouselExampleIndicators').carousel({
+    interval: 2000 // change the speed of the carousel here
+    });
+});
+</script>
 {% endblock %}

@@ -38,10 +38,14 @@
                 <td>{{ terrain.discount }}</td>
                 <td>{{ terrain.createdAt ? terrain.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ terrain.modifiedAt ? terrain.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td><img src="{{ asset('/uploads/images/' ~ terrain.image) }}" class="card-img-top" alt="{{ terrain.name }}" height="100px" width="100px"></td>
                 <td>
-                    <a href="{{ path('app_owner_terrain_show', {'id': terrain.id}) }}">show</a>
-                    <a href="{{ path('app_owner_terrain_edit', {'id': terrain.id}) }}">edit</a>
+                    {% for image in terrain.images %}
+                            <img src="{{ asset('/uploads/images/' ~ image.name) }}" alt="Image" width="150">
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_owner_terrain_show', {'id': terrain.id}) }}" class="btn btn-success">show</a>
+                    <a href="{{ path('app_owner_terrain_edit', {'id': terrain.id}) }}" class="btn btn-warning">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -52,6 +56,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_owner_terrain_new') }}">Create new</a>
+    <a href="{{ path('app_owner_terrain_new') }}" class="btn btn-success">Create new</a>
 </div>
 {% endblock %}

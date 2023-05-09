@@ -22,7 +22,7 @@
             <div class="row">
             <div class="col-sm-6 login-section-wrapper">
             <div class="brand-wrapper">
-                    <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.jpeg')}}" height="50px" width="300px" alt="Site Logo"></a>
+                    <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.png')}}" height="50px" width="300px" alt="Site Logo"></a>
                 </div>
                 <div class="login-wrapper my-auto">
                 <h1 class="login-title">Register !</h1>
@@ -36,6 +36,14 @@
                             <div class="form-group mb-4">
                             <label for="lastname">Last Name</label>
                             {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group mb-4">
+                            <label for="firstname">Phone number</label>
+                            {{ form_widget(registrationForm.phone, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group mb-4">
+                            <label for="firstname">Addresse</label>
+                            {{ form_widget(registrationForm.addresse, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             <div class="form-group mb-4">
                             <label for="email">Email</label>
@@ -58,7 +66,7 @@
                 </div>
             </div>
             <div class="col-sm-6 px-0 d-none d-sm-block">
-                <img src="https://t4.ftcdn.net/jpg/00/04/43/79/240_F_4437974_DbE4NRiaoRtUeivMyfPoXZFNdCnYmjPq.jpg" class="login-img">
+                <img src="https://images.pexels.com/photos/7078721/pexels-photo-7078721.jpeg?auto=compress&cs=tinysrgb&w=600" class="login-img">
             </div>
             </div>
         </div>

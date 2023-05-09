@@ -33,8 +33,8 @@
                 <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ reservation.modifiedAt ? reservation.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_admin_reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('app_admin_reservation_edit', {'id': reservation.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_reservation_show', {'id': reservation.id}) }}" class="btn btn-success">show</a>
+                    <a href="{{ path('app_admin_reservation_edit', {'id': reservation.id}) }}" class="btn btn-warning">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -45,6 +45,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_reservation_new') }}">Create new</a>
+    <a href="{{ path('app_admin_reservation_new') }}" class="btn btn-success">Create new</a>
     </div>
 {% endblock %}

@@ -31,11 +31,10 @@ class UserController extends AbstractController
         } elseif (in_array('ROLE_OWNER', $user->getRoles())) {
             return $this->redirectToRoute('owner_home');
         } elseif (in_array('ROLE_USER', $user->getRoles())) {
-            return $this->redirectToRoute('user_home');
+            return $this->render('user/index.html.twig', [$user]);
         }
 
         $user = $security->getUser();
-        /* return $this->render('user/index.html.twig', [$user]); */
     }
 
 

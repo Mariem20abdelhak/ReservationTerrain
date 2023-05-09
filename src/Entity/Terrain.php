@@ -56,8 +56,6 @@ class Terrain
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeinterface $modifiedAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'terrains')]
     #[ORM\JoinColumn(nullable: false)]
@@ -70,9 +68,17 @@ class Terrain
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'Terrain', targetEntity: Image::class, cascade: ['persist'])]
+    private Collection $images;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'UserFavorit')]
+    private Collection $Favorite;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->Favorite = new ArrayCollection();
     }
 
     public function __toString()
@@ -123,7 +129,7 @@ class Terrain
         return $this;
     }
 
-    public function isIsReserved(): ?bool
+    public function getIsReserved(): ?bool
     {
         return $this->is_reserved;
     }
@@ -207,18 +213,6 @@ class Terrain
         return $this;
     } */
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -269,6 +263,60 @@ class Terrain
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setTerrain($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getTerrain() === $this) {
+                $image->setTerrain(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->Favorite;
+    }
+
+    public function addFavorite(User $favorite): self
+    {
+        if (!$this->Favorite->contains($favorite)) {
+            $this->Favorite->add($favorite);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(User $favorite): self
+    {
+        $this->Favorite->removeElement($favorite);
 
         return $this;
     }

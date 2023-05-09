@@ -49,6 +49,9 @@ class Reservation
     #[ORM\OneToOne(mappedBy: 'reservation', cascade: ['persist', 'remove'])]
     private ?Payment $payment = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?User $Client = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -168,6 +171,18 @@ class Reservation
         }
 
         $this->payment = $payment;
+
+        return $this;
+    }
+
+    public function getClient(): ?User
+    {
+        return $this->Client;
+    }
+
+    public function setClient(?User $Client): self
+    {
+        $this->Client = $Client;
 
         return $this;
     }

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{terrain.name}}
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+    <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    {% block main %}
+    <div class="card mb-3" style="max-width:900px; ">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+                    <div class="carousel-inner">
+                        {% for image in images %}
+                            <div class="carousel-item  {% if loop.first %}active{% endif %}">
+                                    <img src="{{ asset('/uploads/images/' ~ image.name)|imagine_filter('banniere') }}"  alt="{{ terrain.name }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ terrain.name }}</h5>
+                    <p class="card-text">{{ terrain.description |raw }}</p>
+                    <p class="card-text"><small class="text-body-secondary">price : {{ terrain.price }} DT</small></p>
+                    {% if terrain.discount !=0  %}
+                    <p class="card-text"><small class="text-body-secondary">discount :{{ terrain.discount }}DT</small></p>
+                    {% endif %}
+                    <a href="{{ path('app_terrain_show', {'id': terrain.id}) }}" class="btn btn-success">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+{% endblock %}
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+    $('#carouselExampleIndicators').carousel({
+    interval: 2000 // change the speed of the carousel here
+    });
+});
+</script>
+{% endblock %}

@@ -1,115 +1,29 @@
-/*Start Global*/
-* {
-    box-sizing: border-box;
-}
-body {
-    margin: 0;
-    padding: 12px;
-}
-body.hide-scroll::-webkit-scrollbar {
-    display: none;
-}
-a {
-    text-decoration: none;
-}
-ul {
-    padding: 0;
-    list-style: none;
-    margin-top: 20px;
-}
-img {
-    max-width: 100%;
-}
-h2 {
-    font-family: 'Herr Von Muellerhoff', cursive;
-    font-size: 100px;
-    font-weight: normal;
-    margin: 0 0 -55px;
-}
-h1, h3 {
-    font-family: "Source Code Pro", sans-serif;
-    font-size: 47px;
-    font-weight: bold;
-    letter-spacing: 9.4px;
-    margin: 0 0 15px;
-}
-p {
-    color: #089940;
-    line-height: 27px;
-}
-.a-CTA {
-    border-bottom: 2px solid #089940;
-    padding-bottom: 4px;
-    letter-spacing: 1.5px;
-    font-size: 18px;
-}
-/*End Global*/
-
-/*Start Mutual*/
-p, .a-CTA, input, header .navigation-bar a, .copyright li, .contact .form form label, .contact .form form button {
-    font-family: Cabin, sans-serif;
-}
-.fa-asterisk, .a-CTA, h2, header .navigation-bar a:hover, header nav.active .navigation-bar a:hover, footer .social-media .links a:hover, .copyright .info li a, .copyright .CTA li a:hover {
-    color: #089940;
-}
-header nav .navigation-bar .underline, header .text .button button:hover, .contact .form form button:hover, .contact .text i:hover {
-    background-color: #089940;
-}
-header .navigation-bar ul li, header .text, .about-us .text, .reservation .text, .menu .box-model, .menu .text, .fixed-image .text, footer, .copyright, .contact .text i {
-    text-align: center;
-}
-header nav, header .navigation-bar ul, .about-us, .reservation, .about-us .image-container, .reservation .image-container, .menu, .menu .menu-image-container, footer .contact-container, .copyright ul, .contact {
-    display: flex;
-}
-header nav .toggle, header nav .toggle span, header .navigation-bar, header .navigation-bar ul, .menu .box-model .close, footer .social-media .links a, .copyright .CTA li a {
-    transition: .3s;
-}
-header, header nav .toggle span, header .navigation-bar a, header .text, header .text .arrow .left, header .text .arrow .right, .recipes, .menu .box-image-container, .fixed-image .text, .copyright, .copyright .arrow-up {
-    position: relative;
-}
-header nav .toggle, header .navigation-bar .underline, header .text .arrow .left:after, header .text .arrow .right:after, header .svg-down, header .arrow-down, .recipes .text, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .box-image-container .box-image, .copyright .svg-up {
-    position: absolute;
-}
-.recipes .text, .fixed-image .text, .menu .box-image-container, .menu .box-image-container .box-image {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-header nav, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, .menu .box-model, .menu .box-image-container, .menu .box-image-container .box-image {
-    width: 100%;
-}
-button, .dots > div, header nav .toggle, header .arrow-down, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .menu-image-container .image img, footer .newsletter i, .copyright .arrow-up {
-    cursor: pointer;
-}
-.dots .active, header nav.active, header nav.active .toggle.active span, header nav .toggle span, header .navigation-bar .underline, header .text .arrow .left, header .text .arrow .right, header .text .button button, .contact form button {
-    background-color: #fff;
-}
-h1, h3, header .navigation-bar a, header .text span, .menu .box-model .close:hover, footer .text h2, footer .text p, footer .social-media .links a, .contact .text i, .contact .form form button {
-    color: #000;
-}
-header nav, header .navigation-bar.show, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, header .text .arrow .left:after, .menu .box-model, .copyright .arrow-up {
-    left: 0;
-}
-header .text .arrow .left:after, header .text .arrow .right:after, header .text span, footer .social-media .links a, footer .newsletter i, .copyright .arrow-up, .contact .text i, .contact .form form label {
-    display: inline-block;
-}
-/*End Mutual*/
-
 
 /*Start Header*/
-
+header {
+    height: calc(100vh - 22px);
+    background: url("https://cdn.pixabay.com/photo/2016/11/23/15/28/architecture-1853520_960_720.jpg"), url('https://cdn.pixabay.com/photo/2020/01/12/16/57/stadium-4760441__340.jpg');
+    padding: 20px ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    animation: backgroundAnimation 30s infinite;
+}
+@keyframes backgroundAnimation {
+    50% { background-image: url('https://cdn.pixabay.com/photo/2016/11/23/15/28/architecture-1853520_960_720.jpg'); }
+    100% { background-image: url('https://cdn.pixabay.com/photo/2020/01/12/16/57/stadium-4760441__340.jpg'); }
+}
 header nav {
     position: fixed;
-    top: 0px;
-    padding: 13px 13px 13px;
+    top: 0;
+    padding: 20px 36px 20px;
     z-index: 20;
-    background-color: #fff;
 }
 header nav .toggle {
     display: none;
     top: 26px;
     left: 20px;
-    background-color: #089940;
+    background-color: transparent;
     border: none;
     padding: 0;
     z-index: 21;
@@ -128,7 +42,7 @@ header nav .toggle.active .first {
     transform: rotate(-45deg);
 }
 header nav .toggle.active .last {
-    top: -13px;
+    top: -11px;
     transform: rotate(45deg);
 }
 header nav .toggle .hide {
@@ -145,14 +59,17 @@ header nav .toggle span:not(:last-of-type) {
     margin-bottom: 6px;
 }
 header nav .logo {
-    flex-basis: 46%;
+    flex-basis: 50%;
     padding-left: 20px;
+}
+header .navigation-bar {
+    padding-top: 15px;
 }
 header .navigation-bar.show {
     width: 25%;
 }
 header .navigation-bar.show a {
-    color: #ccc !important;
+    color: #000 !important;
 }
 header .navigation-bar.show a:hover {
     color: #fff !important;
@@ -177,12 +94,21 @@ header .navigation-bar .underline {
     transition: all .3s;
     display: block;
 }
+
+header .text .button button a :hover{
+color: #fff;
+}
 header .text {
     top: 24%;
 }
-header .text h1 {
-    margin-bottom: 0;
+header .text .button button a{
+    color: green !important;
 }
+header .text .button button a :hover{
+    color: #fff !important;
+}
+
+    
 header .text .arrow .left, header .text .arrow .right {
     height: 3px;
     width: 100px;
@@ -216,24 +142,26 @@ header .text .button button, .contact form button {
     padding: 9px 18px;
     letter-spacing: 2.4px;
     font-size: 12px;
-    font-family: source_sans_problack, sans-serif;
+    font-family: 'source_sans_problack', sans-serif;
     border-radius: 3px;
+    margin-top: 80px;
 }
 header .text .button button, .contact form button:focus {
     outline: none;
 }
+
 header .svg-down {
     bottom: 0;
     left: 50%;
     z-index: 5;
     margin-left: -96px;
     margin-bottom: -12px;
-    color: #fff;
+    color: #dee2e6;
 }
 header .arrow-down {
     width: 70px;
     height: 50px;
-    bottom: -10px;
+    bottom: 0px;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 10;
@@ -302,7 +230,7 @@ header .arrow-down {
         top: 0;
         left: -174px;
         height: 100%;
-        background-color: #262526;
+        background-color: #dee2e6;
         overflow: hidden;
         z-index: 20;
         padding: 40px;

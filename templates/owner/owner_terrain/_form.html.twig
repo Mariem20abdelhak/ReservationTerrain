@@ -1,11 +1,14 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-
  {# Vérifier si la route est "terrain_edit" on affiche les images #}
     {% if app.request.attributes.get('_route') == 'app_owner_terrain_edit' %}
+        <h2>Images</h2>
+        {% for image in terrain.images %}
             <div>
-                <img src="{{ asset('/uploads/images/' ~ terrain.image) }}" alt="Image" width="150">
+                <img src="{{ asset('/uploads/images/' ~ image.name) }}" alt="Image" width="150">
+                <a href="{{ path('app_admin_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Delete</a>
             </div>
+        {% endfor %}
     {% endif %}
 
     <button class="btn">{{ button_label|default('Save') }}</button>
