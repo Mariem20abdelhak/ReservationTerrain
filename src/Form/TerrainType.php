@@ -6,11 +6,13 @@ use App\Entity\Category;
 use App\Entity\Terrain;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,9 +23,39 @@ class TerrainType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('surface', NumberType::class)
-            ->add('adresse', TextType::class)
+            ->add('adresse', ChoiceType::class, [
+                "choices" => [
+                    'Bizert' => "Bizert",
+                    'Tunis' => 'Tunis',
+                    'Ariana' => 'Ariana',
+                    'Ben Arous' => 'Ben Arous',
+                    'Manouba' => 'Manouba',
+                    'Nabeul' => 'Nabeul',
+                    'Zaghouan' => 'Zaghouan',
+                    'Béja' => 'Béja',
+                    'Jendouba' => 'Jendouba',
+                    'Kef' => 'Kef',
+                    'Siliana' => 'Siliana',
+                    'Sousse' => 'Sousse',
+                    'Monastir' => 'Monastir',
+                    'Mahdia' => 'Mahdia',
+                    'Sfax' => 'Sfax',
+                    'Kairouan' => 'Kairouan',
+                    'Kasserine' => 'Kasserine',
+                    'Sidi Bouzid' => 'Sidi Bouzid',
+                    'Gabès' => 'Gabès',
+                    'Mednine' => 'Mednine',
+                    'Tataouine' => 'Tataouine',
+                    'Gafsa' => 'Gafsa',
+                    'Tozeur' => 'Tozeur',
+                    'Kebili' => 'Kebili',
+
+                ]
+            ])
             ->add('materiel', TextareaType::class)
             ->add('description', TextareaType::class)
+            ->add('hours', TimeType::class)
+            ->add('pause', TimeType::class)
             ->add('price', MoneyType::class)
             ->add('discount', MoneyType::class)
             ->add('image', FileType::class, [

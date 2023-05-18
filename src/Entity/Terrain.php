@@ -27,8 +27,6 @@ class Terrain
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $is_reserved = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $materiel = null;
@@ -57,22 +55,28 @@ class Terrain
     private ?\DateTimeinterface $modifiedAt = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'terrains')]
+    #[ORM\ManyToOne(inversedBy: 'terrains', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'terrain', targetEntity: Reservation::class)]
+    #[ORM\OneToMany(mappedBy: 'terrain', targetEntity: Reservation::class, cascade: ['persist', 'remove'])]
     private Collection $reservations;
 
     #[ORM\ManyToOne(inversedBy: 'terrains')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'Terrain', targetEntity: Image::class, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'Terrain', targetEntity: Image::class, cascade: ['persist', 'remove'])]
     private Collection $images;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'UserFavorit')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'UserFavorit', cascade: ['persist', 'remove'])]
     private Collection $Favorite;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $hours = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $pause = null;
 
     public function __construct()
     {
@@ -129,17 +133,6 @@ class Terrain
         return $this;
     }
 
-    public function getIsReserved(): ?bool
-    {
-        return $this->is_reserved;
-    }
-
-    public function setIsReserved(bool $is_reserved): self
-    {
-        $this->is_reserved = $is_reserved;
-
-        return $this;
-    }
 
     public function getMateriel(): ?string
     {
@@ -317,6 +310,30 @@ class Terrain
     public function removeFavorite(User $favorite): self
     {
         $this->Favorite->removeElement($favorite);
+
+        return $this;
+    }
+
+    public function getHours(): ?\DateTimeInterface
+    {
+        return $this->hours;
+    }
+
+    public function setHours(\DateTimeInterface $hours): self
+    {
+        $this->hours = $hours;
+
+        return $this;
+    }
+
+    public function getPause(): ?\DateTimeInterface
+    {
+        return $this->pause;
+    }
+
+    public function setPause(\DateTimeInterface $pause): self
+    {
+        $this->pause = $pause;
 
         return $this;
     }

@@ -1,34 +1,10 @@
 {% extends 'base.html.twig' %}
     {% block stylesheets %}
-        <link href="{{asset ('css/search.css')}}" rel="stylesheet">
+        <link href="{{asset ('css/main.css')}}" rel="stylesheet">
     {% endblock %}
     {% block title %}SportsArena{% endblock %}
 {% block body %}
-{% block header%}
-<div class="search-block">
-    <form>
-        <div class="form-group">
-        <label for="location">Location:</label>
-        <input type="text" id="location" placeholder="Enter location...">
-        </div>
-        <div class="form-group">
-        <label for="activity">Activity:</label>
-        <select id="activity">
-            <option value="">Select activity...</option>
-            <option value="soccer">Soccer</option>
-            <option value="basketball">Basketball</option>
-            <option value="tennis">Tennis</option>
-        </select>
-        </div>
-        <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" id="date">
-        </div>
-        <button type="submit">Search</button>
-    </form>
-</div>
 
-{% endblock %}
 {% block main %}
     <!--start terrains-->
         <div class="text">
@@ -48,10 +24,14 @@
                 </div>
                 <div class="col-md-6">
                 <div class="card-body">
-                    <h5 class="card-title">{{ terrain.name }}</h5>
+                    <p class="card-title">{{ terrain.name }}</p>
+                    <p class="card-title">{{ terrain.adresse }}</p>
                     <p class="card-text">{{ terrain.description }}</p>
                     <p class="card-text"><small class="text-muted">{{ terrain.price }} DT</small></p>
-                    <a href="{{ path('app_terrain_show', {'id': terrain.id}) }}" class="btn btn-warning">View Details</a>
+                    {% if terrain.discount !=0  %}
+                        <p class="list-group-item"><small class="text-body-secondary">discount :{{ terrain.discount }}DT</small></p>
+                    {% endif %}
+                    <a href="{{ path('app_reservation_create', {'id': terrain.id}) }}" class="btn btn-success">Book Now</a>
                 </div>
                 </div>
             </div>

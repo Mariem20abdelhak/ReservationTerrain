@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+{% endblock %}
+{% block main %}
+    <h1>Reservation Details</h1>
+
+<div class="card w-75">
+    <div class="card-body">
+        <h5 class="card-title">id :{{ reservation.id }}</h5>
+        <p class="card-text">Total price :{{ reservation.price }}</p>
+        
+        {% if reservation.state == 0 %}
+            <p>This reservation is pending confirmation.</p>
+        {% elseif reservation.state == 1 %}
+            <p>This reservation has been confirmed.</p>
+        {% elseif reservation.state == 2 %}
+            <p>This reservation has been rejected.</p>
+        {% else %}
+            <p>The state of this reservation is unknown.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

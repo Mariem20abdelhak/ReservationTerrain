@@ -26,15 +26,14 @@ class UserController extends AbstractController
 
         $user = $this->getUser();
 
+        $user = $security->getUser();
         if (in_array('ROLE_ADMIN', $user->getRoles())) {
             return $this->redirectToRoute('admin_home');
         } elseif (in_array('ROLE_OWNER', $user->getRoles())) {
             return $this->redirectToRoute('owner_home');
         } elseif (in_array('ROLE_USER', $user->getRoles())) {
-            return $this->render('user/index.html.twig', [$user]);
+            return $this->redirectToRoute('user_home');
         }
-
-        $user = $security->getUser();
     }
 
 

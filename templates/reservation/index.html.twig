@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-	{{terrain.name}}
-{% endblock %}
 {% block stylesheets %}
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
     <link href="{{asset ('css/main.css')}}" rel="stylesheet">
 {% endblock %}
-{% block body %}
-    {% block main %}
+{% block main %}
     <div class="card mb-3" style="max-width:900px; ">
+        {% if form_errors(form.date) %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.date) }}
+            </div>
+        {% endif %}
         <div class="row g-0">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
                     <div class="carousel-inner">
                         {% for image in images %}
@@ -29,27 +29,27 @@
                     </button>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card-body">
                     <h5 class="card-title">{{ terrain.name }}</h5>
+                    <p class="card-title">{{ terrain.adresse }}</p>
+                    <p class="card-title">Time of match :{{ terrain.hours|date('H:i') }}</p>
+                    <p class="card-title">Pause time :{{ terrain.pause|date('H:i') }}</p>
                     <p class="card-text">{{ terrain.description |raw }}</p>
                     <p class="card-text"><small class="text-body-secondary">price : {{ terrain.price }} DT</small></p>
                     {% if terrain.discount !=0  %}
                     <p class="card-text"><small class="text-body-secondary">discount :{{ terrain.discount }}DT</small></p>
                     {% endif %}
-                    <a href="{{ path('app_terrain_show', {'id': terrain.id}) }}" class="btn btn-success">Book Now</a>
+                    {{ form_start(form) }}
+                    
+                        <div class="form-group">
+                            {{ form_label(form.date, 'Choose Date and Hour ') }}
+                            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     {% endblock %}
-{% endblock %}
-{% block javascripts %}
-<script>
-    $(document).ready(function() {
-    $('#carouselExampleIndicators').carousel({
-    interval: 2000 // change the speed of the carousel here
-    });
-});
-</script>
-{% endblock %}

@@ -55,13 +55,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Terrain::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Terrain::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
     private Collection $terrains;
 
     #[ORM\Column(length: 255)]
     private ?string $role_user = null;
 
-    #[ORM\ManyToMany(targetEntity: Terrain::class, mappedBy: 'Favorite')]
+    #[ORM\ManyToMany(targetEntity: Terrain::class, mappedBy: 'Favorite', cascade: ['persist', 'remove'])]
     private Collection $UserFavorit;
 
     #[ORM\Column]
@@ -70,7 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $addresse = null;
 
-    #[ORM\OneToMany(mappedBy: 'Client', targetEntity: Reservation::class)]
+    #[ORM\OneToMany(mappedBy: 'Client', targetEntity: Reservation::class, cascade: ['persist', 'remove'])]
     private Collection $reservations;
 
     public function __toString()

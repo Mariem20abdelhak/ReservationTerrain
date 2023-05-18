@@ -11,31 +11,24 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Local</th>
-                <th>Date_debut</th>
-                <th>Date_fin</th>
-                <th>Duration</th>
+                <th>Date</th>
                 <th>Price</th>
-                <th>CreatedAt</th>
-                <th>ModifiedAt</th>
-                <th>actions</th>
+                <th>State</th>
             </tr>
         </thead>
         <tbody>
         {% for reservation in reservations %}
             <tr>
                 <td>{{ reservation.id }}</td>
-                <td>{{ reservation.local }}</td>
-                <td>{{ reservation.dateDebut ? reservation.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.duration ? reservation.duration|date('H:i:s') : '' }}</td>
+                <td>{{ reservation.date ? reservation.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ reservation.price }}</td>
-                <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.modifiedAt ? reservation.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_admin_reservation_show', {'id': reservation.id}) }}" class="btn btn-success">show</a>
-                    <a href="{{ path('app_admin_reservation_edit', {'id': reservation.id}) }}" class="btn btn-warning">edit</a>
-                </td>
+                {% if reservation.state == 0 %}
+                    <td>Pending confirmation...<td>
+                    {% elseif reservation.state == 1 %}
+                        <td>Confirmed</td>
+                    {% elseif reservation.state == 2 %}
+                        <td>Rejected</td>
+                    {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -44,7 +37,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_admin_reservation_new') }}" class="btn btn-success">Create new</a>
     </div>
 {% endblock %}

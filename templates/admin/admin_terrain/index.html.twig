@@ -13,15 +13,11 @@
                 <th>Name</th>
                 <th>surface</th>
                 <th>adresse</th>
-                <th>Is_reserved</th>
                 <th>Materiel</th>
                 <th>description</th>
                 <th>Price</th>
                 <th>Discount</th>
-                <th>CreatedAt</th>
-                <th>ModifiedAt</th>
                 <th>Image</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,21 +27,14 @@
                 <td>{{ terrain.name }}</td>
                 <td>{{ terrain.surface }}</td>
                 <td>{{ terrain.adresse }}</td>
-                <td>{{ terrain.isReserved ? 'Yes' : 'No' }}</td>
                 <td>{{ terrain.materiel }}</td>
                 <td>{{ terrain.description }}</td>
                 <td>{{ terrain.price }}</td>
                 <td>{{ terrain.discount }}</td>
-                <td>{{ terrain.createdAt ? terrain.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ terrain.modifiedAt ? terrain.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     {% for image in terrain.images %}
                         <img src="{{ asset('/uploads/images/' ~ image.name) }}" alt="Image" width="150">
                     {% endfor %}
-                </td>
-                <td>
-                    <a href="{{ path('app_admin_terrain_show', {'id': terrain.id}) }}" class="btn btn-success">show</a>
-                    <a href="{{ path('app_admin_terrain_edit', {'id': terrain.id}) }}" class="btn btn-warning">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -56,6 +45,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_terrain_new') }}" class="btn btn-success">Create new</a>
 </div>
 {% endblock %}

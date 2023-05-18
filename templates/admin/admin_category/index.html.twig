@@ -17,6 +17,7 @@
                 <th>Description</th>
                 <th>CreatedAt</th>
                 <th>ModifiedAt</th>
+                <th>Image</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,9 +29,10 @@
                 <td>{{ category.description }}</td>
                 <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ category.modifiedAt ? category.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td><img src="{{ asset('/uploads/images/' ~ category.image) }}" alt="Image" width="150"></td>
                 <td>
-                    <a href="{{ path('app_admin_category_show', {'id': category.id}) }}" class="btn btn-success">show</a>
-                    <a href="{{ path('app_admin_category_edit', {'id': category.id}) }}" class="btn btn-warning">edit</a>
+                    <a href="{{ path('app_admin_category_edit', {'id': category.id}) }}" class="btn btn-warning">Edit</a>
+                    {{ include('admin/admin_category/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

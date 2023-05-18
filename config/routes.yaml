@@ -1,3 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+owner_reservation_confirm:
+  path: "/reservation/{id}/confirm"
+  controller: 'App\Controller\OwnerReservationController::confirmReservation'
+
+owner_reservation_reject:
+  path: "/reservation/{id}/reject"
+  controller: 'App\Controller\OwnerReservationController::rejectReservation'

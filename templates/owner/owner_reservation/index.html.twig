@@ -1,0 +1,43 @@
+{% extends 'owner.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block main %}
+    <h1>Reservation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.price }}</td>
+                <td>{{ reservation.date|date }}</td>
+                {% if reservation.state == 0 %}
+                <td>
+                    <a href="{{ path('owner_reservation_confirm', {'id': reservation.id}) }}" class="btn btn-success">Confirm</a>
+                    <a href="{{ path('owner_reservation_reject', {'id': reservation.id}) }}"class="btn btn-danger">Reject</a>
+                <td>
+                {% elseif reservation.state == 1 %}
+                    <td>Status: Confirmed</td>
+                {% elseif reservation.state == 2 %}
+                    <td>Status: Rejected</td>
+                {% endif %}
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

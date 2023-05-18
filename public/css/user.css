@@ -1,3 +1,8 @@
+main{
+    margin-left: 300px;
+}
+
+
 /* Style for the menu */
 .menu ul {
 list-style-type: none;
@@ -21,7 +26,14 @@ border-bottom: 2px solid white;
 }
 
 /* Style for the sidenav */
-.sidenav {height: 100%;width: 170px;position: fixed;z-index: 1;top: 80px; /* Leave space for the navigation bar */left: 0;background-color: #fff;overflow-x: hidden;padding-top: 60px;}
+.sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+    overflow-x: hidden;
+    width: 200px;
+}
 
 .sidenav a {
 padding: 6px 8px 6px 16px;
@@ -35,12 +47,6 @@ display: block;
 color: #089940;
 }
 
-/* Style for the main content */
-.main {
-margin-left: 170px; /* Same as the width of the sidenav */
-padding-top: 150px;
-}
-
 /* Style for the container */
 .container {
 display: flex;
@@ -50,7 +56,7 @@ height: 100%;
 }
 
 /* Style for the profile box */
-.profile {display: flex;flex-direction: column;align-items: center;justify-content: center;background-color: #f2f2f2;padding: 20px;border-radius: 10px;}
+.profile {display: flex;flex-direction: column;align-items: center;justify-content: center;background-color: #f2f2f2;padding: 20px;border-radius: 10px;margin-top: 180px;}
 p{
 color: #818181;
 }
@@ -72,6 +78,6 @@ color: #818181;
     color: #089940;
 }  
 @media (max-width: 992px) {
-.main {margin-left: 200px; /* Same as the width of the sidenav */padding-top: 50px;}
-header{padding-top: 80px;}
+.main {margin-left: 200px; /* Same as the width of the sidenav */}
+
 }

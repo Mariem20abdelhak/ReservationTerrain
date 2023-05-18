@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-
+use Symfony\Component\Validator\Constraints\Cascade;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -38,8 +38,11 @@ class Category
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $modifiedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Terrain::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Terrain::class, cascade: ['persist', 'remove'])]
     private Collection $terrains;
+
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     public function __construct()
     {
@@ -129,6 +132,18 @@ class Category
                 $terrain->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

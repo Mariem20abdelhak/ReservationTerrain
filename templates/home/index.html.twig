@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
     {% block stylesheets %}
-        <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+        <link href="{{asset ('css/index.css')}}" rel="stylesheet">
         <link href="{{asset ('css/search.css')}}" rel="stylesheet">
         <link href="{{asset ('css/header.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
@@ -29,7 +29,23 @@
 
 <!--Start Header-->
 {% block header %}
-{% include 'header.html.twig' %}
+<div class="text">
+        <h2 style="color: white;">Welcome!</h2>
+        <div class="main">
+            <div class="search-block">
+                {{ form_start(form) }}
+                    {{ form_row(form.adresse) }}
+                    {{ form_row(form.category) }}
+                    {{ form_row(form.submit) }}
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+    <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve">
+        <path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path>
+    </svg>
+    <div class="arrow-down" style='color:black;'></div>
 {% endblock %}
 <!--End Header-->
 
@@ -38,40 +54,45 @@
 <!--start terrains-->
 <div class="terrains " id ="terrains" style="background-color:#dee2e6;padding-top:20px ; color:white;">
     <div class="text">
-        <h2 style="text-transform:uppercase; font-size:50px ; margin-left:40px">Recommanded</h2>
+        <h2 style="text-transform:uppercase; font-size:50px ; margin-left:40px">OUR STADUIMS</h2>
     </div>
     {% if terrains is empty %}
         <p>No Staduim found.</p>
     {% else %}
-        <div class="row">
-            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-ride="carousel">
+            <div id="carousel1" style=" margin-left:50px"  class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     {% set active = true %}
-                    {% for terrain in terrains %}
-                    <div class="carousel-item  {% if active %}active{% endif %}">
-                        <div class="card" style="width: 18rem; margin-left:120px; margin-top:60px">
-                            <img src="{{ asset('/uploads/images/' ~ terrain.images[0]) }}" class="card-img-top" alt="{{ terrain.name }}" height="300px" width="200px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ terrain.name }}</h5>
-                                <p class="card-text">{{ terrain.description }}</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{ terrain.price }} DT</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="{{ path('app_terrain_show', {'id': terrain.id}) }}" class="btn btn-warning">View Details</a>
+                    {% for chunk_terrain in chunks_terrain %}
+                        <div class="carousel-item  {% if active %}active{% endif %}">
+                            <div class="row" style=" margin-left:100px;margin-top:20px ">
+                                {% for terrain in chunk_terrain %}
+                                    <div class="card" style="width: 18rem; margin-left:50px; margin-top:60px">
+                                        <img src="{{ asset('/uploads/images/' ~ terrain.images[0])|imagine_filter('square') }}" class="card-img-top" alt="{{ terrain.name }}" height="300px" width="200px">
+                                        <div class="card-body">
+                                            <p class="card-title">{{ terrain.name }}</p>
+                                            <p class="card-text">{{ terrain.description }}</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{ terrain.price }} DT</li>
+                                            {% if terrain.discount !=0  %}
+                                                <li class="list-group-item"><small class="text-body-secondary">discount :{{ terrain.discount }}DT</small></li>
+                                            {% endif %}
+                                        </ul>
+                                        <div class="card-body">
+                                            <a href="{{ path('app_reservation_create', {'id': terrain.id}) }}" class="btn btn-success">Book Now</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
-                        </div>
-                    
                     {% set active = false %}
                     {% endfor %}
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                <button  class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -82,10 +103,60 @@
 </div>
 <!--End terrains-->
 
+
+
+
+
+
+<!--start categories-->
+<div class="categories " id ="categories" style="background-color:#000;padding-top:20px ; color:white;">
+    <div class="text">
+        <h2 style="text-transform:uppercase; font-size:50px ; margin-left:40px">OUR CATEGORIES</h2>
+    </div>
+    {% if categories is empty %}
+        <p>No Staduim found.</p>
+    {% else %}
+            <div id="carousel2" style=" margin-left:50px" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% set active = true %}
+                    {% for chunk_categorie in chunks_categories %}
+                        <div class="carousel-item  {% if active %}active{% endif %}">
+                            <div class="row" style=" margin-left:100px;margin-top:20px ">
+                                {% for categories in chunk_categorie %}
+                                    <div class="card" style="width: 18rem; margin:50px; margin-top:60px">
+                                        <img src="{{ asset('/uploads/images/' ~ categories.image)|imagine_filter('square') }}" class="card-img-top" alt="{{ categories.name }}" >
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ categories.name }}</h5>
+                                            <p class="card-text">{{ categories.description }}</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="{{ path('app_category_show', {'id': categories.id}) }}" class="btn btn-warning">View All</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% set active = false %}
+                    {% endfor %}
+                </div>
+                <button  class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            
+    {% endif %}
+    </div>
+</div>
+<!--End categories-->
+
 <!--start About Us-->
 <div class="about-us" id ="about-us">
     <div class="text">
-        <h2>Discover</h2>
         <h3>About Us</h3>
         <p>We are a team of sports enthusiasts who are passionate about bringing people together to enjoy their favorite games and events. Our website is dedicated to providing a convenient and reliable way for you to reserve your spot in the stadium for any upcoming events.</p>
         <div><a class="a-CTA" href="#about-us2">About Us</a></div>
@@ -102,35 +173,6 @@
 <!--End About Us-->
 
 
-
-<!--Start fixed-image-->
-<div class="fixed-image">
-    <div class="text">
-        <h2>The Perfect</h2>
-        <h3>Blend</h3>
-    </div>
-</div>
-<!--End fixed-image-->
-
-<!--start About Us-->
-<div class="reservation">
-    <div class="text">
-        <h2>Culinary</h2>
-        <h3>Delight</h3>
-        <div><i class="fas fa-asterisk"></i></div>
-        <p>We promise an intimate and relaxed dining experience that offers something different to local and foreign patrons and ensures you enjoy a memorable food experience every time.</p>
-        <div><a class="a-CTA" href="#">Make a Reservation</a></div>
-    </div>
-    <div class="image-container">
-        <div class="image image1">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988518/bacon-1.jpg" alt="Food Photo">
-        </div>
-        <div class="image image2">
-            <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988518/bacon-2.jpg" alt="Food Photo">
-        </div>
-    </div>
-</div>
-<!--End About Us-->
 
 <!--Start Footer-->
 <footer>
@@ -180,7 +222,14 @@
 {% block javascripts %}
 <script>
     $(document).ready(function() {
-    $('#carouselExampleIndicators').carousel({
+    $('#carousel1').carousel({
+    interval: 2000 // change the speed of the carousel here
+    });
+});
+</script>
+<script>
+    $(document).ready(function() {
+    $('#carousel2').carousel({
     interval: 2000 // change the speed of the carousel here
     });
 });

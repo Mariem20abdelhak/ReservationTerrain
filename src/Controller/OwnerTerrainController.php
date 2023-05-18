@@ -6,13 +6,18 @@ use App\Entity\Image;
 use App\Entity\Terrain;
 use App\Form\TerrainType;
 use App\Repository\TerrainRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+
+/**
+ * @IsGranted("ROLE_OWNER")
+ */
 
 #[Route('/owner/terrain')]
 class OwnerTerrainController extends AbstractController
@@ -68,13 +73,6 @@ class OwnerTerrainController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_owner_terrain_show', methods: ['GET'])]
-    public function show(Terrain $terrain): Response
-    {
-        return $this->render('owner/owner_terrain/show.html.twig', [
-            'terrain' => $terrain,
-        ]);
-    }
 
     #[Route('/{id}/edit', name: 'app_owner_terrain_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Terrain $terrain, TerrainRepository $terrainRepository): Response

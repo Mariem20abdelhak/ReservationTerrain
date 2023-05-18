@@ -16,7 +16,7 @@ class Image
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'images')]
+    #[ORM\ManyToOne(inversedBy: 'images', cascade: ['persist', 'remove'])]
     private ?Terrain $Terrain = null;
 
 

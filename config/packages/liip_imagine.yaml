@@ -15,5 +15,5 @@ liip_imagine:
         upscale:
           min: [800, 400]
         thumbnail:
-          size: [800, 400]
+          size: [800, 500]
           mode: outbound

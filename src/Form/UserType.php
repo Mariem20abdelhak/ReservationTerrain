@@ -17,8 +17,7 @@ class UserType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('FirstName', textType::class)
-            ->add('LastName', TextType::class)
-            ->add('isVerified', CheckboxType::class);
+            ->add('LastName', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

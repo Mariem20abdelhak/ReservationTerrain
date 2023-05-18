@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Terrain;
-use App\Model\SearchData;
+use DateTimeInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,6 +40,7 @@ class TerrainRepository extends ServiceEntityRepository
         }
     }
 
+
     //    /**
     //     * @return Terrain[] Returns an array of Terrain objects
     //     */
@@ -55,6 +56,23 @@ class TerrainRepository extends ServiceEntityRepository
     //        ;
     //    }
 
+
+
+
+
+
+    //   public function findOneBySomeField($value): ?Terrain
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
+
+
+
     /**
      * @return Terrain[] Returns an array of Terrain objects
      */
@@ -68,67 +86,4 @@ class TerrainRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
-
-
-    /**
-     * @return Terrain[] Returns an array of Terrain objects
-     */
-    public function findByDate(): array
-    {
-        return $this->createQueryBuilder('p')
-            ->select('p')
-            ->orderBy('p.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * Get published posts thanks to Search Data value
-     *
-     * @param SearchData $searchData
-     * @return Terrain[] Returns an array of Terrain objects
-     */
-    public function findBySearch(SearchData $searchData): array
-    {
-        $data = $this->createQueryBuilder('p')
-            ->where('p.is_reserved LIKE :is_reserved')
-            ->setParameter('is_reserved', '%is_reserved%')
-            ->addOrderBy('p.createdAt', 'DESC');
-
-        if (!empty($searchData->location)) {
-            $data = $data
-                ->join('p.adresse', 't')
-                ->andWhere('p.addresse LIKE :location')
-                ->orWhere('t.name LIKE :location')
-                ->setParameter('location', "%{$searchData->location}%");
-        }
-
-        if (!empty($searchData->category)) {
-            $data = $data
-                ->join('p.categories', 'c')
-                ->andWhere('c.id IN (:categories)')
-                ->setParameter('categories', $searchData->category);
-        }
-
-        $data = $data
-            ->getQuery()
-            ->getResult();
-
-        return $data;
-    }
-
-
-
-
-    //    public function findOneBySomeField($value): ?Terrain
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

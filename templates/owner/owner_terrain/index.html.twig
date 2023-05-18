@@ -13,15 +13,14 @@
                 <th>Name</th>
                 <th>Surface</th>
                 <th>Adresse</th>
-                <th>Is_reserved</th>
                 <th>Materiel</th>
                 <th>Description</th>
+                <th>Hours</th>
+                <th>Pause</th>
                 <th>Price</th>
                 <th>Discount</th>
-                <th>CreatedAt</th>
-                <th>ModifiedAt</th>
                 <th>Image</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
     {% for terrain in terrains %}
@@ -29,23 +28,22 @@
             <tr>
                 <td>{{ terrain.id }}</td>
                 <td>{{ terrain.name }}</td>
-                <td>{{ terrain.surface }}</td>
+                <td>{{ terrain.surface }}m</td>
                 <td>{{ terrain.adresse }}</td>
-                <td>{{ terrain.isReserved ? 'Yes' : 'No' }}</td>
                 <td>{{ terrain.materiel }}</td>
                 <td>{{ terrain.description }}</td>
-                <td>{{ terrain.price }}</td>
-                <td>{{ terrain.discount }}</td>
-                <td>{{ terrain.createdAt ? terrain.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ terrain.modifiedAt ? terrain.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ terrain.hours|date('H:i') }}</td>
+                <td>{{ terrain.pause|date('H:i') }}</td>
+                <td>{{ terrain.price }}DT</td>
+                <td>{{ terrain.discount }}DT</td>
                 <td>
                     {% for image in terrain.images %}
                             <img src="{{ asset('/uploads/images/' ~ image.name) }}" alt="Image" width="150">
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{{ path('app_owner_terrain_show', {'id': terrain.id}) }}" class="btn btn-success">show</a>
                     <a href="{{ path('app_owner_terrain_edit', {'id': terrain.id}) }}" class="btn btn-warning">edit</a>
+                    {{ include('owner/owner_terrain/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

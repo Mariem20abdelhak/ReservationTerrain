@@ -3,36 +3,67 @@
 namespace App\Form;
 
 use App\Entity\Category;
-use App\Model\SearchData;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
+            ->add('adresse', ChoiceType::class, [
+                "choices" => [
+                    'Bizert' => "Bizert",
+                    'Tunis' => 'Tunis',
+                    'Ariana' => 'Ariana',
+                    'Ben Arous' => 'Ben Arous',
+                    'Manouba' => 'Manouba',
+                    'Nabeul' => 'Nabeul',
+                    'Zaghouan' => 'Zaghouan',
+                    'Béja' => 'Béja',
+                    'Jendouba' => 'Jendouba',
+                    'Kef' => 'Kef',
+                    'Siliana' => 'Siliana',
+                    'Sousse' => 'Sousse',
+                    'Monastir' => 'Monastir',
+                    'Mahdia' => 'Mahdia',
+                    'Sfax' => 'Sfax',
+                    'Kairouan' => 'Kairouan',
+                    'Kasserine' => 'Kasserine',
+                    'Sidi Bouzid' => 'Sidi Bouzid',
+                    'Gabès' => 'Gabès',
+                    'Mednine' => 'Mednine',
+                    'Tataouine' => 'Tataouine',
+                    'Gafsa' => 'Gafsa',
+                    'Tozeur' => 'Tozeur',
+                    'Kebili' => 'Kebili',
+
+                ],
+                'label' => false,
+                'required' => true,
+                'attr' => [
+                    'style' => 'margin-left : 10px;margin-top:20px;',
+                ],
+
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'label' => 'Category'
+                'label' => false,
+                'attr' => [
+                    'style' => 'margin-left : 20px;margin-top:20px;',
+                ],
             ])
-            ->add('location', TextType::class, [
-                'label' => 'Location'
-            ])
-            ->add('date', DateType::class, [
-                'label' => 'Date',
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd'
-            ])
-            ->add('search', SubmitType::class, [
-                'label' => 'Search'
+            ->add('submit', SubmitType::class, [
+                'label' => 'Search',
+                'attr' => [
+                    'class' => 'btn btn-success',
+                    'style' => 'margin-left : 30px;',
+                ],
             ]);
     }
 
@@ -41,7 +72,7 @@ class SearchType extends AbstractType
         $resolver->setDefaults([
             'data_class' => null,
             'method' => 'GET',
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ]);
     }
 }
