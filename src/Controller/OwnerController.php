@@ -25,9 +25,7 @@ class OwnerController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-        return $this->render('owner/index.html.twig', [
-            'controller_name' => 'OwnerController',
-        ]);
+        return $this->render('owner/index.html.twig');
     }
 
     #[Route('/edit/profile', name: 'profile_edit')]

@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,19 +20,9 @@ class UserController extends AbstractController
     }
 
     #[Route('/', name: 'home')]
-    public function index(Security $security): Response
+    public function index(): Response
     {
-
-        $user = $this->getUser();
-
-        $user = $security->getUser();
-        if (in_array('ROLE_ADMIN', $user->getRoles())) {
-            return $this->redirectToRoute('admin_home');
-        } elseif (in_array('ROLE_OWNER', $user->getRoles())) {
-            return $this->redirectToRoute('owner_home');
-        } elseif (in_array('ROLE_USER', $user->getRoles())) {
-            return $this->redirectToRoute('user_home');
-        }
+        return $this->render('user/index.html.twig');
     }
 
 
