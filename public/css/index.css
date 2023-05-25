@@ -46,6 +46,13 @@ p {
     letter-spacing: 1.5px;
     font-size: 18px;
 }
+.a-CTA :hover{
+    border-bottom: 2px solid #089940;
+    padding-bottom: 4px;
+    letter-spacing: 1.5px;
+    font-size: 18px;
+    color: #198754;
+}
 /*End Global*/
 
 /*Start Mutual*/
@@ -96,6 +103,7 @@ header .text .button button , .dots .active, header nav.active ,header .navigati
 }
 h1, h3, header .navigation-bar a, header .text span, .menu .box-model .close:hover, footer .text h2, footer .text p, footer .social-media .links a, .contact .text i, .contact .form form button {
     color: #000;
+    margin-top: 50px;
 }
 header nav, header .navigation-bar.show, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, header .text .arrow .left:after, .menu .box-model, .copyright .arrow-up {
     left: 0;
@@ -133,7 +141,7 @@ header .text .arrow .left:after, header .text .arrow .right:after, header .text 
 /*Start Home Page*/
 header {
     height: calc(100vh - 22px);
-    background-image: url('https://images.pexels.com/photos/8941562/pexels-photo-8941562.jpeg?auto=compress&cs=tinysrgb&w=1500&lazy=load');
+    background-image: url('https://images.pexels.com/photos/776807/pexels-photo-776807.jpeg?auto=compress&cs=tinysrgb&w=1500');
     padding: 20px ;
     background-size: cover;
     background-repeat: no-repeat;

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+        <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+        <link href="{{asset ('css/header.css')}}" rel="stylesheet">
+    {% endblock %}
+{% block title %}Edit Calendar{% endblock %}
+
+{% block main %}
+    <h1>Edit Calendar</h1>
+
+    {{ include('calendar/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_calendar_index') }}">back to list</a>
+
+    {{ include('calendar/_delete_form.html.twig') }}
+{% endblock %}

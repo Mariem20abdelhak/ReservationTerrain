@@ -39,6 +39,36 @@ class ReservationRepository extends ServiceEntityRepository
         }
     }
 
+
+
+
+    /**
+     * @return Reservation[] Returns an array of Reservation objects
+     */
+    public function findByClient($clientId)
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('r')
+            ->where('r.Client = :clientId')
+            ->andWhere('r.date >= :now')
+            ->setParameter('clientId', $clientId) // Replace $clientId with the actual client ID
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findReservationsByOwnerId($ownerId)
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.terrain', 't')
+            ->andWhere('t.user = :ownerId')
+            ->setParameter('ownerId', $ownerId)
+            ->getQuery()
+            ->getResult();
+    }
+
+
     //    /**
     //     * @return Reservation[] Returns an array of Reservation objects
     //     */
@@ -53,8 +83,6 @@ class ReservationRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
-
-
 
 
 

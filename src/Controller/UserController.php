@@ -3,14 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\EditProfileType;
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/user', name: 'user_')]
 class UserController extends AbstractController
@@ -26,26 +25,21 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/edit/profile', name: 'profile_edit')]
-    public function edit_profile(Request $request, EntityManagerInterface $entityManager)
+    #[Route('/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
-        $this->doctrine;
-        $user = $this->getUser();
-        $form = $this->createForm(EditProfileType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->getRepository(User::class);
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $userRepository->save($user, true);
 
-
-            $this->addFlash('message', 'Your profile was edited successfully.');
             return $this->redirectToRoute('user_home');
         }
 
-        return $this->render('user/editProfile.html.twig', [
-            'form' => $form->createView()
+        return $this->renderForm('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
         ]);
     }
 }

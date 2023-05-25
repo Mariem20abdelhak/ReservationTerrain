@@ -6,7 +6,7 @@
         {% for image in terrain.images %}
             <div>
                 <img src="{{ asset('/uploads/images/' ~ image.name) }}" alt="Image" width="150">
-                <a href="{{ path('app_admin_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">Delete</a>
+                <a href="{{ path('app_owner_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">Delete</a>
             </div>
         {% endfor %}
     {% endif %}

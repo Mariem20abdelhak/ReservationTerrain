@@ -1,55 +1,135 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     <link href="{{asset ('css/main.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
 {% endblock %}
 {% block main %}
-    <div class="card mb-3" style="max-width:900px; ">
-        {% if form_errors(form.date) %}
-            <div class="alert alert-danger">
-                {{ form_errors(form.date) }}
-            </div>
-        {% endif %}
-        <div class="row g-0">
-            <div class="col-md-9">
-                <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
-                    <div class="carousel-inner">
-                        {% for image in images %}
-                            <div class="carousel-item  {% if loop.first %}active{% endif %}">
-                                    <img src="{{ asset('/uploads/images/' ~ image.name)|imagine_filter('banniere') }}"  alt="{{ terrain.name }}">
-                            </div>
-                        {% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3">
+                {% if form_errors(form.date) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form.date) }}
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ terrain.name }}</h5>
-                    <p class="card-title">{{ terrain.adresse }}</p>
-                    <p class="card-title">Time of match :{{ terrain.hours|date('H:i') }}</p>
-                    <p class="card-title">Pause time :{{ terrain.pause|date('H:i') }}</p>
-                    <p class="card-text">{{ terrain.description |raw }}</p>
-                    <p class="card-text"><small class="text-body-secondary">price : {{ terrain.price }} DT</small></p>
-                    {% if terrain.discount !=0  %}
-                    <p class="card-text"><small class="text-body-secondary">discount :{{ terrain.discount }}DT</small></p>
-                    {% endif %}
-                    {{ form_start(form) }}
-                    
-                        <div class="form-group">
-                            {{ form_label(form.date, 'Choose Date and Hour ') }}
-                            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                {% endif %}
+                <div class="row g-0">
+                    <div class="col-md-9">
+                        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+                            <div class="carousel-inner">
+                                {% for image in images %}
+                                    <div class="carousel-item  {% if loop.first %}active{% endif %}">
+                                            <img src="{{ asset('/uploads/images/' ~ image.name)|imagine_filter('banniere') }}"  alt="{{ terrain.name }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        
-                    {{ form_end(form) }}
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ terrain.name }}</h5>
+                            <p class="card-title">{{ terrain.adresse }}</p>
+                            <p class="card-title">Time of match :{{ terrain.hours|date('H:i') }}</p>
+                            <p class="card-title">Pause time :{{ terrain.pause|date('H:i') }}</p>
+                            <p class="card-text">{{ terrain.description |raw }}</p>
+                            <p class="card-text"><small class="text-body-secondary">price : {{ terrain.price }} DT</small></p>
+                            {% if terrain.discount !=0  %}
+                            <p class="card-text"><small class="text-body-secondary">discount :{{ terrain.discount }}DT</small></p>
+                            {% endif %}
+                            {{ form_start(form) }}
+                            
+                                <div class="form-group">
+                                    {{ form_label(form.date, 'Choose Date and Hour ') }}
+                                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
                 </div>
+            </div> 
+            
+        </div> 
+        <div class="row">
+            <div class="col">
+                <div id ="calendar"></div>
             </div>
         </div>
-    </div> 
+    </div>
+</div>
+
+    
     {% endblock %}
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateCalendarWithNewReservation() {
+                // Make a GET request to retrieve the latest reservation data
+                $.ajax({
+                    url: 'endPoint', // Replace with your actual endpoint URL
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Format the retrieved reservation data into events array
+                        var events = [];
+                        data.forEach(function(reservation) {
+                            events.push({
+                                title: reservation.state,
+                                start: reservation.date, // Make sure it's in the correct format (e.g., 'YYYY-MM-DDTHH:mm:ss')
+                                end: reservation.date, 
+                                description : reservation.state,
+                                backgroundColor :"#000000",
+                                borderColor :"#fff",
+                                textColor : "#fff",
+                                allDay : "0",    // Make sure it's in the correct format (e.g., 'YYYY-MM-DDTHH:mm:ss')
+                                // Add any additional properties you want to display on the calendar event
+                            });
+                        });
+
+                        // Add the new events to the calendar
+                        $('#calendar').fullCalendar('addEventSource', events);
+                    },
+                    error: function() {
+                        // Handle error case
+                    }
+                });
+            }
+
+            var calendarEl = document.getElementById('calendar');
+            var currentDate = moment();
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'listWeek',
+                nowIndicator : true,
+                validRange: {
+                    start: new Date(),
+                    end: moment().add(30, 'month'),
+                },
+                selectable: true,
+                height: 600,
+                timeZone: 'local',
+                headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                end: 'dayGridMonth,timeGridWeek,list'
+            },
+            events: {{ data|raw }}
+            });
+            calendar.render();
+        });
+
+    </script>
+{% endblock %}

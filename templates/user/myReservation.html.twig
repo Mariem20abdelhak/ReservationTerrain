@@ -1,0 +1,35 @@
+{% extends 'user.html.twig' %}
+{% block main %}
+<div class="main">
+    <h1>Reservation Details</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Date</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.price }}</td>
+                <td>{{ reservation.date|date }}</td>
+                {% if reservation.state == 0 %}
+                    <td> Waiting for confirmation</td>
+                {% elseif reservation.state == 1 %}
+                    <td> Confirmed</td>
+                {% elseif reservation.state == 2 %}
+                    <td> Rejected</td>
+                {% endif %}
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -29,19 +29,36 @@
 
 <!--Start Header-->
 {% block header %}
-<div class="text">
-        <h2 style="color: white;">Welcome!</h2>
-        <div class="main">
-            <div class="search-block">
-                {{ form_start(form) }}
-                    {{ form_row(form.adresse) }}
-                    {{ form_row(form.category) }}
-                    {{ form_row(form.submit) }}
-                {{ form_end(form) }}
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text">
+                <h2 style="color:#fff;margin-top:170px;">ARE YOU <h2 style="color:#ffc107;margin-top:10px;"> READY? </h2> </h2>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="main">
+                <div class="search-block">
+                    {{ form_start(form) }}
+                    <div class="container" style="margin-top:150px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                            {{ form_row(form.adresse)  }}
+                            </div>
+                            <div class="col-md-6">
+                            {{ form_row(form.category) }}
+                            </div>
+                            <div class="col-md-12">
+                            {{ form_row(form.submit) }}
+                            </div>
+                        </div>
+                    </div>
+                        {{ form_end(form) }}
+                </div>
             </div>
         </div>
     </div>
+</div>
     <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve">
         <path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path>
     </svg>
@@ -57,7 +74,7 @@
         <h2 style="text-transform:uppercase; font-size:50px ; margin-left:40px">OUR STADUIMS</h2>
     </div>
     {% if terrains is empty %}
-        <p>No Staduim found.</p>
+        <h3 >No Staduim found.</h3>
     {% else %}
             <div id="carousel1" style=" margin-left:50px"  class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -70,6 +87,7 @@
                                         <img src="{{ asset('/uploads/images/' ~ terrain.images[0])|imagine_filter('square') }}" class="card-img-top" alt="{{ terrain.name }}" height="300px" width="200px">
                                         <div class="card-body">
                                             <p class="card-title">{{ terrain.name }}</p>
+                                            <p class="card-title">{{ terrain.adresse}}</p>
                                             <p class="card-text">{{ terrain.description }}</p>
                                         </div>
                                         <ul class="list-group list-group-flush">
@@ -79,7 +97,7 @@
                                             {% endif %}
                                         </ul>
                                         <div class="card-body">
-                                            <a href="{{ path('app_reservation_create', {'id': terrain.id}) }}" class="btn btn-success">Book Now</a>
+                                            <a href="{{ path('app_reservation_create', {'id': terrain.id}) }}" class="btn" style="background-color:#000;color:#fff;">Book Now</a>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -126,8 +144,7 @@
                                     <div class="card" style="width: 18rem; margin:50px; margin-top:60px">
                                         <img src="{{ asset('/uploads/images/' ~ categories.image)|imagine_filter('square') }}" class="card-img-top" alt="{{ categories.name }}" >
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ categories.name }}</h5>
-                                            <p class="card-text">{{ categories.description }}</p>
+                                            <p class="card-title">{{ categories.name }}</p>
                                         </div>
                                         <div class="card-body">
                                             <a href="{{ path('app_category_show', {'id': categories.id}) }}" class="btn btn-warning">View All</a>
@@ -164,9 +181,6 @@
     <div class="image-container">
         <div class="image image1">
             <img src="https://images.pexels.com/photos/279004/pexels-photo-279004.jpeg" alt="staduim Photo" height="400px" >
-        </div>
-        <div class="image image2">
-            <img src="https://images.pexels.com/photos/159819/american-football-football-football-player-quarterback-159819.jpeg" alt="staduim Photo" height="400px" >
         </div>
     </div>
 </div>

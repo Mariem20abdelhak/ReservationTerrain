@@ -30,9 +30,10 @@ class OwnerReservationController extends AbstractController
     #[Route('/', name: 'app_owner_reservation_index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository): Response
     {
+        $user = $this->getUser();
 
         return $this->render('owner/owner_reservation/index.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
+            'reservations' => $reservationRepository->findReservationsByOwnerId($user),
         ]);
     }
 
@@ -53,9 +54,9 @@ class OwnerReservationController extends AbstractController
         return $this->redirectToRoute('app_reservation_show', ['id' => $reservation->getId()]);
     }
 
-    /**
-     * @Route("/reservation/{id}/reject", name="owner_reservation_reject")
-     */
+
+    #[Route("/reservation/{id}/reject", name: "owner_reservation_reject")]
+
     public function rejectReservation(Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
         $this->doctrine;

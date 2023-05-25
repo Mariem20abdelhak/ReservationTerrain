@@ -39,7 +39,7 @@ h1, h3 {
     font-size: 47px;
     font-weight: bold;
     letter-spacing: 9.4px;
-    margin: 0 0 15px;
+    margin:  15px;
 }
 p {
     color: #000;
@@ -102,6 +102,7 @@ header .text .button button , .dots .active, header nav.active ,header .navigati
 }
 h1, h3, header .navigation-bar a, header .text span, .menu .box-model .close:hover, footer .text h2, footer .text p, footer .social-media .links a, .contact .text i, .contact .form form button {
     color: #000;
+    margin-top: 146px;
 }
 header nav, header .navigation-bar.show, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, header .text .arrow .left:after, .menu .box-model, .copyright .arrow-up {
     left: 0;
@@ -117,6 +118,7 @@ header nav {
     top: 0;
     padding: 20px 36px 20px;
     z-index: 20;
+    background-color: #fff;
 }
 header nav .toggle {
     display: none;
@@ -245,6 +247,7 @@ header .navigation-bar .underline {
         top: 0;
         width: 100%;
         padding-top: 25px;
+        background-color: #fff;
     }
     header nav .toggle {
         display: block;

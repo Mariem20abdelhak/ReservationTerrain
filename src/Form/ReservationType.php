@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
-use DateTime;
+use App\Validator\ReservationExists;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,7 +20,8 @@ class ReservationType extends AbstractType
                 'widget' => 'single_text',
                 'data' => new \DateTime(),
                 'constraints' => [
-                    new GreaterThanOrEqual('today'),
+                    new GreaterThanOrEqual('now +30 minutes'),
+                    new ReservationExists(),
                 ],
             ])
             ->add('submit', SubmitType::class, [

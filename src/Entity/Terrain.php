@@ -78,11 +78,15 @@ class Terrain
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $pause = null;
 
+    #[ORM\OneToMany(mappedBy: 'terrain', targetEntity: Calendar::class)]
+    private Collection $calendars;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->Favorite = new ArrayCollection();
+        $this->calendars = new ArrayCollection();
     }
 
     public function __toString()
@@ -334,6 +338,36 @@ class Terrain
     public function setPause(\DateTimeInterface $pause): self
     {
         $this->pause = $pause;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Calendar>
+     */
+    public function getCalendars(): Collection
+    {
+        return $this->calendars;
+    }
+
+    public function addCalendar(Calendar $calendar): self
+    {
+        if (!$this->calendars->contains($calendar)) {
+            $this->calendars->add($calendar);
+            $calendar->setTerrain($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendar(Calendar $calendar): self
+    {
+        if ($this->calendars->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getTerrain() === $this) {
+                $calendar->setTerrain(null);
+            }
+        }
 
         return $this;
     }

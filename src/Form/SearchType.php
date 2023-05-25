@@ -45,8 +45,10 @@ class SearchType extends AbstractType
                 ],
                 'label' => false,
                 'required' => true,
+                'placeholder' => 'Select location',
                 'attr' => [
-                    'style' => 'margin-left : 10px;margin-top:20px;',
+                    'class' => 'form-control col-md-6',
+                    'style' => 'margin: 0px  0px 20px 0px;',
                 ],
 
             ])
@@ -54,15 +56,15 @@ class SearchType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => false,
+                'placeholder' => 'Select activity',
                 'attr' => [
-                    'style' => 'margin-left : 20px;margin-top:20px;',
+                    'class' => 'form-control col-md-6',
                 ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Search',
                 'attr' => [
-                    'class' => 'btn btn-success',
-                    'style' => 'margin-left : 30px;',
+                    'class' => 'col-md-12 btn btn-success',
                 ],
             ]);
     }

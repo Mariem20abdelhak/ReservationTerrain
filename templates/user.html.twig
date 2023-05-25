@@ -25,14 +25,13 @@
                 </div>
                 <div class="sidenav">
                     <a href="{{ path('user_home') }}">Dashboard</a>
-                    <a href="#">My Reservations</a>
+                    <a href="{{path('app_reservation_show_client')}}">My Reservations</a>
                     <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             </nav>
                 {% block header %}{% endblock %}
         </header>
         <main>
-            
                 {% for message in app.flashes('success') %}
                     <div class="alert alert-success" role="alert">
                         {{ message }}
