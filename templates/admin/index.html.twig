@@ -8,7 +8,7 @@
 				<h1>{{ app.user.firstName}} {{app.user.lastName}}</h1>
 				<p>Email: {{ app.user.username }} </p>
 				<p>Address: {{ app.user.Addresse }}</p>
-				<a href="#" class="btn btn-warning">Edit Profile</a>
+				<a href="{{path('user_profile_edit')}}" class="btn btn-warning">Edit Profile</a>
 				<a href="{{ path('app_forgot_password_request') }}" class="btn btn-warning">Edit Password</a>
 			</div>
 		</div>

@@ -8,8 +8,8 @@
 				<img src="avatar.jpg" alt="Avatar">
 				<h1>{{ app.user.firstName}} {{app.user.lastName}}</h1>
 				<p>Email: {{ app.user.username }} </p>
-				<p>Address: {{ app.user.addresse }}</p>
-				<a href="{{path( 'app_user_edit')}}" class="button">Edit Profile</a>
+				<p>Address:  {{ app.user.addresse }}</p>
+				<a href="{{path('user_profile_edit')}}" class="button">Edit Profile</a>
 				<a href="{{ path('app_reset_password') }}" class="button">Edit Password</a>
 			</div>
 		</div>

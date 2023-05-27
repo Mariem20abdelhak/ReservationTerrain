@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
+use App\Repository\ReservationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,23 +24,37 @@ class UserController extends AbstractController
     {
         return $this->render('user/index.html.twig');
     }
-
-
-    #[Route('/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    #[Route('/edit/profile', name: 'profile_edit')]
+    public function edit_profile(Request $request, EntityManagerInterface $entityManager)
     {
+        $this->doctrine;
+        $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
+            $entityManager->getRepository(User::class);
+            $entityManager->persist($user);
+            $entityManager->flush();
 
+
+            $this->addFlash('message', 'Your profile was edited successfully.');
             return $this->redirectToRoute('user_home');
         }
 
-        return $this->renderForm('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
+        return $this->render('user/editProfile.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/reservations', name: 'reservation_show')]
+    public function showReservationsByUserId(ReservationRepository $reservationRepository): Response
+    {
+        $user = $this->getUser();
+
+        // Render the reservations using a template
+        return $this->render('user/myReservation.html.twig', [
+            'reservations' => $reservationRepository->findByClient($user),
         ]);
     }
 }

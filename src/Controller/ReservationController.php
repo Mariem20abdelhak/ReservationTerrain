@@ -148,18 +148,4 @@ class ReservationController extends AbstractController
             'reservation' => $reservation,
         ]);
     }
-
-
-
-
-    #[Route('/user/reservations', name: 'app_reservation_show_client')]
-    public function showReservationsByUserId(ReservationRepository $reservationRepository): Response
-    {
-        $user = $this->getUser();
-
-        // Render the reservations using a template
-        return $this->render('user/myReservation.html.twig', [
-            'reservations' => $reservationRepository->findByClient($user),
-        ]);
-    }
 }

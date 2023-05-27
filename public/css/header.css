@@ -102,7 +102,7 @@ header .text .button button , .dots .active, header nav.active ,header .navigati
 }
 h1, h3, header .navigation-bar a, header .text span, .menu .box-model .close:hover, footer .text h2, footer .text p, footer .social-media .links a, .contact .text i, .contact .form form button {
     color: #000;
-    margin-top: 146px;
+    /* margin-top: 12px; */
 }
 header nav, header .navigation-bar.show, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, header .text .arrow .left:after, .menu .box-model, .copyright .arrow-up {
     left: 0;
