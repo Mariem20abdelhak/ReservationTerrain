@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Form\UserPasswordFormType;
 
 #[Route('/user', name: 'user_')]
 class UserController extends AbstractController
@@ -46,6 +48,43 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+
+
+
+
+
+    #[Route('/edit/password', name: 'password_edit')]
+    public function edit_password(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->doctrine;
+        $user = $this->getUser();
+        $form = $this->createForm(UserPasswordFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
+
+
+            $entityManager->getRepository(User::class);
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+
+            $this->addFlash('message', 'Your password was edited successfully.');
+            return $this->redirectToRoute('user_home');
+        }
+
+        return $this->render('user/editPassword.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+
+
+
 
     #[Route('/reservations', name: 'reservation_show')]
     public function showReservationsByUserId(ReservationRepository $reservationRepository): Response

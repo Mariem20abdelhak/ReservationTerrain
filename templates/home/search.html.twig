@@ -9,11 +9,11 @@
 {% block main %}
     <!--start terrains-->
         <div class="text">
-            <h2 style="text-transform:uppercase; font-size:50px">Search</h2>
+            <h3 style="text-transform:uppercase; font-size:50px">Search</h3>
         </div>
     <div class="terrains " id ="terrains" >
         {% if results is empty %}
-            <p style="margin-top:100px;">No Staduim found.</p>
+            <h3 style="margin-top:100px;">No Staduim found.</h3>
         {% else %}
             <div class="row">
                 {% for terrain in results %}
@@ -27,7 +27,7 @@
                             <li class="list-group-item">{{ terrain.price }} DT</li>
                         </ul>
                         <div class="card-body">
-                            <a href="{{ path('app_reservation_create', {'id': terrain.id}) }}" class="btn btn-success">Book Now</a>
+                            <a href="{{ path('app_reservation_create', {'id': terrain.id}) }}" class="btn btn-dark">Book Now</a>
                         </div>
                     </div>
                 {% endfor %}

@@ -5,6 +5,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Terrain name</th>
                 <th>Price</th>
                 <th>Date</th>
                 <th>State</th>
@@ -13,6 +14,7 @@
         <tbody>
         {% for reservation in reservations %}
             <tr>
+                <td>{{ reservation.Terrain }}</td>
                 <td>{{ reservation.price }}</td>
                 <td>{{ reservation.date|date }}</td>
                 {% if reservation.state == 0 %}

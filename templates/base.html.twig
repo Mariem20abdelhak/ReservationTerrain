@@ -40,7 +40,8 @@
                     <ul>
                         <li class="active"><a  href="{{ path('app_home') }}">Home<span class="underline"></span></a></li>
                         <li><a href="#about-us">About<span class="underline"></span></a></li>
-                        <li><a href="{{path('app_contact_us')}}">Contact<span class="underline"></span></a></li>
+                        <li><a href="#">Contact<span class="underline"></span></a></li>
+                        <li><a href="#">Services<span class="underline"></span></a></li>
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             {% if is_granted('ROLE_ADMIN') %}
                                 {# Profile path for admin users #}
@@ -48,15 +49,21 @@
                             {% elseif is_granted('ROLE_USER') %}
                                 {# Profile path for regular users #}
                                 <li><a href="{{ path('user_home') }}">Profile<span class="underline"></span></a></li>
+                                <!-- Other navigation items -->
+                                {% set currentTime = date() %}
+                                {% if app.user and app.user.reservations|filter(res => res.date > currentTime)|length > 0 %}
+                                    <li><a href="{{ path('user_reservation_show') }}" >Reservations</a></li>
+                                {% endif %}
                             {% elseif is_granted('ROLE_OWNER') %}
                                 {# Profile path for other roles or unauthenticated users #}
                                 <li><a href="{{ path('owner_home') }}">Profile<span class="underline"></span></a></li>
                             {% endif %}
-                            <li><a href="{{ path('app_logout') }}">Logout<span class="underline"></span></a></li>
+                            <li><a href="{{ path('app_logout') }}" class="btn btn-danger" style="color: white;margin-top: -5px;margin-left: 150px;">Logout</a></li>
                         {% else %}
-                            <li><a href="{{ path('app_login') }}">Login<span class="underline"></span></a></li>
-                            <li><a href="{{ path('app_register') }}">Register<span class="underline"></span></a></li>
+                            <li><a href="{{ path('app_login') }}" class="btn btn-success" style="color: white;margin-top: -5px;margin-left: 150px;">Login</a></li>
+                            <li><a href="{{ path('app_register') }}" class="btn btn-warning" style="color: white;margin-top: -5px;">Register</a></li>
                         {% endif %}
+                        
                     </ul>
                 </div>
             </nav>

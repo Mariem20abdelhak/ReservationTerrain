@@ -23,6 +23,10 @@ class ReservationType extends AbstractType
                     new GreaterThanOrEqual('now +30 minutes'),
                     new ReservationExists(),
                 ],
+                'attr' => [
+                    'class' => 'form-control ',
+                ],
+
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Book Now',

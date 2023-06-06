@@ -55,14 +55,6 @@ class HomeController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    #[Route('/terrains', name: 'app_terrains')]
-    public function showTerrains(TerrainRepository $terrainRepository, CategoryRepository $categoryRepository): Response
-    {
-        return $this->render('home/showTerrain.html.twig', [
-            'terrains' => $terrainRepository->findAll(),
-            'categories' => $categoryRepository->findAll(),
-        ]);
-    }
     #[Route('/category/{id}', name: 'app_category_show', methods: ['GET'])]
     public function showTerrainsByCategory(Category $category, TerrainRepository $terrainRepository): Response
     {

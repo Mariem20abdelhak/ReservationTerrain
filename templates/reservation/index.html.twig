@@ -15,7 +15,7 @@
                 {% endif %}
                 <div class="row g-0">
                     <div class="col-md-9">
-                        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+                        <div id="carouselReservation" class="carousel slide" data-bs-touch="false">
                             <div class="carousel-inner">
                                 {% for image in images %}
                                     <div class="carousel-item  {% if loop.first %}active{% endif %}">
@@ -23,11 +23,11 @@
                                     </div>
                                 {% endfor %}
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselReservation" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselReservation" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
@@ -58,7 +58,7 @@
             </div> 
             
         </div> 
-        <div class="row">
+        <div class="row" style="margin:25px;">
             <div class="col">
                 <div id ="calendar"></div>
             </div>
@@ -69,11 +69,24 @@
     
     {% endblock %}
 {% block javascripts %}
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+        $('#carouselReservation').carousel({
+        interval: 2000 // change the speed of the carousel here
+        });
+        });
+    </script>
+    
+    
+    
+    
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {

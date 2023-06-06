@@ -21,8 +21,24 @@ class TerrainType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('surface', NumberType::class)
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control col-2',
+                    ],
+                ]
+            )
+            ->add(
+                'surface',
+                NumberType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
             ->add('adresse', ChoiceType::class, [
                 "choices" => [
                     'Bizert' => "Bizert",
@@ -50,23 +66,81 @@ class TerrainType extends AbstractType
                     'Tozeur' => 'Tozeur',
                     'Kebili' => 'Kebili',
 
-                ]
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+
             ])
-            ->add('materiel', TextareaType::class)
-            ->add('description', TextareaType::class)
-            ->add('hours', TimeType::class)
-            ->add('pause', TimeType::class)
-            ->add('price', MoneyType::class)
-            ->add('discount', MoneyType::class)
+            ->add(
+                'materiel',
+                TextareaType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
+            ->add(
+                'description',
+                TextareaType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
+            ->add(
+                'hours',
+                TimeType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
+            ->add(
+                'pause',
+                TimeType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
+            ->add(
+                'price',
+                MoneyType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
+            ->add(
+                'discount',
+                MoneyType::class,
+                [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
             ->add('image', FileType::class, [
                 'data_class' => null,
                 'multiple' => true,
                 'mapped' => false,
                 'label' => false,
                 'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ]);
     }
 

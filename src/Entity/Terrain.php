@@ -55,22 +55,21 @@ class Terrain
     private ?\DateTimeinterface $modifiedAt = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'terrains', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'terrains')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'terrain', targetEntity: Reservation::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'terrain', targetEntity: Reservation::class)]
     private Collection $reservations;
 
     #[ORM\ManyToOne(inversedBy: 'terrains')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'Terrain', targetEntity: Image::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'Terrain', targetEntity: Image::class, cascade: ['persist'])]
     private Collection $images;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'UserFavorit', cascade: ['persist', 'remove'])]
-    private Collection $Favorite;
+
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $hours = null;
@@ -85,7 +84,6 @@ class Terrain
     {
         $this->reservations = new ArrayCollection();
         $this->images = new ArrayCollection();
-        $this->Favorite = new ArrayCollection();
         $this->calendars = new ArrayCollection();
     }
 
@@ -294,29 +292,6 @@ class Terrain
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getFavorite(): Collection
-    {
-        return $this->Favorite;
-    }
-
-    public function addFavorite(User $favorite): self
-    {
-        if (!$this->Favorite->contains($favorite)) {
-            $this->Favorite->add($favorite);
-        }
-
-        return $this;
-    }
-
-    public function removeFavorite(User $favorite): self
-    {
-        $this->Favorite->removeElement($favorite);
-
-        return $this;
-    }
 
     public function getHours(): ?\DateTimeInterface
     {

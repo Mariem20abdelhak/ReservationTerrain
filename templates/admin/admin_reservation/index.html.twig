@@ -10,7 +10,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Staduim name</th>
                 <th>Date</th>
                 <th>Price</th>
                 <th>State</th>
@@ -19,7 +19,7 @@
         <tbody>
         {% for reservation in reservations %}
             <tr>
-                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.terrain }}</td>
                 <td>{{ reservation.date ? reservation.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ reservation.price }}</td>
                 {% if reservation.state == 0 %}

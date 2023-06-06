@@ -7,6 +7,7 @@
         <title> {% block title %}{% endblock %} </title>
         <link href="{{asset ('css/nav.css')}}" rel="stylesheet">
         <link href="{{asset ('css/user.css')}}" rel="stylesheet">
+        <link rel="shortcut icon" href="https://manage.wix.com/_serverless/brand-maker/api/v1/design/5c1a8f0c-1646-42c7-ad6f-a926e73f0480/preview-redirect"> 
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         
@@ -24,7 +25,8 @@
                     <a href="{{ path('app_home') }}"><img src="{{ asset('uploads/logo.png')}}" width="300px" height="70px" alt="Site Logo"></a>
                 </div>
                 <div class="sidenav">
-                    <a href="{{ path('user_home') }}">Dashboard</a>
+                    <a  href="{{ path('app_home') }}">Home</a>
+                    <a href="{{ path('admin_home') }}">Dashboard</a>
                     <a href="{{ path('app_admin_users_index') }}">Users</a>
                     <a href="{{ path('app_admin_category_index') }}">Category</a>
                     <a href="{{ path('app_admin_terrain_index') }}">Staduim</a>

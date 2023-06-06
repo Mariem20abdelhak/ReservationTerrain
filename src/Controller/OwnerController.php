@@ -8,10 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\EditProfileType;
+use App\Form\UserPasswordFormType as FormUserPasswordFormType;
+use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @IsGranted("ROLE_OWNER")
@@ -33,7 +35,7 @@ class OwnerController extends AbstractController
     {
         $this->doctrine;
         $user = $this->getUser();
-        $form = $this->createForm(EditProfileType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -46,7 +48,35 @@ class OwnerController extends AbstractController
             return $this->redirectToRoute('owner_home');
         }
 
-        return $this->render('user/editProfile.html.twig', [
+        return $this->render('owner/editProfile.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    #[Route('/edit/password', name: 'password_edit')]
+    public function edit_password(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->doctrine;
+        $user = $this->getUser();
+        $form = $this->createForm(FormUserPasswordFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
+
+
+            $entityManager->getRepository(User::class);
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+
+            $this->addFlash('message', 'Your password was edited successfully.');
+            return $this->redirectToRoute('owner_home');
+        }
+
+        return $this->render('owner/editPassword.html.twig', [
             'form' => $form->createView()
         ]);
     }

@@ -7,8 +7,8 @@
 
 <div class="card w-75">
     <div class="card-body">
-        <h5 class="card-title">id :{{ reservation.id }}</h5>
         <p class="card-text">Total price :{{ reservation.price }}</p>
+        <p class="card-text">Date :{{ reservation.date|date }}</p>
         
         {% if reservation.state == 0 %}
             <p>This reservation is pending confirmation.</p>

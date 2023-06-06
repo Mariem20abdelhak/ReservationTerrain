@@ -1,0 +1,17 @@
+{% extends 'owner.html.twig' %}
+{% block title %}Edit Password!{% endblock %}
+
+{% block main %}
+<div class= "main">
+{% for error in app.flashes('success') %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endfor %}
+<h1>Edit your profile </h1>
+{{ form_start(form) }}
+{{ form_row(form.currentPassword) }}
+{{ form_row(form.newPassword) }}
+{{ form_row(form.confirmPassword) }}
+{{ form_row(form.submit) }}
+{{ form_end(form) }}
+<div>
+{% endblock %}

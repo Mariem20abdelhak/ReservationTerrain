@@ -6,6 +6,7 @@ use App\Entity\Image;
 use App\Entity\Terrain;
 use App\Form\TerrainType;
 use App\Repository\TerrainRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -74,7 +75,7 @@ class OwnerTerrainController extends AbstractController
     }
 
 
-    #[Route('/{id}/edit', name: 'app_owner_terrain_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'app_owner_terrain_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Terrain $terrain, TerrainRepository $terrainRepository): Response
     {
         $form = $this->createForm(TerrainType::class, $terrain);
@@ -108,7 +109,7 @@ class OwnerTerrainController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_owner_terrain_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'app_owner_terrain_delete', methods: ["POST"])]
     public function delete(Request $request, Terrain $terrain, TerrainRepository $terrainRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $terrain->getId(), $request->request->get('_token'))) {
@@ -120,16 +121,19 @@ class OwnerTerrainController extends AbstractController
 
 
 
-    #[Route('/{id}', name: 'app_owner_image_delete', methods: ["POST"])]
-    public function delete_image(Image $image, Request $request, Terrain $terrain): Response
+    /**
+     * @Route("/delete/image/{id}", name="app_owner_image_delete", methods={"DELETE"})
+     */
+    public function delete_image(Image $image, Request $request, EntityManagerInterface $entityManager)
     {
         $data = json_decode($request->getContent(), true);
 
         if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])) {
             $nom = $image->getName();
             unlink($this->getParameter('images_directory') . '/' . $nom);
-
-            $terrain->removeImage($image, true);
+            $entityManager->remove($image);
+            $entityManager->flush();
+            /* $terrain->removeImage($image, true); */
             return new JsonResponse(['success' => 1]);
         } else {
             return new JsonResponse(['error' => 'Token Invalide'], 400);

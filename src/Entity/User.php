@@ -61,8 +61,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $role_user = null;
 
-    #[ORM\ManyToMany(targetEntity: Terrain::class, mappedBy: 'Favorite', cascade: ['persist', 'remove'])]
-    private Collection $UserFavorit;
 
     #[ORM\Column]
     private ?int $phone = null;
@@ -83,7 +81,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->terrains = new ArrayCollection();
-        $this->UserFavorit = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
 
@@ -205,25 +202,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->createdAt;
     }
 
-    /*  public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
-        return $this;
-    } */
 
     public function getModifiedAt(): ?\DateTimeInterface
     {
         return $this->modifiedAt;
     }
 
-    /*    public function setModifiedAt(\DateTimeInterface $modifiedAt): self
-    {
-        $this->modifiedAt = $modifiedAt;
 
-        return $this;
-    }
- */
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -283,32 +269,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Terrain>
-     */
-    public function getUserFavorit(): Collection
-    {
-        return $this->UserFavorit;
-    }
-
-    public function addUserFavorit(Terrain $userFavorit): self
-    {
-        if (!$this->UserFavorit->contains($userFavorit)) {
-            $this->UserFavorit->add($userFavorit);
-            $userFavorit->addFavorite($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserFavorit(Terrain $userFavorit): self
-    {
-        if ($this->UserFavorit->removeElement($userFavorit)) {
-            $userFavorit->removeFavorite($this);
-        }
-
-        return $this;
-    }
 
     public function getPhone(): ?int
     {

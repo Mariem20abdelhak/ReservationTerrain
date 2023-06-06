@@ -35,7 +35,7 @@ class Calendar
     #[ORM\Column(length: 7)]
     private ?string $text_color = null;
 
-    #[ORM\ManyToOne(inversedBy: 'calendars')]
+    #[ORM\ManyToOne(inversedBy: 'calendars', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Terrain $terrain = null;
 

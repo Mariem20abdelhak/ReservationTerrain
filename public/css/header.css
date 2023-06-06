@@ -164,7 +164,7 @@ header nav .logo {
     padding-left: 20px;
 }
 header .navigation-bar {
-    padding-top: 15px;
+    padding-top: 23px;
 }
 header .navigation-bar.show {
     width: 25%;
@@ -177,7 +177,7 @@ header .navigation-bar.show a:hover {
 }
 header .navigation-bar ul li {
     flex: 1;
-    padding: 0 10px;
+    padding: 0px 10px;
 }
 header .navigation-bar a {
     text-decoration: none;
