@@ -145,4 +145,16 @@
         });
 
     </script>
+
+
+
+
+
+    {% if app.flashes('form_errors')|length > 0 %}
+    <script>
+        window.onload = function() {
+            location.reload();
+        };
+    </script>
+{% endif %}
 {% endblock %}

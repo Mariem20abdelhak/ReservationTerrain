@@ -7,11 +7,12 @@
 
 <div class="card w-75">
     <div class="card-body">
+        <p class="card-text">Terrain Name :{{ reservation.terrain }}</p>
         <p class="card-text">Total price :{{ reservation.price }}</p>
         <p class="card-text">Date :{{ reservation.date|date }}</p>
         
         {% if reservation.state == 0 %}
-            <p>This reservation is pending confirmation.</p>
+            <p>This reservation is pending confirmation...</p>
         {% elseif reservation.state == 1 %}
             <p>This reservation has been confirmed.</p>
         {% elseif reservation.state == 2 %}
@@ -21,5 +22,6 @@
         {% endif %}
     </div>
 </div>
+<a class="btn btn-success" href="{{ path('app_home') }}">Done</a>
 
 {% endblock %}

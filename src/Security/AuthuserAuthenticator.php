@@ -51,14 +51,8 @@ class AuthuserAuthenticator extends AbstractLoginFormAuthenticator
     {
 
         $user = $token->getUser();
-        // Redirect the user based on their role
-        if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
-            $url = $this->urlGenerator->generate('admin_home');
-        } elseif ($this->authorizationChecker->isGranted('ROLE_OWNER')) {
-            $url = $this->urlGenerator->generate('owner_home');
-        } elseif ($this->authorizationChecker->isGranted('ROLE_USER')) {
-            $url = $this->urlGenerator->generate('user_home');
-        }
+
+        $url = $this->urlGenerator->generate('app_home');
 
         return new RedirectResponse($url);
     }
