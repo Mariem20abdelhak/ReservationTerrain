@@ -1,316 +1,441 @@
 /*Start Global*/
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  padding-top: 130px;
 }
 body.hide-scroll::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 a :hover {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 h2 {
-    font-family: 'sans-serif';
-    font-size: 100px;
-    font-weight: normal;
-    margin: 0 0 -55px;
-    padding-top: 0px;
-    padding-left: 10px;
+  font-family: "sans-serif";
+  font-size: 100px;
+  font-weight: normal;
+  margin: 0 0 -55px;
+  padding-top: 0px;
+  padding-left: 10px;
 }
-h1, h3 {
-    font-family: "Source Code Pro", sans-serif;
-    font-size: 47px;
-    font-weight: bold;
-    letter-spacing: 9.4px;
-    margin:  15px;
+h1,
+h3 {
+  font-family: "Source Code Pro", sans-serif;
+  font-size: 47px;
+  font-weight: bold;
+  letter-spacing: 9.4px;
+  margin: 15px;
 }
 p {
-    color: #000;
-    line-height: 35px;
+  color: #000;
+  line-height: 35px;
 }
 .a-CTA {
-    border-bottom: 2px solid #089940;
-    padding-bottom: 4px;
-    letter-spacing: 1.5px;
-    font-size: 18px;
+  border-bottom: 2px solid #089940;
+  padding-bottom: 4px;
+  letter-spacing: 1.5px;
+  font-size: 18px;
 }
 /*End Global*/
 
-
 /*Start Mutual*/
-p, .a-CTA, input, header .navigation-bar a, .copyright li, .contact .form form label, .contact .form form button {
-    font-family: Cabin, sans-serif;
+p,
+.a-CTA,
+input,
+header .navigation-bar a,
+.copyright li,
+.contact .form form label,
+.contact .form form button {
+  font-family: Cabin, sans-serif;
 }
-.fa-asterisk, .a-CTA, h2, header .navigation-bar a:hover, header nav.active .navigation-bar a:hover, footer .social-media .links a:hover, .copyright .info li a, .copyright .CTA li a:hover {
-    color: #198754;
+.fa-asterisk,
+.a-CTA,
+h2,
+header .navigation-bar a:hover,
+header nav.active .navigation-bar a:hover,
+footer .social-media .links a:hover,
+.copyright .info li a,
+.copyright .CTA li a:hover {
+  color: #198754;
 }
-header nav .navigation-bar .underline, header .text .button button:hover, .contact .form form button:hover, .contact .text i:hover {
-    background-color: green;
+header nav .navigation-bar .underline,
+header .text .button button:hover,
+.contact .form form button:hover,
+.contact .text i:hover {
+  background-color: green;
 }
-header .navigation-bar ul li, header .text, .about-us .text, .reservation .text, .menu .box-model, .menu .text, .fixed-image .text, footer, .copyright, .contact .text i {
-    text-align: center;
+header .navigation-bar ul li,
+header .text,
+.about-us .text,
+.reservation .text,
+.menu .box-model,
+.menu .text,
+.fixed-image .text,
+footer,
+.copyright,
+.contact .text i {
+  text-align: center;
 }
-header nav, header .navigation-bar ul, .about-us, .reservation, .about-us .image-container, .reservation .image-container, .menu, .menu .menu-image-container, footer .contact-container, .copyright ul, .contact {
-    display: flex;
+header nav,
+header .navigation-bar ul,
+.about-us,
+.reservation,
+.about-us .image-container,
+.reservation .image-container,
+.menu,
+.menu .menu-image-container,
+footer .contact-container,
+.copyright ul,
+.contact {
+  display: flex;
 }
-header nav .toggle, header nav .toggle span, header .navigation-bar, header .navigation-bar ul, .menu .box-model .close, footer .social-media .links a, .copyright .CTA li a {
-    transition: .3s;
+header nav .toggle,
+header nav .toggle span,
+header .navigation-bar,
+header .navigation-bar ul,
+.menu .box-model .close,
+footer .social-media .links a,
+.copyright .CTA li a {
+  transition: 0.3s;
 }
-header, header nav .toggle span, header .navigation-bar a, header .text, header .text .arrow .left, header .text .arrow .right, .recipes, .menu .box-image-container, .fixed-image .text, .copyright, .copyright .arrow-up {
-    position: relative;
+header,
+header nav .toggle span,
+header .navigation-bar a,
+header .text,
+header .text .arrow .left,
+header .text .arrow .right,
+.recipes,
+.menu .box-image-container,
+.fixed-image .text,
+.copyright,
+.copyright .arrow-up {
+  position: relative;
 }
-header nav .toggle, header .navigation-bar .underline, header .text .arrow .left:after, header .text .arrow .right:after, header .svg-down, header .arrow-down, .recipes .text, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .box-image-container .box-image, .copyright .svg-up {
-    position: absolute;
+header nav .toggle,
+header .navigation-bar .underline,
+header .text .arrow .left:after,
+header .text .arrow .right:after,
+header .svg-down,
+header .arrow-down,
+.recipes .text,
+.menu .box-model .close,
+.menu .box-model .arrow .arrow-right,
+.menu .box-model .arrow .arrow-left,
+.menu .box-image-container .box-image,
+.copyright .svg-up {
+  position: absolute;
 }
-.recipes .text, .fixed-image .text, .menu .box-image-container, .menu .box-image-container .box-image {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.recipes .text,
+.fixed-image .text,
+.menu .box-image-container,
+.menu .box-image-container .box-image {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-header nav, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, .menu .box-model, .menu .box-image-container, .menu .box-image-container .box-image {
-    width: 100%;
+header nav,
+header .navigation-bar a:hover .underline,
+header .navigation-bar li.active .underline,
+.menu .box-model,
+.menu .box-image-container,
+.menu .box-image-container .box-image {
+  width: 100%;
 }
-button, .dots > div, header nav .toggle, header .arrow-down, .menu .box-model .close, .menu .box-model .arrow .arrow-right,.menu .box-model .arrow .arrow-left, .menu .menu-image-container .image img, footer .newsletter i, .copyright .arrow-up {
-    cursor: pointer;
+button,
+.dots > div,
+header nav .toggle,
+header .arrow-down,
+.menu .box-model .close,
+.menu .box-model .arrow .arrow-right,
+.menu .box-model .arrow .arrow-left,
+.menu .menu-image-container .image img,
+footer .newsletter i,
+.copyright .arrow-up {
+  cursor: pointer;
 }
-header nav.active .toggle.active span{
-    background-color: #fff;
+header nav.active .toggle.active span {
+  background-color: #fff;
 }
 
-header nav .toggle span{
-    background-color: #000;
+header nav .toggle span {
+  background-color: #000;
 }
-header .text .button button , .dots .active, header nav.active ,header .navigation-bar .underline, header .text .arrow .left, header .text .arrow .right,  .contact form button {
-    background-color: #fff;
+header .text .button button,
+.dots .active,
+header nav.active,
+header .navigation-bar .underline,
+header .text .arrow .left,
+header .text .arrow .right,
+.contact form button {
+  background-color: #fff;
 }
-h1, h3, header .navigation-bar a, header .text span, .menu .box-model .close:hover, footer .text h2, footer .text p, footer .social-media .links a, .contact .text i, .contact .form form button {
-    color: #000;
-    /* margin-top: 12px; */
+h1,
+h3,
+header .navigation-bar a,
+header .text span,
+.menu .box-model .close:hover,
+footer .text h2,
+footer .text p,
+footer .social-media .links a,
+.contact .text i,
+.contact .form form button {
+  color: #000;
+  /* margin-top: 12px; */
 }
-header nav, header .navigation-bar.show, header .navigation-bar a:hover .underline, header .navigation-bar li.active .underline, header .text .arrow .left:after, .menu .box-model, .copyright .arrow-up {
-    left: 0;
+header nav,
+header .navigation-bar.show,
+header .navigation-bar a:hover .underline,
+header .navigation-bar li.active .underline,
+header .text .arrow .left:after,
+.menu .box-model,
+.copyright .arrow-up {
+  left: 0;
 }
-header .text .arrow .left:after, header .text .arrow .right:after, header .text span, footer .social-media .links a, footer .newsletter i, .copyright .arrow-up, .contact .text i, .contact .form form label {
-    display: inline-block;
+header .text .arrow .left:after,
+header .text .arrow .right:after,
+header .text span,
+footer .social-media .links a,
+footer .newsletter i,
+.copyright .arrow-up,
+.contact .text i,
+.contact .form form label {
+  display: inline-block;
 }
 /*End Mutual*/
 /*Start Header*/
 
 header nav {
-    position: fixed;
-    top: 0;
-    padding: 20px 36px 20px;
-    z-index: 20;
-    background-color: #fff;
+  position: fixed;
+  top: 0;
+  padding: 20px 36px 20px;
+  z-index: 20;
+  background-color: #fff;
 }
 header nav .toggle {
-    display: none;
-    top: 26px;
-    left: 20px;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    z-index: 21;
+  display: none;
+  top: 26px;
+  left: 20px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  z-index: 21;
 }
 header nav .toggle:focus {
-    outline: none;
+  outline: none;
 }
 header nav.active .toggle span {
-    background-color: #000;
+  background-color: #000;
 }
 header nav .toggle.active {
-    left: 20%;
+  left: 20%;
 }
 header nav .toggle.active .first {
-    top: 5px;
-    transform: rotate(-45deg);
+  top: 5px;
+  transform: rotate(-45deg);
 }
 header nav .toggle.active .last {
-    top: -11px;
-    transform: rotate(45deg);
+  top: -11px;
+  transform: rotate(45deg);
 }
 header nav .toggle .hide {
-    transition: 0s;
-    visibility: hidden;
+  transition: 0s;
+  visibility: hidden;
 }
 header nav .toggle span {
-    display: block;
-    width: 30px;
-    height: 2px;
-    border-radius: 40px;
+  display: block;
+  width: 30px;
+  height: 2px;
+  border-radius: 40px;
 }
 header nav .toggle span:not(:last-of-type) {
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 header nav .logo {
-    flex-basis: 50%;
-    padding-left: 20px;
+  flex-basis: 50%;
+  padding-left: 20px;
 }
 header .navigation-bar {
-    padding-top: 23px;
+  padding-top: 23px;
 }
 header .navigation-bar.show {
-    width: 25%;
+  width: 25%;
 }
 header .navigation-bar.show a {
-    color: #000 !important;
+  color: #000 !important;
 }
 header .navigation-bar.show a:hover {
-    color: #fff !important;
+  color: #fff !important;
 }
 header .navigation-bar ul li {
-    flex: 1;
-    padding: 0px 10px;
+  flex: 1;
+  padding: 0px 10px;
 }
 header .navigation-bar a {
-    text-decoration: none;
-    transition: all .5s;
-    font-size: 16px;
+  text-decoration: none;
+  transition: all 0.5s;
+  font-size: 16px;
 }
 header nav.active .navigation-bar a {
-    color: #000;
+  color: #000;
 }
 header .navigation-bar .underline {
-    height: 2px;
-    width: 0;
-    left: 50%;
-    bottom: -4px;
-    transition: all .3s;
-    display: block;
+  height: 2px;
+  width: 0;
+  left: 50%;
+  bottom: -4px;
+  transition: all 0.3s;
+  display: block;
 }
-
 
 /*Start Home Page Responsive*/
 @media (max-width: 992px) {
-    body {
-        padding: 0;
-    }
-    .dots {
-        display: none;
-    }
-    header nav .logo {
-        padding-left: 0;
-    }
-    .about-us {
-        display: block;
-        padding-top: 50px;
-    }
-    .about-us .text , .reservation .text {
-        padding: 0 0 40px;
-    }
-    .about-us .image-container .image1, .reservation .image-container .image1 {
-        margin-left: 0;
-    }
-    .menu {
-        display: block;
-        padding: 60px 20px 60px 40px;
-    }
-    .menu .text {
-        padding: 20px 20px 0 0;
-    }
-    .reservation {
-        display: block;
-        padding: 30px 20px 60px;
-    }
-    .contact {
-        display: block;
-        padding: 78px 20px;
-    }
-    .contact .form {
-        margin-left: 0;
-        margin-top: 40px;
-    }
+  body {
+    padding: 0;
+  }
+  .dots {
+    display: none;
+  }
+  header nav .logo {
+    padding-left: 0;
+  }
+  .about-us {
+    display: block;
+    padding-top: 50px;
+  }
+  .about-us .text,
+  .reservation .text {
+    padding: 0 0 40px;
+  }
+  .about-us .image-container .image1,
+  .reservation .image-container .image1 {
+    margin-left: 0;
+  }
+  .menu {
+    display: block;
+    padding: 60px 20px 60px 40px;
+  }
+  .menu .text {
+    padding: 20px 20px 0 0;
+  }
+  .reservation {
+    display: block;
+    padding: 30px 20px 60px;
+  }
+  .contact {
+    display: block;
+    padding: 78px 20px;
+  }
+  .contact .form {
+    margin-left: 0;
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 768px) {
-    header nav {
-        display: block;
-        text-align: center;
-        left: 0;
-        top: 0;
-        width: 100%;
-        padding-top: 25px;
-        background-color: #fff;
-    }
-    header nav .toggle {
-        display: block;
-    }
-    header .navigation-bar {
-        position: fixed;
-        top: 0;
-        left: -174px;
-        height: 100%;
-        background-color: #dee2e6;
-        overflow: hidden;
-        z-index: 20;
-        padding: 40px;
-    }
-    header .navigation-bar ul {
-        display: block;
-        padding-top: 40px;
-    }
-    header .navigation-bar ul li {
-        text-align: left;
-        padding: 14px 0;
-    }
-    footer .contact-container {
-        display: block;
-    }
-    footer .social-media {
-        margin-bottom: 40px;
-    }
-    .copyright ul {
-        display: block;
-        margin-top: -20px;
-    }
-    .copyright li {
-        margin-bottom: 5px;
-    }
-    .copyright li:not(:last-of-type):after {
-        content: '';
-    }
-
+  header nav {
+    display: block;
+    text-align: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding-top: 25px;
+    background-color: #fff;
+  }
+  header nav .toggle {
+    display: block;
+  }
+  header .navigation-bar {
+    position: fixed;
+    top: 0;
+    left: -174px;
+    height: 100%;
+    background-color: #dee2e6;
+    overflow: hidden;
+    z-index: 20;
+    padding: 40px;
+  }
+  header .navigation-bar ul {
+    display: block;
+    padding-top: 40px;
+  }
+  header .navigation-bar ul li {
+    text-align: left;
+    padding: 14px 0;
+  }
+  footer .contact-container {
+    display: block;
+  }
+  footer .social-media {
+    margin-bottom: 40px;
+  }
+  .copyright ul {
+    display: block;
+    margin-top: -20px;
+  }
+  .copyright li {
+    margin-bottom: 5px;
+  }
+  .copyright li:not(:last-of-type):after {
+    content: "";
+  }
 }
 
 @media (max-width: 576px) {
-    h3, h1 {
-        font-size: 40px;
-    }
-    h2 {
-        font-size:90px
-    }
-    header nav .logo {
-        padding-left: 0;
-    }
-    header nav .toggle.active {
-        left: 36%;
-    }
-    header .navigation-bar.show {
-        padding: 20px;
-        width: 48%;
-    }
-    .about-us, .reservation {
-        padding: 60px 20px;
-    }
-    .menu {
-        padding: 60px 0 60px 20px;
-    }
+  h3,
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 90px;
+  }
+  header nav .logo {
+    padding-left: 0;
+  }
+  header nav .toggle.active {
+    left: 36%;
+  }
+  header .navigation-bar.show {
+    padding: 20px;
+    width: 48%;
+  }
+  .about-us,
+  .reservation {
+    padding: 60px 20px;
+  }
+  .menu {
+    padding: 60px 0 60px 20px;
+  }
 }
 /*End Home Page Responsive*/
+
+/* Quick fix: remove bullets and align navigation items if browser shows list markers */
+header .navigation-bar ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+header .navigation-bar ul li {
+  display: inline-block !important;
+  vertical-align: middle;
+  margin-right: 12px !important;
+}
+header .navigation-bar {
+  align-items: center !important;
+}

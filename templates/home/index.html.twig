@@ -2,7 +2,6 @@
     {% block stylesheets %}
         <link href="{{asset ('css/index.css')}}" rel="stylesheet">
         <link href="{{asset ('css/search.css')}}" rel="stylesheet">
-        <link href="{{asset ('css/header.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
     {% endblock %}
     {% block title %}SportsArena{% endblock %}
@@ -83,8 +82,9 @@
                         <div class="carousel-item  {% if active %}active{% endif %}">
                             <div class="row" style=" margin-left:100px;margin-top:20px ">
                                 {% for terrain in chunk_terrain %}
+                                    {% if terrain.images|length > 0 %}
                                     <div class="card" style="width: 18rem; margin-left:50px; margin-top:60px">
-                                        <img src="{{ asset('/uploads/images/' ~ terrain.images[0])|imagine_filter('square') }}" class="card-img-top" alt="{{ terrain.name }}" height="300px" width="200px">
+                                        <img src="{{ asset('uploads/images/' ~ terrain.images[0].name) }}" class="card-img-top" alt="{{ terrain.name }}" style="height: 200px; object-fit: cover;">
                                         <div class="card-body">
                                             <p class="card-title">{{ terrain.name }}</p>
                                             <p class="card-title">{{ terrain.adresse}}</p>
@@ -99,6 +99,7 @@
                                             <a href="{{ path('app_reservation_create', {'id': terrain.id}) }}" class="btn" style="background-color:#000;color:#fff;">Book Now</a>
                                         </div>
                                     </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
@@ -141,7 +142,7 @@
                             <div class="row" style=" margin-left:100px;margin-top:20px ">
                                 {% for categories in chunk_categorie %}
                                     <div class="card" style="width: 18rem; margin:50px; margin-top:60px">
-                                        <img src="{{ asset('/uploads/images/' ~ categories.image)|imagine_filter('square') }}" class="card-img-top" alt="{{ categories.name }}" >
+                                        <img src="{{ asset('uploads/images/' ~ categories.image) }}" class="card-img-top" alt="{{ categories.name }}" >
                                         <div class="card-body">
                                             <p class="card-title">{{ categories.name }}</p>
                                         </div>
