@@ -1,0 +1,26 @@
+app = "reservationterrain"
+primary_region = "iad"
+
+[build]
+  builder = "docker"
+
+[env]
+  APP_ENV = "prod"
+  LOG_CHANNEL = "stdout"
+
+[processes]
+  web = "vendor/bin/heroku-php-apache2 public/"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 80
+  processes = ["web"]
+
+  [[services.ports]]
+    number = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    number = 443
+    handlers = ["tls", "http"]

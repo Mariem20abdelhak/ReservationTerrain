@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+.env.local
+.env.*.local
+/vendor/
+.git
+.gitignore
+README.md
+.DS_Store
+var/cache/*
+var/log/*
+.idea
+.vscode
+*.swp
+*.swo
+*~
+.phpunit.result.cache
