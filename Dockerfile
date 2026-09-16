@@ -1,61 +1,73 @@
-FROM heroku/heroku:22-build as base
+FROM php:8.2-apache
 
-# Create app directory
-WORKDIR /app
+WORKDIR /var/www/html
 
-# Copy composer files
+# Extensions PHP nécessaires à Symfony + MySQL
+RUN apt-get update \
+    && apt-get install -y unzip libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Activer mod_rewrite pour Symfony# Activer mod_rewrite
+RUN a2enmod rewrite
+
+# Configuration Apache pour Symfony
+RUN printf '%s\n' \
+'<VirtualHost *:80>' \
+'    DocumentRoot /var/www/html/public' \
+'' \
+'    <Directory /var/www/html/public>' \
+'        AllowOverride None' \
+'        Require all granted' \
+'        FallbackResource /index.php' \
+'    </Directory>' \
+'' \
+'    ErrorLog ${APACHE_LOG_DIR}/error.log' \
+'    CustomLog ${APACHE_LOG_DIR}/access.log combined' \
+'</VirtualHost>' \
+> /etc/apache2/sites-available/000-default.conf
+
+# Configurer Apache pour utiliser /public comme DocumentRoot
+# Activer mod_rewrite
+RUN a2enmod rewrite
+
+# Configuration Apache pour Symfony
+RUN printf '%s\n' \
+'<VirtualHost *:80>' \
+'    DocumentRoot /var/www/html/public' \
+'' \
+'    <Directory /var/www/html/public>' \
+'        AllowOverride None' \
+'        Require all granted' \
+'        FallbackResource /index.php' \
+'    </Directory>' \
+'' \
+'    ErrorLog ${APACHE_LOG_DIR}/error.log' \
+'    CustomLog ${APACHE_LOG_DIR}/access.log combined' \
+'</VirtualHost>' \
+> /etc/apache2/sites-available/000-default.conf
+
+# Installer Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Copier les fichiers Composer
 COPY composer.json composer.lock ./
 
-# Install PHP and dependencies
-RUN apt-get update && apt-get install -y \
-    php8.1 \
-    php8.1-cli \
-    php8.1-fpm \
-    php8.1-mysql \
-    php8.1-mbstring \
-    php8.1-xml \
-    php8.1-curl \
-    php8.1-zip \
-    php8.1-intl \
-    composer \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install composer dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Copy application code
+# Copier le projet
 COPY . .
 
-# Set permissions
-RUN chmod -R 755 var/ && chmod -R 755 public/uploads/
+# Installer les dépendances PHP
+RUN composer install \
+    --optimize-autoloader \
+    --no-interaction
 
-# Build final image
-FROM heroku/heroku:22
 
-WORKDIR /app
 
-# Install PHP runtime
-RUN apt-get update && apt-get install -y \
-    php8.1 \
-    php8.1-cli \
-    php8.1-fpm \
-    php8.1-mysql \
-    php8.1-mbstring \
-    php8.1-xml \
-    php8.1-curl \
-    php8.1-zip \
-    php8.1-intl \
-    apache2 \
-    && rm -rf /var/lib/apt/lists/*
+# Permissions Symfony
+RUN mkdir -p var/cache var/log public/uploads \
+    && chown -R www-data:www-data var public/uploads \
+    && chmod -R 775 var public/uploads
 
-# Copy from builder
-COPY --from=base /app .
+EXPOSE 80
 
-# Set environment
-ENV PORT=8080 \
-    APP_ENV=prod \
-    LOG_CHANNEL=stdout
-
-EXPOSE 8080
-
-CMD ["vendor/bin/heroku-php-apache2", "-i", "/etc/apache2/mods-available/ssl.load", "public/"]
+CMD ["apache2-foreground"]
